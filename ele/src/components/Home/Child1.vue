@@ -1,5 +1,7 @@
 <template>
-    
+    <div id="child1">
+
+    </div>
 </template>
 
 <script>
@@ -9,5 +11,9 @@
 </script>
 
 <style scoped>
-
+  #child1 {
+    width: 100%;
+    height: 70%;
+    background: blueviolet;
+  }
 </style>
