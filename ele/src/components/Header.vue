@@ -1,12 +1,12 @@
 <template>
     <div id="headers">
       <h1>这是头部导航条</h1>
-      <router-link :to="{path:'/'}">child1页面</router-link>
-      ----------
-      <router-link :to="{}">child2页面</router-link>
-      ----------
-      <router-link :to="{}">child3页面</router-link>
-    </div>
+  <router-link :to="{path:'/'}">child1页面</router-link>
+  ----------
+  <router-link :to="{path:'/Child2'}">child2页面</router-link>
+  ----------
+  <router-link :to="{}">child3页面</router-link>
+  </div>
 </template>
 
 <script>
