@@ -1,24 +1,22 @@
 <template>
-    <div id="headers">
-      <h1>这是头部导航条</h1>
-  <router-link :to="{path:'/'}">child1页面</router-link>
-  ----------
-  <router-link :to="{path:'/Child2'}">child2页面</router-link>
-  ----------
-  <router-link :to="{}">child3页面</router-link>
+  <div id="headers">
+
   </div>
 </template>
 
 <script>
-    export default {
-        name: "Header"
+  export default {
+    name: "Header",
+    component: {
+
     }
+  }
 </script>
 
 <style scoped>
   #headers {
     width: 100%;
-    height: 10%;
-    background: red;
+    height: 3rem;
+    background: #3190e8;
   }
 </style>
