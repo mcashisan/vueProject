@@ -1,3 +1,5 @@
+
+
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
@@ -12,6 +14,11 @@ Vue.prototype.myHttp = myHttp;
 // 引入vuex
 import Vuex from 'vuex'
 Vue.use(Vuex)
+//引入vant
+import Vant from 'vant';
+import 'vant/lib/index.css';
+
+Vue.use(Vant);
 
 /* eslint-disable no-new */
 new Vue({
