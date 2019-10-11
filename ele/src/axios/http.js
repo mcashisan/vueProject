@@ -24,5 +24,24 @@ export default {
       }
     });
   },
+  // 封装post数据请求方式
+  post(url, data, response, exception) {
+    axios({
+      method: "post",
+      url: "https://elm.cangdu.org" + url,
+      data: data,
+      header: {
+        "Content-Type": "application/json; charset=UTF-8"
+      }
+    }).then((reslute) => {
+      response(reslute);
+    }).catch((error) => {
+      if (exception) {
+        exception(error);
+      } else {
+        console.log(error);
+      }
+    });
+  }
 }
 

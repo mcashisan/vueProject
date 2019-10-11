@@ -23,11 +23,14 @@ new Vue({
     fullWidth: "",
     maxWidth: ""
   },
-  computed: {
-    abc() {
-      this.fullWidth = document.documentElement.clientWidth;
-      this.maxWidth = document.documentElement;
-      this.maxWidth.style.fontSize = 48*(this.fullWidth/768) + 'px';
-    }
+  created() {
+    this.fullWidth = document.documentElement.clientWidth;
+    this.maxWidth = document.documentElement;
+    this.maxWidth.style.fontSize = 48*(this.fullWidth/768) + 'px';
   }
-})
+});
+window.onresize = function () {
+  this.fullWidth = document.documentElement.clientWidth;
+  this.maxWidth = document.documentElement;
+  this.maxWidth.style.fontSize = 48*(this.fullWidth/768) + 'px';
+}

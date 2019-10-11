@@ -27,11 +27,19 @@ export default {
   html, body {
     width: 100%;
     height: 100%;
+    background: #f5f5f5;
   }
 
   #app {
     /*height: 100%;*/
-    font-size: 1rem;
+    font-size: 0.6rem;
+    color: #666;
     background: #f5f5f5;
+  }
+
+  a {
+    text-align: center;
+    text-decoration: none;
+    color: #666;
   }
 </style>

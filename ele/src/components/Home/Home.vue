@@ -1,19 +1,33 @@
 <template>
   <div id="home">
     <!--当前城市, 定位城市-->
-    <!--热门城市列表-->
-    <!--所有城市列表-->
-    <div class="container-fluid">
-      <div v-for="(con, index) in arr1" :key="index" class="row">
-        <div class="col-md-12" style="border: 0.01rem solid black;border-left: 0;border-right: 0;">
-          <p>{{con}}</p>
-        </div>
-        <div v-for="(con1, index) in arr2[con]" :key="index">
-          <span class="col-md-3">{{con1.name}}</span>
-        </div>
+    <div class="presentCity">
+      <div class="presentCity_header">
+        <p>当前定位城市:</p>
+        <p>定位不准时, 请在城市列表选择</p>
+      </div>
+      <div class="presentCity_footer">
+        <p>哈哈哈</p>
       </div>
     </div>
-  </div>
+    <!--热门城市列表-->
+    <div class="hotCity">
+      <div>
+        <span style="margin-left: 0.5rem;">热门城市</span>
+      </div>
+      <router-link class="newHot" :to="{}" v-for="(hotCon, index) in hotCityName" :key="index" >
+        {{hotCon.name}}
+      </router-link>
+      <div style="clear: both;"></div>
+    </div>
+    <!--所有城市列表-->
+      <div v-for="(con, index) in arr1" :key="index" class="row" style="overflow: hidden;">
+        <div class="cityHeader">
+          <span style="margin-left: 0.5rem">{{con}}</span>
+        </div>
+        <router-link class="newAll" :to="{}" v-for="(con1, index) in arr2[con]" :key="index">{{con1.name}}</router-link>
+      </div>
+    </div>
 </template>
 
 <script>
@@ -21,6 +35,9 @@
     name: "Home",
     data() {
       return {
+        // 热门城市
+        hotCityName: [],
+        // 所有城市
         arr1: [],
         arr2: []
       }
@@ -28,8 +45,11 @@
     methods: {
       //热门城市
       hotCity() {
-        this.myHttp.get("/v1/cities?type=group", (res) => {
-          console.log(res);
+        this.myHttp.get("/v1/cities?type=hot", (res) => {
+          let _this = this;
+          res.data.forEach(function(v, i) {
+            _this.hotCityName.push(v);
+          });
         }, (err) => {
           console.log(err);
         });
@@ -42,28 +62,87 @@
             this.arr1.push(v);
           }
           this.arr1.sort();
+          console.log(this.arr2);
         }, (err) => {
           console.log(err);
         });
       }
     },
     created() {
-      this.allCity();
+      this.hotCity(); // 热门城市
+      this.allCity(); // 所有城市
     }
   }
 </script>
 
 <style scoped>
   #home {
-   font-size: 1.2rem;
+   font-size: 0.7rem;
   }
 
-  .allCity {
+  /*定位城市*/
+  .presentCity {
+    background: #fff;
+    font-size: 0.5rem;
+  }
+  
+  /*热门城市*/
+  .hotCity {
+    margin-top: 0.5rem;
+    background: #fff;
+  }
+
+  .hotCity > div {
+    line-height: 1.5rem;
+    border-bottom: 0.01rem solid #e4e4e4;
+  }
+
+  .newHot {
+    display: block;
+    float: left;
+    width: 24.75%;
+    line-height: 1.5rem;
+    padding: 0.01rem 0.015rem;
+    border: 0.005rem solid #e4e4e4;
+    background: #fff;
+  }
+
+  .presentCity_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .presentCity_header, .presentCity_footer {
+    padding: 0 0.5rem;
+    line-height: 1.7rem;
+    border-bottom: 0.01rem solid #e4e4e4;
+  }
+
+  .presentCity_footer{
+    text-align: right;
+  }
+
+  .cityHeader {
+    height: 1.2rem;
+    line-height: 1.2rem;
+    border-top: 0.01rem solid #e4e4e4;
+    border-bottom: 0.01rem solid #e4e4e4;
+    margin-top: 0.5rem;
     background: white;
   }
 
-  .cityList span {
-    border: 0.01rem solid black;
+  .newAll {
+    float:left;
+    display: block;
+    width: 24.75%;
+    line-height: 1.5rem;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    border: 0.005rem solid #e4e4e4;
     border-top: 0;
+    padding: 0.01rem 0.015rem;
+    background: white;
   }
 </style>
