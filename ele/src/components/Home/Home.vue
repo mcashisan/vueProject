@@ -1,14 +1,16 @@
 <template>
   <div id="home">
+    <!--当前城市, 定位城市-->
+    <!--热门城市列表-->
+    <!--所有城市列表-->
     <div class="container-fluid">
       <div v-for="(con, index) in arr1" :key="index" class="row">
-        <div class="col-md-12" style="border: 0.01rem solid black;border-left: 0;border-right: 0;">{{con}}
+        <div class="col-md-12" style="border: 0.01rem solid black;border-left: 0;border-right: 0;">
+          <p>{{con}}</p>
         </div>
-        <!--<div class="col-md-12 cityList" style="background: aqua;">-->
-          <!--<span v-for="(con1, index) in arr2[con]" :key="index">-->
-            <!--<span class="col-md-3">{{con1.name}}</span>-->
-          <!--</span>-->
-        <!--</div>-->
+        <div v-for="(con1, index) in arr2[con]" :key="index">
+          <span class="col-md-3">{{con1.name}}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -24,7 +26,16 @@
       }
     },
     methods: {
-      fn() {
+      //热门城市
+      hotCity() {
+        this.myHttp.get("/v1/cities?type=group", (res) => {
+          console.log(res);
+        }, (err) => {
+          console.log(err);
+        });
+      },
+      //所有城市列表请求
+      allCity() {
         this.myHttp.get("/v1/cities?type=group", (res) => {
           this.arr2 = res.data;
           for (let v in res.data) {
@@ -37,7 +48,7 @@
       }
     },
     created() {
-      this.fn();
+      this.allCity();
     }
   }
 </script>
