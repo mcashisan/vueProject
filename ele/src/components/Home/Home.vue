@@ -2,12 +2,13 @@
   <div id="home">
     <div class="container-fluid">
       <div v-for="(con, index) in arr1" :key="index" class="row">
-        <div class="col-md-12" style="background: red;">{{con}}</div>
-        <div class="col-md-12 cityList" style="background: aqua;">
-          <span class="col-md-3" v-for="(con1, index) in arr2[con]" :key="index">
-            {{con1.name}}
-          </span>
+        <div class="col-md-12" style="border: 0.01rem solid black;border-left: 0;border-right: 0;">{{con}}
         </div>
+        <!--<div class="col-md-12 cityList" style="background: aqua;">-->
+          <!--<span v-for="(con1, index) in arr2[con]" :key="index">-->
+            <!--<span class="col-md-3">{{con1.name}}</span>-->
+          <!--</span>-->
+        <!--</div>-->
       </div>
     </div>
   </div>
@@ -46,7 +47,12 @@
    font-size: 1.2rem;
   }
 
+  .allCity {
+    background: white;
+  }
+
   .cityList span {
     border: 0.01rem solid black;
+    border-top: 0;
   }
 </style>
