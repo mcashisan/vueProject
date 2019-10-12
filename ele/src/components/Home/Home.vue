@@ -7,7 +7,7 @@
         <p>定位不准时, 请在城市列表选择</p>
       </div>
       <div class="presentCity_footer">
-        <p>哈哈哈</p>
+        <router-link :to="{}" class="iconfont icon-jiantou-copy" style="font-size:1rem;font-weight:bold;"></router-link>
       </div>
     </div>
     <!--热门城市列表-->
@@ -15,7 +15,7 @@
       <div>
         <span style="margin-left: 0.5rem;">热门城市</span>
       </div>
-      <router-link class="newHot" :to="{}" v-for="(hotCon, index) in hotCityName" :key="index" >
+      <router-link class="newHot" :to="{path:'/city', query:{id:hotCon.id, name:hotCon.name}}" v-for="(hotCon, index) in hotCityName" :key="index" >
         {{hotCon.name}}
       </router-link>
       <div style="clear: both;"></div>
@@ -25,7 +25,7 @@
         <div class="cityHeader">
           <span style="margin-left: 0.5rem">{{con}}</span>
         </div>
-        <router-link class="newAll" :to="{}" v-for="(con1, index) in arr2[con]" :key="index">{{con1.name}}</router-link>
+        <router-link class="newAll"  :to="{path:'/city', query:{id:con1.id, name:con1.name}}" v-for="(con1, index) in arr2[con]" :key="index">{{con1.name}}</router-link>
       </div>
     </div>
 </template>
@@ -43,6 +43,14 @@
       }
     },
     methods: {
+      // 经纬度定位
+      local() {
+        this.myHttp.get("/v2/pois/geohash", (res) => {
+          console.log(res);
+        }, (err) => {
+          console.log(err);
+        });
+      },
       //热门城市
       hotCity() {
         this.myHttp.get("/v1/cities?type=hot", (res) => {
@@ -58,17 +66,18 @@
       allCity() {
         this.myHttp.get("/v1/cities?type=group", (res) => {
           this.arr2 = res.data;
+          console.log(res.data);
           for (let v in res.data) {
             this.arr1.push(v);
           }
           this.arr1.sort();
-          console.log(this.arr2);
         }, (err) => {
           console.log(err);
         });
       }
     },
     created() {
+      this.local(); //经纬度定位城市
       this.hotCity(); // 热门城市
       this.allCity(); // 所有城市
     }
@@ -76,6 +85,7 @@
 </script>
 
 <style scoped>
+  @import "//at.alicdn.com/t/font_1084936_o73md0pauc.css";
   #home {
    font-size: 0.7rem;
   }
@@ -121,6 +131,7 @@
 
   .presentCity_footer{
     text-align: right;
+    font-size: 1rem;
   }
 
   .cityHeader {

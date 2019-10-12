@@ -1,24 +1,25 @@
 <template>
   <div id="app">
-    <Header></Header>
+    <!--<Header></Header>-->
     <router-view></router-view>
-    <Footer></Footer>
+    <!--<Footer></Footer>-->
   </div>
 </template>
 
 <script>
-  import Header from "./components/Header"
-  import Footer from "./components/Footer"
+  // import Header from "./components/Header"
+  // import Footer from "./components/Footer"
 export default {
   name: 'App',
-  components: {
-    Header,
-    Footer
-  }
+  // components: {
+  //   Header,
+  //   Footer
+  // }
 }
 </script>
 
 <style>
+  /*@import "//at.alicdn.com/t/font_1084936_jq9kmpk8nls.css";*/
   * {
     margin: 0;
     padding: 0;

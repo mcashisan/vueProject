@@ -4,13 +4,13 @@
         <!--账号-->
         <div class="login_header">
           <div>
-            <input type="text" placeholder="账号">
+            <input type="text" placeholder="账号" v-model="username">
           </div>
         </div>
         <!--密码输入框-->
         <div class="login_center">
           <div class="login_center_input">
-            <input type="password" placeholder="密码">
+            <input type="password" placeholder="密码" v-model="password">
           </div>
           <div class="login_center_bot">显示按钮</div>
         </div>
@@ -28,8 +28,14 @@
           </div>
         </div>
       </div>
-      <div class="">
-
+      <div class="hint">
+        <p>温馨提示：未注册过的账号，登录时将自动注册</p>
+        <p>注册过的用户可凭账号密码登录</p>
+        <div>
+          <!--register:登录-->
+          <button @click="register">登录</button>
+        </div>
+        <router-link :to="{}" class="reset" @click="resetPass">重置密码?</router-link>
       </div>
     </div>
 </template>
@@ -39,10 +45,14 @@
         name: "login",
         data() {
           return {
-            imageMessage: ""
+            imageMessage: "",
+            // 用户信息
+            username: "",
+            password: ""
           }
         },
         methods: {
+          // 验证码请求
           upData() {
             this.myHttp.post("/v1/captchas", {}, (res) => {
               console.log(res);
@@ -50,6 +60,18 @@
             }, (err) => {
               console.log(err);
             });
+          },
+          // 登录请求
+          register() {
+            this.myHttp.post("/v2/login", {username:this.username, password: this.password, captcha_code:this.imageMessage}, (res) => {
+              console.log(res);
+            }, (err) => {
+              console.log(err);
+            });
+          },
+          // 重置密码
+          resetPass() {
+            // 跳转到更改页面
           }
         },
       created() {
@@ -128,4 +150,36 @@
     margin-right: 0.3rem;
   }
 
+  .hint {
+    padding: 0.3rem 0.5rem 0.5rem;
+    line-height: 1rem;
+    color: red;
+  }
+
+  .hint > div {
+    margin-top: 0.4rem;
+    width: 100%;
+    height: 2rem;
+    border: 0.01rem solid #4cd964;
+    border-radius: 0.2rem;
+    overflow: hidden;
+  }
+
+  .hint > div > button {
+    width: 100%;
+    height: 100%;
+    font-size: 0.8rem;
+    color: #fff;
+    border: none;
+    outline: none;
+    background: #4cd964;
+  }
+
+  .reset {
+    width: 100%;
+    display: inline-block;
+    text-align: right;
+    margin-top: 0.6rem;
+    color: #3b95e9;
+  }
 </style>
