@@ -1,11 +1,11 @@
 <template>
   <div class="res">
     <div class="res1">
-<router-link :to="{}"><</router-link>
+<router-link :to="{path:'/account'}"><</router-link>
     <div class="Title">编辑地址</div>
     <router-link :to="{}" class="bianji">编辑</router-link>
     </div>
-    <div class="add">点击新增地址</div>
+    <router-link :to="{path:'/address1'}"><div class="add">点击新增地址</div></router-link>
     <!--<router-view></router-view>-->
   </div>
 
@@ -35,21 +35,26 @@
   padding: 0.5rem;
   margin-top: 1rem;
   font-size: 0.6rem;
+  color: black;
 
 }
   a{
     color: white;
     font-size: .6rem;
+    text-decoration: none;
   }
   .bianji{
     position: absolute;
-    top: 2rem;
+    top: 0rem;
     left: 14.4rem;
     font-size: 0.6rem;
+    text-decoration: none;
   }
   .Title{
     position: absolute;
-    top: 2rem;
+    top: 0rem;
     left: 7rem;
+    text-decoration: none;
   }
 </style>
+
