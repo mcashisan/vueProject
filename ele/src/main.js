@@ -14,14 +14,10 @@ Vue.prototype.myHttp = myHttp;
 // 引入vuex
 import Vuex from 'vuex'
 Vue.use(Vuex)
-<<<<<<< Updated upstream
-//引入vant
-=======
 // 引入Vant组件
 // import { Swipe, SwipeItem } from 'vant';
 // Vue.use(Swipe).use(SwipeItem);
 
->>>>>>> Stashed changes
 import Vant from 'vant';
 import 'vant/lib/index.css';
 
