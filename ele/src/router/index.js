@@ -20,12 +20,19 @@ import Msite from "../components/Home/Msite"
 import ShopList from "../components/ShopList"
 //添加地址内的搜索
 import SearchAdd from '../components/SearchAdd'
+<<<<<<< Updated upstream
 // import ShopList from "../components/ShopList"
 // 轮播--> 筛选页面
 import Food from "../components/Home/ShopCar/Food"
 // 商品--> 商品介绍(购物车)
 import Shop from "../components/Home/Shop/Shop"
 
+=======
+//mine 我的页面
+import Mine from '../components/Particularszhl/Mine'
+//Serve 个人中心
+import server1 from "../components/Particularszhl/Serve"
+>>>>>>> Stashed changes
 Vue.use(Router)
 
 export default new Router({
@@ -50,11 +57,17 @@ export default new Router({
     {path:"/account",component:AccountInfo},
   //  添加地址内搜索地址
     {path:"/searchAdd",component:SearchAdd},
+<<<<<<< Updated upstream
     //填写成功
     // {path:"/shoplist", component: ShopList},
     // 商品筛选
     {path: "/food", component: Food},
     // 商品页
     {path: "/shop", component: Shop}
+=======
+    //底部的(我的)跳到Mine
+    {path:"/footmine",component:Mine},
+    {path:"/ServeAdd", component:server1}
+>>>>>>> Stashed changes
   ]
 })
