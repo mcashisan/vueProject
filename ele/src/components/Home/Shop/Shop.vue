@@ -103,17 +103,20 @@
                 <div class="allMessageList">
                   <div class="allMessageList_name">
                     <p>{{v.username}}</p>
-                    <p>{{v.rated_at}}</p>
+                    <p style="font-size: 0.4rem;color:#999;">{{v.rated_at}}</p>
                   </div>
                   <div>
                     <p style="margin-top: -0.3rem">
-                      <van-rate v-model=v.rating_star size=5 />
-                      <span>{{v.time_spent_desc}}</span>
+                      <van-rate v-model=v.rating_star size=0.5 />
+                      <span style="font-size: 0.7rem;">{{v.time_spent_desc}}</span>
                     </p>
                     <div class="allMessageList_img">
                       <div>
                         <img src="'https://fuss10.elemecdn.com/'+v.item_ratings[0].image_hash+'.jpeg'" alt="">
-                        <p>{{v.item_ratings[0]}}</p>
+                      </div>
+                      <div>
+                        <span>{{v.item_ratings[0]}}</span>
+                        <span></span>
                       </div>
                     </div>
                   </div>
@@ -419,17 +422,20 @@
     border-top: 0.01rem solid #e4e4e4;
     display: flex;
     justify-content: space-between;
-    align-items: center;
   }
 
   .message_time > img {
     width: 10%;
+    height: 1.5rem;
     border-radius: 50%;
+    margin-top: 0.5rem;
   }
 
   .allMessageList {
     width: 93%;
     margin-left: 0.7rem;
+    padding: 0.5rem 0;
+    color: #666;
   }
 
   .allMessageList_name {

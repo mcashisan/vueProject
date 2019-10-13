@@ -21,13 +21,13 @@
       <div style="clear: both;"></div>
     </div>
     <!--所有城市列表-->
-      <div v-for="(con, index) in arr1" :key="index" class="row" style="overflow: hidden;">
+    <div v-for="(con, index) in arr1" :key="index" class="row" style="overflow: hidden;">
         <div class="cityHeader">
-          <span style="margin-left: 0.5rem">{{con}}</span>
+          <span>{{con}}</span>
         </div>
         <router-link class="newAll"  :to="{path:'/city', query:{id:con1.id, name:con1.name}}" v-for="(con1, index) in arr2[con]" :key="index">{{con1.name}}</router-link>
       </div>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -110,7 +110,7 @@
   .newHot {
     display: block;
     float: left;
-    width: 24.75%;
+    width: 24.76%;
     line-height: 1.5rem;
     padding: 0.01rem 0.015rem;
     border: 0.005rem solid #e4e4e4;
@@ -135,10 +135,10 @@
   }
 
   .cityHeader {
-    height: 1.2rem;
-    line-height: 1.2rem;
-    border-top: 0.01rem solid #e4e4e4;
-    border-bottom: 0.01rem solid #e4e4e4;
+    /*height: 1.2rem;*/
+    /*line-height: 1.2rem;*/
+    /*border-top: 0.01rem solid #e4e4e4;*/
+    /*border-bottom: 0.01rem solid #e4e4e4;*/
     margin-top: 0.5rem;
     background: white;
   }

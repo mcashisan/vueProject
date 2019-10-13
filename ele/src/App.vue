@@ -32,7 +32,6 @@ export default {
   }
 
   #app {
-    /*height: 100%;*/
     font-size: 0.6rem;
     color: #666;
     background: #f5f5f5;

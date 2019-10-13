@@ -15,6 +15,7 @@
         <van-swipe-item>
           <!--geohash=31.22299,121.36025&title=川湘菜&restaurant_category_id=220-->
           <van-grid :column-num="4">
+
             <van-grid-item
               v-for="(v,i) in arr1"
               :icon="'//fuss10.elemecdn.com'+v.image_url"
@@ -88,6 +89,11 @@
 
 <style scoped>
   @import "//at.alicdn.com/t/font_1084936_wvn10akwfmn.css";
+
+  #msite {
+    margin-bottom: 1.5rem;
+  }
+
   #headers {
     height: 2rem;
     padding: 0 0.5rem;
@@ -123,5 +129,4 @@
     margin-left: 0.2rem;
     margin-top: 0.3rem;
   }
-
 </style>
