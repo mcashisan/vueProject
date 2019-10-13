@@ -13,12 +13,13 @@
       <!--轮播-->
       <van-swipe class="lbt" indicator-color="white">
         <van-swipe-item>
+          <!--geohash=31.22299,121.36025&title=川湘菜&restaurant_category_id=220-->
           <van-grid :column-num="4">
             <van-grid-item
               v-for="(v,i) in arr1"
               :icon="'//fuss10.elemecdn.com'+v.image_url"
               :text="v.title"
-              :to="{path:'/jump2'}"
+              :to="{path:'/food', query:{geohash:aaa, title:v.title, restaurant_category_id:v.id}}"
               :key="i"
             />
           </van-grid>
@@ -29,7 +30,7 @@
               v-for="(v,i) in arr2"
               :icon="'//fuss10.elemecdn.com'+v.image_url"
               :text="v.title"
-              :to="{path:'/jump2'}"
+              :to="{path:'/food', query:{geohash:aaa, title:v.title, restaurant_category_id:v.id}}"
               :key="i"
             />
           </van-grid>
@@ -40,25 +41,31 @@
         <span class="iconfont icon-icon-test" style="font-size: 0.8rem;"></span>
         <p>附近商家</p>
       </div>
+      <!--引入商家列表组件-->
+      <shopList></shopList>
     </div>
 </template>
 
 <script>
+    import shopList from "../../components/ShopList"
     export default {
         name: "Msite",
+        components: {
+          shopList
+        },
         data() {
           return {
             dataTitle: "",
             // 创建数组储存轮播图信息
             arr1: [],
-            arr2: []
+            arr2: [],
+            aaa: ""
           }
         },
         methods: {
           // 页面展示请求
           getMessageAll() {
             this.myHttp.get("/v2/index_entry", (res) => {
-              // console.log(res.data[0].image_url);
               this.arr1 = res.data.slice(0, 8);
               this.arr2 = res.data.slice(8, 16);
               // console.log(this.arr1, this.arr2);
@@ -69,6 +76,7 @@
         },
         created() {
           this.getMessageAll();
+          this.aaa = this.$route.query.aaa;
         },
         computed: {
           getTile() {
@@ -113,6 +121,7 @@
 
   .nearby > p {
     margin-left: 0.2rem;
+    margin-top: 0.3rem;
   }
 
 </style>

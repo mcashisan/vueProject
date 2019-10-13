@@ -18,9 +18,17 @@ import City from "../components/Home/City"
 //商品展示页面: msite
 import Msite from "../components/Home/Msite"
 // 商品列表
+<<<<<<< Updated upstream
 import ShopList from "../components/ShopList"
 //添加地址内的搜索
 import SearchAdd from '../components/SearchAdd'
+=======
+// import ShopList from "../components/ShopList"
+// 轮播--> 筛选页面
+import Food from "../components/Home/ShopCar/Food"
+// 商品--> 商品介绍(购物车)
+import Shop from "../components/Home/Shop/Shop"
+>>>>>>> Stashed changes
 
 Vue.use(Router)
 
@@ -39,6 +47,7 @@ export default new Router({
     {path: "/city", component: City},
     //商品展示页面
     {path:"/msite", component: Msite},
+<<<<<<< Updated upstream
     //
     {path:"/shoplist", component: ShopList},
 
@@ -46,5 +55,13 @@ export default new Router({
     {path:"/account",component:AccountInfo},
   //  添加地址内搜索地址
     {path:"/searchAdd",component:SearchAdd}
+=======
+    //填写成功
+    // {path:"/shoplist", component: ShopList},
+    // 商品筛选
+    {path: "/food", component: Food},
+    // 商品页
+    {path: "/shop", component: Shop}
+>>>>>>> Stashed changes
   ]
 })
