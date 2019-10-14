@@ -25,6 +25,10 @@ import SearchAdd from '../components/SearchAdd'
 import Food from "../components/Home/ShopCar/Food"
 // 商品--> 商品介绍(购物车)
 import Shop from "../components/Home/Shop/Shop"
+// 商品页下拉框
+// import ShopClassify from "../components/Home/ShopCar/ShopClassify"
+//筛选
+// import Sort from "../components/Home/ShopCar/Sort"
 
 //mine 我的页面
 import Mine from '../components/Particularszhl/Mine'
@@ -78,6 +82,10 @@ export default new Router({
     {path:"/searchAdd",component:SearchAdd},
     //填写成功
     // {path:"/shoplist", component: ShopList},
+    // 商品页下拉框
+    // {path: "/shopClassify", component: ShopClassify},
+    //筛选
+    // {path: "/sort", component: Sort},
     // 商品筛选
     {path: "/food", component: Food},
     // 商品页

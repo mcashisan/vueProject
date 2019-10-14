@@ -1,5 +1,13 @@
 <template>
   <div id="home">
+    <!--导航条-->
+    <nav id="headers">
+      <div class="headers_msg">
+        <div class="header_left" @click="header_">ele.me</div>
+        <div class="header_con"></div>
+        <div class="header_left" @click="toLogin">登录|注册</div>
+      </div>
+    </nav>
     <!--当前城市, 定位城市-->
     <div class="presentCity">
       <div class="presentCity_header">
@@ -21,9 +29,10 @@
       <div style="clear: both;"></div>
     </div>
     <!--所有城市列表-->
-    <div v-for="(con, index) in arr1" :key="index" class="row" style="overflow: hidden;">
+    <div v-for="(con, index) in arr1" :key="index" style="overflow: hidden;text-decoration:none">
         <div class="cityHeader">
-          <span>{{con}}</span>
+          <span style="padding-left:1.5rem">{{con}}</span>
+          <span v-if="con=='A'" style="margin-left: 0.3rem;color: #999;font-size:0.55rem">(按字母排序)</span>
         </div>
         <router-link class="newAll"  :to="{path:'/city', query:{id:con1.id, name:con1.name}}" v-for="(con1, index) in arr2[con]" :key="index">{{con1.name}}</router-link>
       </div>
@@ -43,6 +52,19 @@
       }
     },
     methods: {
+      //跳转到 home 页
+      header_() {
+        this.hotCityName = [];
+        this.arr1 = [];
+        this.arr2 = [];
+        this.local(); //经纬度定位城市
+        this.hotCity(); // 热门城市
+        this.allCity(); // 所有城市
+      },
+      // 跳转到login页面
+      toLogin() {
+        this.$router.push({path: "/login"});
+      },
       // 经纬度定位
       local() {
         this.myHttp.get("/v2/pois/geohash", (res) => {
@@ -85,9 +107,35 @@
 </script>
 
 <style scoped>
-  @import "//at.alicdn.com/t/font_1084936_o73md0pauc.css";
+  @import "//at.alicdn.com/t/font_1084936_wvn10akwfmn.css";
   #home {
    font-size: 0.7rem;
+  }
+
+  /*导航条*/
+  #headers {
+    height: 2rem;
+    padding: 0 0.5rem;
+    color: white;
+    line-height: 2rem;
+    background: #3190e8;
+  }
+
+  .headers_msg {
+    display:flex;
+    justify-content: space-between;
+    text-align: center;
+  }
+
+  .header_left {
+    width: 20%;
+    text-align: left;
+  }
+
+  .header_con {
+    width: 60%;
+    font-size: 1rem;
+    font-weight: bold;
   }
 
   /*定位城市*/
@@ -110,11 +158,13 @@
   .newHot {
     display: block;
     float: left;
-    width: 24.76%;
+    width: 25%;
     line-height: 1.5rem;
     padding: 0.01rem 0.015rem;
     border: 0.005rem solid #e4e4e4;
     background: #fff;
+    text-decoration: none;
+    color: #3190e8;
   }
 
   .presentCity_header {
@@ -135,10 +185,9 @@
   }
 
   .cityHeader {
-    /*height: 1.2rem;*/
-    /*line-height: 1.2rem;*/
-    /*border-top: 0.01rem solid #e4e4e4;*/
-    /*border-bottom: 0.01rem solid #e4e4e4;*/
+    line-height: 1.5rem;
+    border-top: 0.01rem solid #e4e4e4;
+    border-bottom: 0.01rem solid #e4e4e4;
     margin-top: 0.5rem;
     background: white;
   }
@@ -146,7 +195,7 @@
   .newAll {
     float:left;
     display: block;
-    width: 24.75%;
+    width: 25%;
     line-height: 1.5rem;
     overflow:hidden;
     text-overflow:ellipsis;

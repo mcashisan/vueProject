@@ -1,5 +1,6 @@
 // 引入axios
 import axios from "axios";
+axios.defaults.withCredentials = true;
 export default {
   /*
       封装axios的get请求

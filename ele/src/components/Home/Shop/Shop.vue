@@ -1,6 +1,8 @@
 <template>
     <div id="shop">
-      <div id="shopTop">
+      <!--//elm.cangdu.org/img/164ad0b6a3917599.jpg-->
+      <div id="shopTop" :style="{background:'url('+ 'https://elm.cangdu.org/img/' + shopImg +')',backgroundSize:'400% 400%'}">
+        <!--,filter: 'blur('+0.5 +'rem)':背景模糊-->
         <!--商家:merchant 信息-->
         <div class="merchant">
           <div class="merchant_title">
@@ -10,7 +12,7 @@
               <p>商家配送&nbsp;/&nbsp;分钟送达&nbsp;/&nbsp;{{shopMoney}}</p>
               <p>公告:&nbsp;{{notice}}</p>
             </div>
-            <router-link :to="{}" class="merchant_right">></router-link>
+            <i class="iconfont icon-jiantou-copy" style="font-size: 1rem;" @click="shopFanHui"></i>
           </div>
           <div class="manjian" v-if="shopMessage">
             <div>
@@ -20,14 +22,14 @@
             </div>
             <p>
               {{shopMessage.id}}个活动
-              <span style="font-size: 0.7rem;margin-left: 0.3rem;">></span>
+              <span class="iconfont icon-jiantou-copy" style="font-size: 0.7rem;"></span>
             </p>
           </div>
-          <p class="merchant_left" @click="goTo"><</p>
+          <p class="merchant_left iconfont icon-arrowRight-copy" @click="goTo"></p>
         </div>
       </div>
-        <!--商品, 评价信息-->
-        <van-tabs v-model="active">
+      <!--商品, 评价信息-->
+      <van-tabs v-model="active" style="margin-bottom: 2.5rem;">
           <van-tab title="商品">
             <van-sidebar v-model="activeKey" class="activeKey">
               <van-sidebar-item @click="shows(v)" v-for="(v, index) in listData" :key="index" :title="v.name" style="color: #000;border-top:0.01rem solid #e4e4e4;"/>
@@ -50,6 +52,7 @@
                     <span v-if="x.activity" class="youOrwu" >{{x.activity?x.activity.image_text:''}}</span><br>
                     <div class="allMessage_bot">
                       <p><span style="color: #f60;margin-right:0.2rem;">￥{{x.specfoods[0].price}}</span>起</p>
+                      <!---->
                       <button v-if="">选规格</button>
                     </div>
                   </div>
@@ -83,10 +86,9 @@
               </div>
             </div>
             <!--评价_分类: evaluate_classify-->
-            <!--疑问??????-->
             <div class="evaluate_classify">
               <div v-for="(v, index) in evaluate_c" :key="index">
-                <p :class="(v.name)=='全部'?{evaluate_states:isArray1}:((v.name)=='不满意'?{satisfaction:isArray2}:{rest:isArray3})" @click="{}">
+                <p :class="(v.name)==conName?{evaluate_states:true}:((v.name)=='不满意'?{satisfaction:isArray2}:{rest:isArray3})" @click="fun(v.name)">
                   <!--colorState(index)-->
                   <span>{{v.name}}</span>
                   <span>({{v.count}})</span>
@@ -94,7 +96,6 @@
               </div>
               <div style="clear: both;"></div>
             </div>
-
             <!--评价信息-->
             <div class="evaluate_msg_list">
               <div v-for="(v, index) in evaluate_msg_list" :key="index" class="message_time">
@@ -112,7 +113,7 @@
                     </p>
                     <div class="allMessageList_img">
                       <div>
-                        <img src="'https://fuss10.elemecdn.com/'+v.item_ratings[0].image_hash+'.jpeg'" alt="">
+                        <!--<img v-if="v.item_ratings[0].image_hash" :src="'https://fuss10.elemecdn.com/'+v.item_ratings[0].image_hash+'.jpeg'" alt="" width="2rem">-->
                       </div>
                       <div>
                         <span>{{v.item_ratings[0]}}</span>
@@ -125,6 +126,21 @@
             </div>
           </van-tab>
         </van-tabs>
+      <!--底部购物车显示的数据-->
+      <div class="bot_shopCart">
+        <div class="bot_shopCart_left">
+          <div class="bot_shopCart_car">
+            <i class="iconfont icon-gouwuche1 bot_shopCart_img"></i>
+          </div>
+          <div class="bot_shopCart_money">
+            <p style="font-size: 1rem;">￥<span>0.00</span></p>
+            <p style="margin-top: -0.5rem;">配送费￥5</p>
+          </div>
+        </div>
+        <div class="bot_shopCart_right">
+          <p>还差￥20起送</p>
+        </div>
+      </div>
     </div>
 </template>
 
@@ -133,6 +149,7 @@
         name: "Shop",
         data() {
           return {
+            conName: "全部",
             shopImg: "",  //商家图片
             shopTitle: "", //商家名称
             shopMoney: "", //商家配送/送达/配送费
@@ -146,6 +163,8 @@
             // 商品展示
             shopShow: "",
             shopShow1: "",
+            // 热销榜
+            heatData: [],
             // 评价得分
             evaluate_msg: "",
             // 评价分类
@@ -175,15 +194,22 @@
           this.evaluate_classify();
           // 评价信息
           this.evaluate_message();
+          //背景图
+          // this.url_ = 'https://fuss10.elemecdn.com/' + this.shopImg;
         },
         methods: {
           // 返回上一级页面
           goTo() {
             return this.$router.go(-1)
           },
+          // 返回商铺列表
+          shopFanHui() {
+            this.$router.push({path:"/msite"});
+          },
           shopDetails() {
             this.myHttp.get("/shopping/v2/menu?restaurant_id="+this.ID, (res) => {
-              // console.log(res);
+              // console.log(res.data[0]);
+              // this.heatData = res.data[0];
               this.listData = res.data;
             }, (err) => {
               console.log(err);
@@ -216,22 +242,27 @@
           },
           // 点击分类按钮
           colorState(data) {
-            console.log(data);
+            // console.log(data);
           },
           // 获取评价信息
           evaluate_message() {
             this.myHttp.get("/ugc/v2/restaurants/" + this.ID + "/ratings?offset=0&limit=10", (res) => {
-              console.log(res.data);
+              console.log(res.data[0].item_ratings[0].food_name);
               this.evaluate_msg_list = res.data;
             }, (err) => {
               console.log(err);
             });
+          },
+          //
+          fun(data) {
+            this.conName = data;
           }
         }
     }
 </script>
 
 <style scoped>
+  @import "//at.alicdn.com/t/font_1084936_t66e1ke3gh.css";
   a {
     text-decoration: none;
     color: #fff;
@@ -241,7 +272,8 @@
     padding: 0.5rem 0 0 0;
     font-size: 0.4rem;
     color: #fff;
-    background: rgba(119,103,137,.43);
+    /*background: rgba(119,103,137,.43);*/
+    /*background: url("");*/
   }
 
   .merchant {
@@ -304,13 +336,11 @@
     margin-right: 0.3rem;
     color: #666;
   }
-
   .little {
     font-size: 0.9rem;
     margin-right: 0.1rem;
     color: #000;
   }
-
   .messageList {
     width: 100%;
     padding: 0.5rem;
@@ -327,6 +357,7 @@
   }
 
   .youOrwu {
+    font-size: 0.5rem;
     padding: 0 0.1rem;
     color: rgb(241, 136, 79);
     border: 0.05rem solid rgb(241, 136, 79);
@@ -442,5 +473,61 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  
+  /*底部购物车数据*/
+  .bot_shopCart {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2.5rem;
+    color: #fff;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+
+  /*底部开始*/
+  .bot_shopCart_left {
+    width: 67.5%;
+    height: 100%;
+    /*#333*/
+    background: #333;
+    display: flex;
+    justify-content: start;
+  }
+
+  .bot_shopCart_car {
+    width: 3rem;
+    height: 3rem;
+    background: #3d3d3f;
+    border: 0.05rem solid #4ff;
+    border-radius: 50%;
+    position: absolute;
+    top: -1.3rem;
+    left: 0.7rem;
+    text-align: center;
+    line-height: 3rem;
+  }
+
+  .bot_shopCart_img {
+    font-size: 1.5rem;
+  }
+
+  .bot_shopCart_money {
+    width: 12rem;
+    text-align: center;
+  }
+
+  .bot_shopCart_right {
+    width: 50%;
+    height: 100%;
+    /*margin-left: 10.5rem;*/
+    background: #535356;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 2.5rem;
   }
 </style>

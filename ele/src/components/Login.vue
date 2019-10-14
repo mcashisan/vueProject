@@ -3,7 +3,7 @@
     <!--导航条-->
     <nav id="headers">
       <div class="headers_msg">
-        <div class="header_left">
+        <div class="header_left" @click="fanHui">
           <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;"></i>
         </div>
         <div class="header_con">密码登录</div>
@@ -21,10 +21,13 @@
       <!--密码输入框-->
       <div class="login_center">
         <div class="login_center_input">
-          <input type="password" placeholder="密码" v-model="password">
+          <input :type="typePrice" placeholder="密码" v-model="password">
         </div>
         <div class="login_center_bot" @click="onOff">
-          <i class="iconfont icon-kaiguanclose"></i>
+          <!--不显示-->
+          <i v-if="kai" class="iconfont icon-kaiguanclose"></i>
+          <!--显示字-->
+          <i v-else-if="guan" class="iconfont icon-kaiguanguan" style="color: #4cd964;"></i>
         </div>
       </div>
       <!--验证码-->
@@ -62,14 +65,22 @@
         // 用户信息
         username: "",
         password: "",
-        userCode: ""
+        userCode: "",
+        typePrice: 'password', //type值
+        kai: true,
+        guan: false,
+        accountMsg: []
       }
     },
     methods: {
+      // 返回上一级
+      fanHui() {
+        return this.$router.go(-1);
+      },
       // 验证码请求
       upData() {
         this.myHttp.post("/v1/captchas", {}, (res) => {
-          console.log(res);
+          // console.log(res);
           this.imageMessage = res.data.code;
         }, (err) => {
           console.log(err);
@@ -77,27 +88,83 @@
       },
       // 登录请求
       register() {
-        this.myHttp.post("/v2/login", {
-          username: this.username,
-          password: this.password,
-          captcha_code: this.imageMessage
-        }, (res) => {
-          console.log(res);
-        }, (err) => {
-          console.log(err);
-        });
+        if (this.username == "") {
+          alert("请输入手机号/邮箱/用户名");
+        }else if (this.password == "") {
+          alert("请输入密码");
+        }else if (this.userCode == "") {
+          alert("请输入验证码");
+        }else if (this.username != "" && this.password != "" && this.userCode != "") {
+          this.myHttp.post("/v2/login", {username:this.username, password:this.password, captcha_code:this.userCode}, (res) => {
+            if (res.message == "验证码不正确") {
+              alert("验证码不正确");
+            }else {
+              // 存储用户账号信息
+              if (!localStorage.getItem("placeHistory")) {
+                this.accountMsg.push({"username": this.username, "password": this.password});
+              } else {
+                this.accountMsg = JSON.parse(localStorage.getItem("placeHistory"));
+                this.accountMsg.push({"username": this.username, "password": this.password});
+              }
+              // 获取用户信息
+              // localStorage.getItem("placeHistory")
+              let userDateList = JSON.parse(localStorage.getItem("placeHistory"));
+              let _this = this;
+              userDateList.forEach(function (v, i) {
+                if (_this.username == v.username && _this.password == v.password) {
+                  // 匹配上登录成功
+                  alert("登录成功!");
+                  // 跳转页面
+                  _this.$router.push({path:"/home"});
+                  breack;
+                }else if (_this.username != v.username || _this.password != v.password) {
+                  // 存用户信息
+                  localStorage.setItem("placeHistory", JSON.stringify(this.accountMsg));
+                  breack;
+                } else {
+                  alert("登录失败!");
+                  breack;
+                }
+                console.log(v);
+              });
+              // localStorage.setItem("placeHistory", JSON.stringify(this.accountMsg));
+
+            }
+            console.log(res);
+          }, (err) => {
+            console.log(err);
+          });
+        }
       },
       // 重置密码
       resetPass() {
-        // 跳转到更改页面
+        // 跳转到重置密码页面
       },
       // 开关点击事件
       onOff() {
-
+        if (this.kai) {
+          this.typePrice = 'text';
+          this.kai = false;
+          this.guan = true;
+        } else {
+          this.typePrice = 'password';
+          this.kai = true;
+          this.guan = false;
+        }
       }
     },
     created() {
       this.upData();
+      // let userDateList = JSON.parse(localStorage.getItem("placeHistory"));
+      // userDateList.forEach(function (v, i) {
+      //   console.log(v);
+      //   if (this.username == v.username && this.password == v.password) {
+      //     localStorage.setItem("placeHistory", JSON.stringify(this.accountMsg));
+      //     alert("登录成功!");
+      //   } else {
+      //     alert("登录失败!");
+      //   }
+      // });
     }
   }
 </script>
@@ -120,7 +187,8 @@
   }
 
   .header_left {
-    width: 10%;
+    width: 20%;
+    text-align: left;
   }
 
   .header_con {
