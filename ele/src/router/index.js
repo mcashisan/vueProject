@@ -36,8 +36,6 @@ import Vip from '../components/Particularszhl/Vip'
 import MyMoney from '../components/Particularszhl/Myyuan'
 //积分
 import Jf from '../components/Particularszhl/Integral'
-//订单
-import Ins from '../components/Particularszhl/Indent'
 //下载
 import Inter from '../components/Particularszhl/Download'
 //兑换说明
@@ -98,10 +96,6 @@ export default new Router({
 
     //到积分页
     {path:"/integral",component:Jf},
-    //订单页
-    {path:"/indents",component:Ins},
-    //我的到订单页
-    {path:"/myindext",component:Ins},
 
     //从Myyuan返回我的
     {path:"/Jumpto",component:Mine},
