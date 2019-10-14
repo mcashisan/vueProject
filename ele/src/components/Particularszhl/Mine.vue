@@ -2,17 +2,18 @@
   <div id="title">
     <div id="and">
       <div id="left">
-        <router-link to="{}" style="text-decoration: none;color: white">
+        <router-link to="{}" style="text-decoration: none;color: white;font-size: 1rem;margin-top: 0.5rem;display: inline-block">
           <
         </router-link>
       </div>
       <div id="download">我的</div>
     </div>
     <div style="position: relative;background-color: #3190e8;font-size: 0;padding-top: 1rem;height: 4rem">
-      <img src="./tx.jpeg"/>
+      <img src="./tx.jpeg" id="img1"/>
       <div id="andArr">
         <span id="enter">登录/注册</span><br>
-        <span style="font-size: 0.7rem;color: white;">暂无绑定手机号</span>
+        <span style="font-size: 0.7rem;color: white;"><img src="../img/0.png" style="width: 1rem;height:1rem;
+"/>暂无绑定手机号</span>
       </div>
       <div id="jt">></div>
   </div>
@@ -22,7 +23,7 @@
       <br>
       <span>我的余额</span>
     </p>
-    <p style="border-left: 1px solid rgba(0,0,0,0.06); border-right: 1px solid rgba(0,0,0,0.06);">
+    <p style="border-left: 1px solid rgba(0,0,0,0.06); border-right: 1px solid rgba(0,0,0,0.06);" @click="Mydiscounts">
       <span><span id="big2">0</span>个</span>
       <br>
       <span>我的优惠</span>
@@ -34,13 +35,18 @@
     </p>
   </div>
     <div id="doter">
-      <p>我的订单 <span>></span></p>
-      <p>积分商城 <span>></span></p>
-      <p>饿了么会员卡 <span>></span></p>
+      <p @click="myindent"><img src="../img/1.png"style="width: 1rem;height:1rem;
+"/>&ensp;我的订单<span>></span></p>
+      <p><img src="../img/2.png" style="width: 1rem;height:1rem;
+" @click="mycallshop"/>&ensp;积分商城<span>></span></p>
+      <p><img src="../img/3.png"style="width: 1rem;height:1rem;
+"/>&ensp;饿了么会员卡<span>></span></p>
     </div>
     <div id="saas">
-      <p @click="ServiceCenter">服务中心 <span>></span></p>
-      <p @click="readyAnd">下载饿了么APP <router-link to="{path:'/red'}"><span>></span></router-link> </p>
+      <p @click="ServiceCenter"><img src="../img/4.png" style="width: 1rem;height:1rem;
+"/>&ensp;服务中心<span>></span></p>
+      <p @click="readyAnd"><img src="../img/5.png" style="width: 1rem;height:1rem;
+"/>&ensp;下载饿了么APP<router-link :to="{}"><span>></span></router-link> </p>
     </div>
   </div>
 </template>
@@ -52,16 +58,29 @@
         ServiceCenter(){
           this.$router.push({path:"/ServeAdd"})
         },
-        //下载饿了吗的路由
-        readyAnd(){
-          this.$router.push({path:"/Down"})
-        },
         //积分商城的路由
         shopIntegral(){
           this.$router.push({path:"/integral"});
         },
+        //余额
         mymoney(){
           this.$router.push({path:"/myname"})
+        },
+        //订单
+        myindent(){
+          this.$router.push({path:"/myindext"})
+        },
+        //下载饿了么APP
+        readyAnd(){
+          this.$router.push({path:'/redd'})
+        },
+        //我的优惠
+        Mydiscounts(){
+          this.$router.push({path:"/discounte"})
+        },
+        //积分商城
+        mycallshop(){
+          this.$router.push({path:"/mycallasd"})
         }
       }
     }
@@ -84,7 +103,7 @@
   }
   #left{
     float: left;
-    font-size: 2rem;
+    font-size: 1rem;
   }
   #download{
     float: left;
@@ -92,7 +111,7 @@
     font-size:1rem;
     margin-top: 0.6rem;
   }
-  img{
+  #img1{
     /*width: 3rem;*/
     height: 2.5rem;
     border-radius: 50%;
@@ -109,12 +128,12 @@
 
   }
 #jt{
-  font-size:2rem;
+  font-size:1rem;
   color: white;
   position: absolute;
   right: 0.5rem;
   margin: 0;
-  top: 0.5rem;
+  top: 1rem;
 }
 #monery{
   background-color: white;
@@ -155,7 +174,7 @@
     position: absolute;
     right: 0;
     margin-right: 0.5rem;
-    top: 1rem;
+    /*top: 0.5rem;*/
   }
   #saas{
     background-color: white;
@@ -172,6 +191,6 @@
     position: absolute;
     right: 0;
     margin-right: 0.5rem;
-    top: 1rem;
+    /*top: 1rem;*/
   }
 </style>

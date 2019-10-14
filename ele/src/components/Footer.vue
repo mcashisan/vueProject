@@ -10,7 +10,7 @@
           >
         </van-tabbar-item>
         <van-tabbar-item icon="search">搜索</van-tabbar-item>
-        <van-tabbar-item icon="orders-o">订单</van-tabbar-item>
+        <van-tabbar-item icon="orders-o" @click="Indentshop">订单</van-tabbar-item>
         <van-tabbar-item icon="contact" @click="PageJunpToMine">我的</van-tabbar-item>
       </van-tabbar>
     </div>
@@ -33,6 +33,10 @@
           //跳到Mine页面
         PageJunpToMine(){
           this.$router.push({path:"/footmine"});
+        },
+        //订单
+        Indentshop(){
+          this.$router.push({path:"/indents"})
         }
       }
     }

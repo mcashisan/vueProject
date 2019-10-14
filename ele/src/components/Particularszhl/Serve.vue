@@ -23,9 +23,8 @@
       <div id="question">
         <div id="hot">热门问题</div>
         <ul>
-          <li v-for="(i,index) in bananer" :key="index"><span>{{i}}</span>
-            <router-link :to="{path:'/ServeChild',query:{name:i,zhi:apple}}"
-                         style="float: right;margin-right: 1rem;text-decoration: none">{{head}}
+          <li v-for="(v,index) in bananer" :key="index"><span>{{v}}</span>
+            <router-link :to="{path:'/ServeChild',query:{name:v,zhi:apple}}"style="float: right;margin-right: 1rem;text-decoration: none">{{head}}
             </router-link>
           </li>
         </ul>
@@ -94,49 +93,56 @@
 
   #left {
     float: left;
-    font-size: 3rem;
+    font-size: 1.7rem;
+    margin-top: 0.5rem;
   }
 
   #download {
     float: left;
     margin-left: 30%;
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin-top: 1rem;
   }
 
   #imgP {
-    width: 8rem;
     float: left;
     padding-bottom: 1.5rem;
     padding-top: 1.5rem;
     border-right: 1px solid rgba(0, 0, 0, 0.06);
     font-size: 1rem;
+    padding-right: 1rem;
+    display: block;
+    width: 50%;
   }
 
   #phoneP {
-    width: 6rem;
     float: left;
+    width: 50%;
     font-size: 1rem;
     padding-bottom: 1.5rem;
     padding-top: 1.5rem;
-    padding-left: 3rem;
+    /*padding-left: 2rem;*/
   }
-
+#lino{
+  width: 100%;
+  text-align: center;
+}
   img {
     width: 3rem;
     height: 3rem;
   }
 
   #question {
-    padding-top: 2rem;
+    padding-top: 1rem;
     border-top: 1px solid rgba(0, 0, 0, 0.06);
+    font-size: 0.8rem;
   }
 
   #hot {
     list-style: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     padding-left: 1rem;
-    padding-bottom: 1.5rem;
+    padding-bottom: 1rem;
   }
 
   li {
@@ -144,5 +150,6 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     margin-top: 1rem;
     padding-bottom: 1rem;
+    font-size: 0.8rem;
   }
 </style>
