@@ -60,7 +60,7 @@
       },
       methods:{
         blackrepage(){
-          this.$router.push({path:"/a"})
+          this.$router.push({path:"/pagered"})
         }
       }
     }

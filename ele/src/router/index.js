@@ -63,7 +63,10 @@ import Pr from '../components/Particularszhl/Redandmerc/RedPage'
 import Ab from '../components/Particularszhl/Redandmerc/Thatred'
 //过期红包
 import fouasd from '../components/Particularszhl/Redandmerc/Canhistory'
-
+//兑换红包
+import Dhredpage from '../components/Particularszhl/Redandmerc/Fourredpage'
+//推荐有奖
+import Rc from '../components/Particularszhl/Redandmerc/Recommendcourteous'
 Vue.use(Router)
 
 export default new Router({
@@ -101,24 +104,19 @@ export default new Router({
     // 商品页
     {path: "/shop", component: Shop},
 
+
     //从我的(Mine)跳到服务中心
     {path:"/ServeAdd", component:server1},
-    //返回我的
-    {path:"/Server",component:Mine},
     //服务中心的子页
     {path:"/ServeChild",component:Vip},
     //返回服务中心
     {path:"/vip",component:server1},
     //Mine页 我的余额
     {path:"/myname",component:MyMoney},
-
     //到积分页
     {path:"/integral",component:Jf},
-
-    //从Myyuan返回我的
-    {path:"/Jumpto",component:Mine},
+    //下载
     {path:"/redd",component:Inter},
-
 
     {path:"/footmine",component:Mine},
 
@@ -127,12 +125,14 @@ export default new Router({
     {path:"/paytime",component:PayTime},
   //  修改用户名
     {path:"/ChangeUsername",component:changeU},
+
     //底部的(我的)跳到Mine
     {path:"/footmine",component:Mine},
     //兑换说明
     {path:"/linkpath",component:Zhl},
     //余额说明
     {path:"/zhlmoney",component:Zhlmon},
+
     //兑换返回
     {path:"/Jumpto1",component:Jf},
     //余额返回
@@ -142,13 +142,26 @@ export default new Router({
     //优惠返回我的
     {path:"/blackmine",component:Mine},
     //积分商城
+//优惠
+    {path:"/discounte",component:Youhui},
+//积分商城
+
     {path:"/mycallasd",component:Myshop},
     //红包
     {path:"/pagered",component:Pr},
-    //红包说明
+    //红包说明redpagesd
     {path:"/redpagesd",component:Ab},
     //过期红包
-    {path:"/chistory",component:fouasd}
+
+    {path:"/chistory",component:fouasd},
+
+    {path:"/chistory",component:fouasd},
+    //兑换红包
+    {path:"/blueread",component:Dhredpage},
+    //返回
+    {path:"/pagered",component:Pr},
+    //推荐有奖
+    {path:"/recomd",component:Rc},
 
   ]
 })

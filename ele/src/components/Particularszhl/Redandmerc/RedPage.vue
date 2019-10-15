@@ -1,9 +1,9 @@
 <template>
     <div id="title">
+      <div>
       <div id="title_tou">
         <p id="p1">有<span id="s1">3</span>个红包即将到期</p>
-        <p id="p2"><span id="s2" @click="redpagespeakmrint">?</span>红包说明</p>
-
+        <p id="p2" @click="redpagespeakmrint"><span id="s2">?</span>红包说明</p>
         <div id="enpty" style="clear: both"></div>
       </div>
       <ul>
@@ -26,6 +26,13 @@
       <p id="vis">限品类:快餐便当、特色菜系、小吃夜宵、甜品饮食、异国料理</p>
       <p style="text-align: center;margin-top: 1.5rem" @click="canhistory">查看历史&nbsp;></p>
     </div>
+      <div id="footers">
+        <van-tabbar v-model="active">
+          <van-tabbar-item @click="duihuanhongbao">兑换红包</van-tabbar-item>
+          <van-tabbar-item @click="recommend">推荐有奖</van-tabbar-item>
+        </van-tabbar>
+      </div>
+    </div>
 </template>
 <script>
     export default {
@@ -34,19 +41,28 @@
           return {
             //接收请求到的值
             aa:[],
+            active: 0,
           }
       },
       created(){
           this.myHttp.get("/promotion/v2/users/1/hongbaos?limit=20&offset=0",(res)=>{
             this.aa=res.data;
-            console.log(this.aa);
           })},
       methods:{
         redpagespeakmrint(){
           this.$router.push({path:"/redpagesd"})
         },
+        //查看历史
         canhistory(){
           this.$router.push({path:"/chistory"})
+        },
+        //兑换红包
+        duihuanhongbao(){
+          this.$router.push({path:"/blueread"})
+        },
+        //推荐有奖
+        recommend(){
+          this.$router.push({path:"/recomd"})
         }
       }
     }

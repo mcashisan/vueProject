@@ -1,5 +1,6 @@
 <template>
   <div id="title">
+    <!--导航条-->
     <div id="and">
       <div id="left" @click="JumpToThePage">
         <
@@ -10,8 +11,8 @@
       <div id="frame">
         <div>
           <div id="leftasd">
-            <p>当前余额</p>
-            <p><span>0.00</span>元</p>
+            <p style="margin: 0;">当前余额</p>
+            <p><span>{{money}}</span>元</p>
           </div>
           <router-link id="ingegral" :to="{path:'/zhlmoney'}"><span id="sp1">?</span>余额说明</router-link>
         </div>
@@ -30,10 +31,15 @@
 <script>
     export default {
         name: "Myyuan",
+      data(){
+          return {
+            money:0.00
+          }
+      },
       methods:{
         //页面跳转。跳到Mine页面
         JumpToThePage(){
-          this.$router.push({path:"/Jumpto"});
+          this.$router.push({path:"/footmine"});
         }
       }
     }
@@ -62,13 +68,15 @@
   }
   #andframe{
     background-color:#3190e8;
-    padding: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-bottom:0.5rem;
+    padding-top: 0.2rem;
   }
   #frame{
-    border-radius: 5%;
+    border-radius: 0.3rem;
     background-color: white;
-    font-size: 0.8rem;
-    padding: 1rem;
+    padding: 0.5rem;
   }
   #leftasd{
     float: left;
@@ -78,29 +86,27 @@
     text-decoration: none;
     color: blue;
   }
-  p span{
-    font-size: 1.5rem;
+  p>span{
+    font-size: 1.67rem;
     padding-right: 0.5rem;
   }
   #expain{
     width: 100%;
-    font-size: 1rem;
+    font-size: 0.68rem;
     color: white;
-    background-color: #999;
-    padding: 0.5rem 0;
+    background-color: rgba(0,0,0,0.2);
+    padding: 0.3rem 0;
     border: 0;
-    border-radius: 0.3rem;
+    border-radius: 0.1rem;
   }
   #fons{
-    margin: 1rem;
-    font-size: 0.8rem;
+    margin: 0.5rem;
+    font-size: 0.6rem;
+    color: rgba(0,0,0,0.5);
   }
   #bigp{
-    font-size: 1rem;
+    font-size: 0.7rem;
     padding-top: 0.2rem;
-  }
-  p{
-    padding-bottom: 1rem ;
   }
   #sp1{
     background-color: deepskyblue;

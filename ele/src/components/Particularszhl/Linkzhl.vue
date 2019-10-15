@@ -1,5 +1,5 @@
 <template>
-    <div id="title" style="background-color: white;width: 100%;">
+    <div id="title">
       <!--导航条-->
       <nav id="headers">
         <div class="headers_msg">
@@ -10,7 +10,7 @@
           <div class="header_left"></div>
         </div>
       </nav>
-      <p style="font-size: 0.76rem" v-for="(a,index) in aoo" :key="index">{{a}}</p>
+      <p style="font-size: 0.76rem" v-for="(a,ind) in xing" :key="ind">{{a}}</p>
     </div>
 </template>
 
@@ -18,21 +18,30 @@
     export default {
         name: "Linkzhl",
       data(){
-          return {
-        jf:[],
-            aoo:[]
-          }
+        return {
+          //接收红包说明的值
+          dack:[],
+          //以###截取
+          daak:[],
+          //循环遍历
+          dbbk:[],
+          //以*截取
+          xing:{}
+        }
       },
       created(){
-        //发起网络请求
         this.myHttp.get("/v3/profile/explain",((res)=>{
-          this.jf=res.data.pointtextContent;
-         this.aoo=this.jf.split("###");
+          this.dack=res.data.pointtextContent;
+          this.daak=this.dack.split("###");
+          for (let i=0;i<this.daak.length;i++){
+            this.dbbk+=this.daak[i];
+            this.xing=this.dbbk.split("*");
+          }
         }))
       },
       methods:{
         JumpToThePage(){
-          this.$router.push({path:"/Jumpto1"});
+          this.$router.push({path:"/integral"});
         },
       }
     }

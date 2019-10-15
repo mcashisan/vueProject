@@ -4,7 +4,7 @@
     <nav id="headers">
       <div class="headers_msg">
         <div class="header_left">
-          <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;"><</i>
+          <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;" ><</i>
         </div>
         <div class="header_con">会员中心</div>
         <div class="header_left"></div>
@@ -15,7 +15,8 @@
 
 <script>
     export default {
-        name: "Membercenter"
+        name: "Membercenter",
+
     }
 </script>
 

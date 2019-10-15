@@ -24,7 +24,7 @@
         name: "Discounts",
       methods:{
         blackdiscounts(){
-          this.$router.push({path:"/blackmine"})
+          this.$router.push({path:"/footmine"})
         }
       }
     }

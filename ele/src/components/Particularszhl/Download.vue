@@ -39,7 +39,7 @@
       },
       methods:{
         JumpToThePage(){
-          this.$router.push({path:"/Jumpto"});
+          this.$router.push({path:"/footmine"});
         },
         downloadd(){
 

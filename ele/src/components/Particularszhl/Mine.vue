@@ -1,14 +1,18 @@
 <template>
   <div id="title">
-    <div id="and">
-      <div id="left">
-        <router-link to="{}" style="text-decoration: none;color: white;font-size: 1rem;margin-top: 0.5rem;display: inline-block">
-          <
-        </router-link>
-      </div>
-      <div id="download">我的</div>
+    <div>
+      <!--导航条-->
+      <nav id="headers">
+        <div class="headers_msg">
+          <div class="header_left">
+            <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;"><</i>
+          </div>
+          <div class="header_con">我的</div>
+          <div class="header_left"></div>
+        </div>
+      </nav>
     </div>
-    <div style="position: relative;background-color: #3190e8;font-size: 0;padding-top: 1rem;height: 4rem">
+    <div style="position: relative;background-color: #3190e8;font-size: 0;height: 3.5rem;padding-top: 0.5rem;padding-bottom: 0.5rem">
       <img src="./tx.jpeg" id="img1"/>
       <div id="andArr">
         <span id="enter">登录/注册</span><br>
@@ -92,9 +96,47 @@
 </script>
 
 <style scoped>
-  #title{
-    background-color: rgba(0,0,0,0.3);
+
+  /*导航条*/
+  #headers {
+    height: 2rem;
+    padding: 0 0.5rem;
+    color: white;
+    line-height: 2rem;
+    background: #3190e8;
   }
+
+  .headers_msg {
+    display:flex;
+    justify-content: space-between;
+    text-align: center;
+  }
+
+  .header_left {
+    width: 10%;
+  }
+
+  .header_con {
+    width: 60%;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .login_header, .login_bottom {
+    padding: 0.5rem;
+  }
+
+  .login_header > div {
+    width: 55%;
+  }
+
+  .login_header > div > input {
+    width: 100%;
+    font-size: 0.75rem;
+    border: none;
+    outline: none;
+  }
+
   #lowd{
     background-color: white;
     text-align: center;
@@ -138,15 +180,16 @@
   position: absolute;
   right: 0.5rem;
   margin: 0;
-  top: 1rem;
+  top: 0.5rem;
 }
 #monery{
   background-color: white;
-  height: 5rem;
+  height: 3.6rem;
 }
  #monery p{
     float: left;
-    padding: 1.1rem;
+   width: 33%;
+   padding:0.3rem;
     text-align: center;
    font-size: 0.7rem;
   }
