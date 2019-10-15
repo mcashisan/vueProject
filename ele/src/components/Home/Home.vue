@@ -5,7 +5,8 @@
       <div class="headers_msg">
         <div class="header_left" @click="header_">ele.me</div>
         <div class="header_con"></div>
-        <div class="header_left" @click="toLogin">登录|注册</div>
+        <div v-if="leftTitle == ''" class="header_left" @click="toLogin">登录|注册</div>
+        <i v-else class="iconfont icon-xiaoren" @click="toMine"></i>
       </div>
     </nav>
     <!--当前城市, 定位城市-->
@@ -23,7 +24,7 @@
       <div>
         <span style="margin-left: 0.5rem;">热门城市</span>
       </div>
-      <router-link class="newHot" :to="{path:'/city', query:{id:hotCon.id, name:hotCon.name}}" v-for="(hotCon, index) in hotCityName" :key="index" >
+      <router-link class="newHot" :to="{path:'/city', query:{id:hotCon.id, name:hotCon.name,username:leftTitle}}" v-for="(hotCon, index) in hotCityName" :key="index" >
         {{hotCon.name}}
       </router-link>
       <div style="clear: both;"></div>
@@ -34,7 +35,7 @@
           <span style="padding-left:1.5rem">{{con}}</span>
           <span v-if="con=='A'" style="margin-left: 0.3rem;color: #999;font-size:0.55rem">(按字母排序)</span>
         </div>
-        <router-link class="newAll"  :to="{path:'/city', query:{id:con1.id, name:con1.name}}" v-for="(con1, index) in arr2[con]" :key="index">{{con1.name}}</router-link>
+        <router-link class="newAll"  :to="{path:'/city', query:{id:con1.id, name:con1.name,username:leftTitle}}" v-for="(con1, index) in arr2[con]" :key="index">{{con1.name}}</router-link>
       </div>
   </div>
 </template>
@@ -48,7 +49,9 @@
         hotCityName: [],
         // 所有城市
         arr1: [],
-        arr2: []
+        arr2: [],
+        // 小人图标和汉字转换
+        leftTitle: ""
       }
     },
     methods: {
@@ -63,12 +66,16 @@
       },
       // 跳转到login页面
       toLogin() {
-        this.$router.push({path: "/login"});
+        this.$router.push({path: "/login",query:{}});
+      },
+      // 跳到我的页面
+      toMine() {
+        this.$router.push({path: "/footmine"});
       },
       // 经纬度定位
       local() {
         this.myHttp.get("/v2/pois/geohash", (res) => {
-          console.log(res);
+          // console.log(res);
         }, (err) => {
           console.log(err);
         });
@@ -88,11 +95,20 @@
       allCity() {
         this.myHttp.get("/v1/cities?type=group", (res) => {
           this.arr2 = res.data;
-          console.log(res.data);
+          // console.log(res.data);
           for (let v in res.data) {
             this.arr1.push(v);
           }
           this.arr1.sort();
+        }, (err) => {
+          console.log(err);
+        });
+      },
+      // 用户信息
+      userMes() {
+        this.myHttp.get("/v1/user", (res) => {
+          console.log(res);
+          this.leftTitle = res.data.username;
         }, (err) => {
           console.log(err);
         });
@@ -102,12 +118,14 @@
       this.local(); //经纬度定位城市
       this.hotCity(); // 热门城市
       this.allCity(); // 所有城市
+      // this.leftTitle = this.$route.query.user_id;
+      this.userMes();
     }
   }
 </script>
 
 <style scoped>
-  @import "//at.alicdn.com/t/font_1084936_wvn10akwfmn.css";
+  @import "//at.alicdn.com/t/font_1084936_492sa80v98i.css";
   #home {
    font-size: 0.7rem;
   }

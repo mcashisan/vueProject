@@ -1,5 +1,5 @@
 <template>
-    <div id="sort">
+    <div id="sortData">
       <div class="sort_list">
         <div>符号</div>
         <div class="sort_right">
@@ -12,13 +12,13 @@
 
 <script>
     export default {
-        name: "Sort"
+        name: "SortData"
     }
 </script>
 
 <style scoped>
   @import "//at.alicdn.com/t/font_1084936_stdbav5lfa.css";
-  #sort {
+  #sortData {
     width: 100%;
     background: #fff;
     padding-left: 1rem;

@@ -32,7 +32,7 @@ import Shop from "../components/Home/Shop/Shop"
 // 商品页下拉框
 // import ShopClassify from "../components/Home/ShopCar/ShopClassify"
 //筛选
-// import Sort from "../components/Home/ShopCar/Sort"
+import foodSort from "../components/Home/ShopCar/SortData"
 
 //mine 我的页面
 import Mine from '../components/Particularszhl/Mine'
@@ -82,16 +82,16 @@ export default new Router({
     //
     {path:"/shoplist", component: ShopList},
 
-  //  个人账户信息
+    //  个人账户信息
     {path:"/account",component:AccountInfo},
-  //  添加地址内搜索地址
+    // 添加地址内搜索地址
     {path:"/searchAdd",component:SearchAdd},
     //填写成功
     // {path:"/shoplist", component: ShopList},
     // 商品页下拉框
     // {path: "/shopClassify", component: ShopClassify},
     //筛选
-    // {path: "/sort", component: Sort},
+    {path: "/sort", component: foodSort},
     // 商品筛选
     {path: "/food", component: Food},
     // 商品页
@@ -116,7 +116,6 @@ export default new Router({
     {path:"/redd",component:Inter},
 
 
-
     {path:"/footmine",component:Mine},
 
     {path:"/ServeAdd", component:server1},
@@ -124,29 +123,22 @@ export default new Router({
     {path:"/paytime",component:PayTime},
   //  修改用户名
     {path:"/ChangeUsername",component:changeU},
-
-    // {path:"/footmine",component:Mine,children:[
-    //   {path:"",redirect:"footmine"},
-    //     {path:"redd",component:Inter}
-    //   ]},
+    //底部的(我的)跳到Mine
+    {path:"/footmine",component:Mine},
     //兑换说明
     {path:"/linkpath",component:Zhl},
     //余额说明
     {path:"/zhlmoney",component:Zhlmon},
-//兑换返回
+    //兑换返回
     {path:"/Jumpto1",component:Jf},
     //余额返回
     {path:"/Jumpto2",component:MyMoney},
-//优惠
+    //优惠
     {path:"/discounte",component:Youhui},
     //优惠返回我的
     {path:"/blackmine",component:Mine},
-//积分商城
+    //积分商城
     {path:"/mycallasd",component:Myshop},
-//     {path:"/pagered",component:Youhui ,children:[
-//   {path:"/",redirect:"asd"},
-//   {path:"asd",component:Pr}
-// ]},
     //红包
     {path:"/pagered",component:Pr},
     //红包说明

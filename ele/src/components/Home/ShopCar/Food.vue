@@ -27,9 +27,12 @@
           </div>
         </div>
         <!--下拉列表-->
-        <div class="pullDown_left" v-if="pullDown">
-          <shopCon></shopCon>
-        </div>
+        <transition name="van-slide-down">
+          <!--<div v-show="visible">Slide Down</div>-->
+          <div class="pullDown_left" v-show="pullDown">
+            <shopCon></shopCon>
+          </div>
+        </transition>
       </nav>
       <!--数据列表-->
       <ShopList></ShopList>
@@ -38,6 +41,7 @@
 
 <script>
     import shopCon from "./ShopClassify"
+    import sortData from "./SortData"
     import ShopList from "../../../components/ShopList"
     export default {
         name: "Food",
@@ -51,7 +55,7 @@
           }
         },
         components: {
-          shopCon, ShopList
+          shopCon, ShopList, sortData
         },
         created() {
           this.con = this.$route.query.title;

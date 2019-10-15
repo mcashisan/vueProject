@@ -52,9 +52,18 @@
                     <span v-if="x.activity" class="youOrwu" >{{x.activity?x.activity.image_text:''}}</span><br>
                     <div class="allMessage_bot">
                       <p><span style="color: #f60;margin-right:0.2rem;">￥{{x.specfoods[0].price}}</span>起</p>
-                      <!---->
-                      <button v-if="">选规格</button>
+                      <!--specifications.name-->
+                      <div v-for="(v, index) in x.specifications" :key="index">
+                        <button v-if="v.name" class="bot" @click="standards(v)">选{{v.name}}</button>
+                      </div>
+                      <button v-if="x.specifications == ''" class="bot bot1">+</button>
                     </div>
+                    <!--<div v-for="(n, n1) in x.attributes" :key="n1">-->
+                      <!--&lt;!&ndash;{{n}}&ndash;&gt;-->
+                      <!--<div v-for="(n2, n3) in n" :key="n3">-->
+                        <!--<p v-if="(n2=='新'||'招牌')" :style="n2.icon_color">{{n2}}</p>-->
+                      <!--</div>-->
+                    <!--</div>-->
                   </div>
                 </div>
               </div>
@@ -81,7 +90,7 @@
                 </p>
                 <p>
                   <span class="col1">送达时间</span>
-                  <span style="font-size: 0.4rem;color: #666;">分钟</span>
+                  <span style="font-size: 0.4rem;color: #666;">{{evaluate_msg.deliver_time}}分钟</span>
                 </p>
               </div>
             </div>
@@ -127,20 +136,20 @@
           </van-tab>
         </van-tabs>
       <!--底部购物车显示的数据-->
-      <div class="bot_shopCart">
-        <div class="bot_shopCart_left">
-          <div class="bot_shopCart_car">
-            <i class="iconfont icon-gouwuche1 bot_shopCart_img"></i>
-          </div>
-          <div class="bot_shopCart_money">
-            <p style="font-size: 1rem;">￥<span>0.00</span></p>
-            <p style="margin-top: -0.5rem;">配送费￥5</p>
-          </div>
-        </div>
-        <div class="bot_shopCart_right">
-          <p>还差￥20起送</p>
-        </div>
-      </div>
+      <!--<div class="bot_shopCart">-->
+        <!--<div class="bot_shopCart_left">-->
+          <!--<div class="bot_shopCart_car">-->
+            <!--<i class="iconfont icon-gouwuche1 bot_shopCart_img"></i>-->
+          <!--</div>-->
+          <!--<div class="bot_shopCart_money">-->
+            <!--<p style="font-size: 1rem;">￥<span>0.00</span></p>-->
+            <!--<p style="margin-top: -0.5rem;">配送费￥5</p>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="bot_shopCart_right">-->
+          <!--<p>还差￥20起送</p>-->
+        <!--</div>-->
+      <!--</div>-->
     </div>
 </template>
 
@@ -160,6 +169,7 @@
             active: 2,
             activeKey: 0,
             listData: [],
+            newListData: [],
             // 商品展示
             shopShow: "",
             shopShow1: "",
@@ -208,17 +218,21 @@
           },
           shopDetails() {
             this.myHttp.get("/shopping/v2/menu?restaurant_id="+this.ID, (res) => {
-              // console.log(res.data[0]);
-              // this.heatData = res.data[0];
+              // console.log(res.data);
+              this.newListData = res.data;
               this.listData = res.data;
+              // 默认值
+              this.shopShow = res.data[0];
+              this.shopShow1 = res.data[0].foods;
             }, (err) => {
               console.log(err);
             });
           },
           shows(data){
             this.shopShow = data;
-            // console.log(data.foods);
+            // console.log(data);
             this.shopShow1 = data.foods;
+            // specifications.name
           },
           // 评价分数
           evaluate_grade() {
@@ -247,7 +261,7 @@
           // 获取评价信息
           evaluate_message() {
             this.myHttp.get("/ugc/v2/restaurants/" + this.ID + "/ratings?offset=0&limit=10", (res) => {
-              console.log(res.data[0].item_ratings[0].food_name);
+              // console.log(res.data[0].item_ratings[0].food_name);
               this.evaluate_msg_list = res.data;
             }, (err) => {
               console.log(err);
@@ -256,6 +270,10 @@
           //
           fun(data) {
             this.conName = data;
+          },
+          // 点击选规格/加如购物车
+          standards(n) {
+            console.log(n);
           }
         }
     }
@@ -372,7 +390,7 @@
     align-items: center;
   }
 
-  .allMessage_bot > button {
+  .bot {
     margin-bottom: 0.5rem;
     border: none;
     outline: none;
@@ -380,6 +398,11 @@
     color: #fff;
     padding: 0.2rem;
     background: #3199e8;
+  }
+
+  .bot1 {
+    padding: 0.3rem;
+    border-radius: 50%;
   }
 
   /*评价得分*/
@@ -481,6 +504,7 @@
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 999;
     height: 2.5rem;
     color: #fff;
     display: flex;

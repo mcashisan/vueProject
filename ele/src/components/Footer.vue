@@ -7,10 +7,11 @@
             slot="icon"
             slot-scope="props"
             :src="props.active ? icon.active : icon.normal"
+            @click="shouye"
           >
         </van-tabbar-item>
         <van-tabbar-item icon="search">搜索</van-tabbar-item>
-        <van-tabbar-item icon="orders-o">订单</van-tabbar-item>
+        <van-tabbar-item icon="orders-o" @click="dingdan">订单</van-tabbar-item>
         <van-tabbar-item icon="contact" @click="PageJunpToMine">我的</van-tabbar-item>
       </van-tabbar>
     </div>
@@ -29,7 +30,19 @@
           }
         },
       methods:{
-          //跳到Mine页面
+          // 跳转首页
+        shouye() {
+          this.$router.push({path:"/mist"});
+        },
+        // 搜索
+        sousuo() {
+          this.$router.push({path:""});
+        },
+        // 订单
+        dingdan() {
+          this.$router.push({path:""});
+        },
+        //跳到Mine页面
         PageJunpToMine(){
           this.$router.push({path:"/footmine"});
         },

@@ -48,15 +48,20 @@
       <p @click="readyAnd"><img src="../img/5.png" style="width: 1rem;height:1rem;
 "/>&ensp;下载饿了么APP<router-link :to="{}"><span>></span></router-link> </p>
     </div>
+    <footer></footer>
   </div>
 </template>
 <script>
+    import footer from "../../components/Footer"
     export default {
         name: "Mine",
+      component: {
+        footer
+      },
       methods:{
           //服务中心的路由
         ServiceCenter(){
-          this.$router.push({path:"/ServeAdd"})
+          this.$router.push({path:"/ServeAdd"});
         },
         //积分商城的路由
         shopIntegral(){
@@ -64,23 +69,23 @@
         },
         //余额
         mymoney(){
-          this.$router.push({path:"/myname"})
+          this.$router.push({path:"/myname"});
         },
         //订单
         myindent(){
-          this.$router.push({path:"/myindext"})
+          this.$router.push({path:"/myindext"});
         },
         //下载饿了么APP
         readyAnd(){
-          this.$router.push({path:'/redd'})
+          this.$router.push({path:'/redd'});
         },
         //我的优惠
         Mydiscounts(){
-          this.$router.push({path:"/discounte"})
+          this.$router.push({path:"/discounte"});
         },
         //积分商城
         mycallshop(){
-          this.$router.push({path:"/mycallasd"})
+          this.$router.push({path:"/mycallasd"});
         }
       }
     }

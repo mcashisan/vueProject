@@ -53,6 +53,7 @@
             show_none: false,
             obj:[],//存储解析过的对象
             his:[],//存放json对象
+            userN: ""
           }
       },
         methods: {
@@ -79,7 +80,7 @@
             const info = {name:v.name,address:v.address}
             localStorage.setItem(index,JSON.stringify(info));
             console.log(info);
-            this.$router.push({path: "/msite", query:{geoHash:v.address, aaa:v.geohash}})
+            this.$router.push({path: "/msite", query:{geoHash:v.address, aaa:v.geohash,username:this.userN}})
           },
           // 清空历史记录
           clearData() {
@@ -97,6 +98,7 @@
           }
         },
       created(){
+        this.userN = this.$route.query.username;
         for (let i = 0; i < 20; i++) {
           var historys = localStorage.getItem(i + "");
           // console.log(historys);

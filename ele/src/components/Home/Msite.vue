@@ -6,8 +6,9 @@
           <div class="header_left" @click="miste_fanhui">
             <i class="iconfont icon-sousuo1" style="font-size: 1rem;font-weight: bold;"></i>
           </div>
-          <div class="header_con search_Title">{{getTile}}</div>
-          <div class="header_left"><span>登录</span>|<span>注册</span></div>
+          <div class="header_con search_Title" @click="goHeader">{{getTile}}</div>
+          <div v-if="xiaoren ==''" class="header_left" @click="toLogin"><span>登录</span>|<span>注册</span></div>
+          <i v-else class="iconfont icon-xiaoren" @click="toMine"></i>
         </div>
       </nav>
       <!--轮播-->
@@ -44,15 +45,19 @@
       </div>
       <!--引入商家列表组件-->
       <shopList></shopList>
+      <!--底部导航-->
+      <Footer></Footer>
     </div>
 </template>
 
 <script>
     import shopList from "../../components/ShopList"
+    import Footer from "../../components/Footer"
     export default {
         name: "Msite",
         components: {
-          shopList
+          shopList,
+          Footer
         },
         data() {
           return {
@@ -60,10 +65,23 @@
             // 创建数组储存轮播图信息
             arr1: [],
             arr2: [],
-            aaa: ""
+            aaa: "",
+            xiaoren:""
           }
         },
         methods: {
+          //跳搜索
+          goHeader() {
+            this.$router.push({path:"/home"});
+          },
+          // 跳转到login页面
+          toLogin() {
+            this.$router.push({path: "/login",query:{}});
+          },
+          // 跳到我的页面
+          toMine() {
+            this.$router.push({path: "/footmine"});
+          },
           // 返回
           miste_fanhui() {
             this.$router.push({path:"/home"});
@@ -80,6 +98,7 @@
           }
         },
         created() {
+          this.xiaoren = this.$route.query.username;
           this.getMessageAll();
           this.aaa = this.$route.query.aaa;
         },
@@ -92,7 +111,7 @@
 </script>
 
 <style scoped>
-  @import "//at.alicdn.com/t/font_1084936_sgqu6lcw6p.css";
+  @import "//at.alicdn.com/t/font_1084936_492sa80v98i.css";
 
   #msite {
     margin-bottom: 1.5rem;

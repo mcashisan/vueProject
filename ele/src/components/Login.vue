@@ -69,7 +69,7 @@
         typePrice: 'password', //type值
         kai: true,
         guan: false,
-        accountMsg: []
+        accountMsg: ""
       }
     },
     methods: {
@@ -88,6 +88,7 @@
       },
       // 登录请求
       register() {
+        // localStorage.clear();
         if (this.username == "") {
           alert("请输入手机号/邮箱/用户名");
         }else if (this.password == "") {
@@ -96,41 +97,14 @@
           alert("请输入验证码");
         }else if (this.username != "" && this.password != "" && this.userCode != "") {
           this.myHttp.post("/v2/login", {username:this.username, password:this.password, captcha_code:this.userCode}, (res) => {
-            if (res.message == "验证码不正确") {
-              alert("验证码不正确");
-            }else {
-              // 存储用户账号信息
-              if (!localStorage.getItem("placeHistory")) {
-                this.accountMsg.push({"username": this.username, "password": this.password});
-              } else {
-                this.accountMsg = JSON.parse(localStorage.getItem("placeHistory"));
-                this.accountMsg.push({"username": this.username, "password": this.password});
+              console.log(res);
+              if (!res.data.message) {
+                alert("登录成功!");
+                //user_id:res.data.user_id
+                this.$router.push({path:"/home", query:{}});
+              }else {
+                alert(res.data.message);
               }
-              // 获取用户信息
-              // localStorage.getItem("placeHistory")
-              let userDateList = JSON.parse(localStorage.getItem("placeHistory"));
-              let _this = this;
-              userDateList.forEach(function (v, i) {
-                if (_this.username == v.username && _this.password == v.password) {
-                  // 匹配上登录成功
-                  alert("登录成功!");
-                  // 跳转页面
-                  _this.$router.push({path:"/home"});
-                  breack;
-                }else if (_this.username != v.username || _this.password != v.password) {
-                  // 存用户信息
-                  localStorage.setItem("placeHistory", JSON.stringify(this.accountMsg));
-                  breack;
-                } else {
-                  alert("登录失败!");
-                  breack;
-                }
-                console.log(v);
-              });
-              // localStorage.setItem("placeHistory", JSON.stringify(this.accountMsg));
-
-            }
-            console.log(res);
           }, (err) => {
             console.log(err);
           });

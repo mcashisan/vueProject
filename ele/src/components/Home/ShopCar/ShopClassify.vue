@@ -6,7 +6,7 @@
             <!--左边-->
             <div class="dataList_left_all" :class="yesOrNo == v.name ? {bgdShow:true}: {bgdShow:false}" @click="get_downData(v)">
               <div  class="dataList_con">
-                <img :src="(n>0&&v.image_url!='')?'https://fuss10.elemecdn.com/'+v.image_url+'.png':'//elm.cangdu.org/img/default.jpg'" alt="" style="width: 0.9rem;height:0.9rem;">
+                <img :src="(n>0||v.image_url!='')?'https://fuss10.elemecdn.com/'+v.image_url+'.png':'//elm.cangdu.org/img/default.jpg'" alt="" style="width: 0.9rem;height:0.9rem;">
                 <span>{{v.name}}</span>
               </div>
               <div>
@@ -66,9 +66,10 @@
 
   .down_box {
     width: 100%;
-    height: 20rem;
+    height: 18rem;
     display: flex;
     justify-content: start;
+    background: darkgrey;
   }
 
   .down_dataList {
@@ -77,7 +78,7 @@
 
   .dataList_left_all {
     width: 100%;
-    /*padding: 0.5rem;*/
+    padding: 0 0.5rem;
     color: #000;
     background: darkgrey;
     display: flex;
@@ -85,10 +86,6 @@
   }
 
   .bgdShow {
-    /*width: 100%;*/
-    /*padding: 0.5rem;*/
-    /*display: flex;*/
-    /*justify-content: space-between;*/
     background: #fff;
   }
 
