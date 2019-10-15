@@ -1,19 +1,22 @@
 <template>
-    <div id="title">
-      <div id="and">
+    <div id="title" style="background-color: white">
+        <!--导航条-->
       <div id="left">
-        <router-link to="Download" style="color: white;display: inline-block;text-decoration: none">
-          <
-        </router-link>
-      </div>
-      <div id="download">下载</div>
+        <!--导航条-->
+        <nav id="headers">
+          <div class="headers_msg">
+            <div class="header_left">
+              <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;" @click="JumpToThePage"><</i>
+            </div>
+            <div class="header_con">订单列表</div>
+            <div class="header_left"></div>
+          </div>
+        </nav>
     </div>
       <div id="lowd">
-        <div>
-        <img src="./down.png"/>
+        <img src="down.png"/>
         <p id="p1">下载饿了么APP</p>
-        </div>
-        <div  id="btn" @click="downloadd">下载</div>
+        <div  id="btn" @click="downloadd"  class="btn btn-success">下载</div>
       </div>
     <div id="popover" v-show="ShowArr">
       <div id="pop">
@@ -21,6 +24,7 @@
         <p>IOS用户请前往AppStore下载</p>
         <div id="btnDiv">确认</div>
       </div>
+
     </div>
     </div>
 </template>
@@ -34,53 +38,31 @@
           }
       },
       methods:{
-        downloadd(){
-          return this.ShowArr;
+        JumpToThePage(){
+          this.$router.push({path:"/Jumpto"});
         },
+        downloadd(){
+
+        }
       }
     }
 </script>
 
 <style scoped>
-#title{
-  background-color: white;
-  position: relative;
-}
-  #lowd{
-    background-color: white;
-    text-align: center;
-  }{
-  width: 100%;
-  height: 100%;
-}
-#and{
-  height: 3.5rem;
-  background-color:  #3190e8;
-  padding-left: 1rem;
-  color: white;
-}
-#left{
-  float: left;
-  font-size: 3rem;
-}
-#download{
-  float: left;
-  margin-left: 36%;
-  font-size:1.5rem;
-  margin-top: 1rem;
+#lowd{
+  text-align: center;
 }
   #p1{
-    font-size: 2.5rem;
+    font-size: 0.75rem;
     margin-top: 0.5rem;
   }
 #btn{
-  background-color: springgreen;
-  font-size: 3rem;
-  margin-top: 2rem;
+  /*background-color: springgreen;*/
+  font-size: 1.5rem;
   width: 95%;
   text-align: center;
   display: inline-block;
-  border-radius: 5%;
+  border-radius: 0.3rem;
 }
 #popover{
   background-color: white;
@@ -93,10 +75,9 @@
   display: none;
 }
 img{
-  width: 10rem;
-  height: 10rem;
-  margin-top: 3rem;
-  margin-right: 6rem;
+  width: 7.5rem;
+  height: 7.5rem;
+  margin-top: 1rem;
 }
 #garden{
   width: 4rem;
@@ -115,4 +96,45 @@ img{
     display: inline-block;
     border-radius: 5%;
   }
+
+/*导航条*/
+#headers {
+  height: 2rem;
+  padding: 0 0.5rem;
+  color: white;
+  line-height: 2rem;
+  background: #3190e8;
+}
+
+.headers_msg {
+  display:flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.header_left {
+  width: 10%;
+}
+
+.header_con {
+  width: 60%;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.login_header, .login_bottom {
+  padding: 0.5rem;
+}
+
+.login_header > div {
+  width: 55%;
+}
+
+.login_header > div > input {
+  width: 100%;
+  font-size: 0.75rem;
+  border: none;
+  outline: none;
+}
+
 </style>

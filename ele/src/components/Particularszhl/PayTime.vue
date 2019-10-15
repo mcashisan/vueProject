@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
     <div class="PayTime">
       <nav id="headers">
         <div class="headers_msg">
@@ -53,7 +54,6 @@
         <van-button type="primary" size="large" @click="show=false">确定</van-button>
       </div>
       </div>
-
 </template>
 
 <script>

@@ -2,12 +2,12 @@
     <div id="msite">
       <!--导航条-->
       <nav id="headers">
-        <div class="row" style="display:flex; justify-content: space-between;text-align: center;color: #fff;">
-          <router-link :to="{path:'/'}">搜索</router-link>
-          <div class="search_Title">{{getTile}}</div>
-          <router-link :to="{path:'/login'}">
-            <div><span>登录</span>|<span>注册</span></div>
-          </router-link>
+        <div class="headers_msg">
+          <div class="header_left" @click="miste_fanhui">
+            <i class="iconfont icon-sousuo1" style="font-size: 1rem;font-weight: bold;"></i>
+          </div>
+          <div class="header_con search_Title">{{getTile}}</div>
+          <div class="header_left"><span>登录</span>|<span>注册</span></div>
         </div>
       </nav>
       <!--轮播-->
@@ -64,12 +64,16 @@
           }
         },
         methods: {
+          // 返回
+          miste_fanhui() {
+            this.$router.push({path:"/home"});
+          },
           // 页面展示请求
           getMessageAll() {
             this.myHttp.get("/v2/index_entry", (res) => {
               this.arr1 = res.data.slice(0, 8);
               this.arr2 = res.data.slice(8, 16);
-              // console.log(this.arr1, this.arr2);
+              console.log(res.data);
             }, (err) => {
               console.log(err);
             });
@@ -88,12 +92,13 @@
 </script>
 
 <style scoped>
-  @import "//at.alicdn.com/t/font_1084936_wvn10akwfmn.css";
+  @import "//at.alicdn.com/t/font_1084936_sgqu6lcw6p.css";
 
   #msite {
     margin-bottom: 1.5rem;
   }
 
+  /*导航条*/
   #headers {
     height: 2rem;
     padding: 0 0.5rem;
@@ -102,8 +107,22 @@
     background: #3190e8;
   }
 
-  a {
-    color: #fff;
+  .headers_msg {
+    display:flex;
+    justify-content: space-between;
+    text-align: center;
+  }
+
+  .header_left {
+    width: 20%;
+    text-align: left;
+  }
+
+  .header_con {
+    width: 60%;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-left: -0.6rem;
   }
 
   .search_Title {

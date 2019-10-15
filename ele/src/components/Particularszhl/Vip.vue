@@ -1,7 +1,7 @@
 <template>
   <div id="title">
     <div id="and">
-        <router-link to="vip" id="left" style="text-decoration: none;color: white" @click="centerAnd">
+        <router-link to="vip" id="left" style="text-decoration: none;color: white">
           <
       </router-link>
       <div id="download">{{nama}}</div>
@@ -23,12 +23,8 @@
       created(){
           this.nama=this.$route.query.name;
           this.nams=this.$route.query.zhi;
-      },
-     methods:{
-       centerAnd(){
-         this.$router.push({path:"/centerand"})
-       }
-     }
+          console.log(this.nams);
+      }
     }
 </script>
 
@@ -40,9 +36,6 @@
   #lowd{
     background-color: white;
     text-align: center;
-  }{
-    width: 100%;
-    height: 100%;
   }
   #and{
     height: 3.5rem;
@@ -52,12 +45,13 @@
   }
   #left{
     float: left;
-    font-size: 3rem;
+    font-size: 1.4rem;
+    margin-top: 1rem;
   }
   #download{
     float: left;
     margin-left: 3rem;
-    font-size:1.5rem;
+    font-size:1.2rem;
     margin-top: 1rem;
   }
 </style>

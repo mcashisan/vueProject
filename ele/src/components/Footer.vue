@@ -19,7 +19,6 @@
 <script>
     export default {
         name: "Footer",
-
         data() {
           return {
             active: 0,
@@ -33,13 +32,16 @@
           //跳到Mine页面
         PageJunpToMine(){
           this.$router.push({path:"/footmine"});
-        }
+        },
       }
     }
 </script>
 
 <style scoped>
   #footers {
-
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
 </style>
