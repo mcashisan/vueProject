@@ -48,15 +48,15 @@
       <p @click="readyAnd"><img src="../img/5.png" style="width: 1rem;height:1rem;
 "/>&ensp;下载饿了么APP<router-link :to="{}"><span>></span></router-link> </p>
     </div>
-    <footer></footer>
+    <Footer></Footer>
   </div>
 </template>
 <script>
-    import footer from "../../components/Footer"
+    import Footer from "../../components/Footer"
     export default {
         name: "Mine",
-      component: {
-        footer
+      components: {
+        Footer
       },
       methods:{
           //服务中心的路由

@@ -3,6 +3,8 @@ import Router from 'vue-router'
 //引入组件配置路由
 import Home from "../components/Home/Home"
 import Login from "../components/Login"
+import search from "../components/Lyf/Search" // 搜索页面
+import OrderList from "../components/Order/OrderList"
 //
 //重置密码
 import Reset from "../components/Lyf/ResetPassword"
@@ -69,6 +71,8 @@ export default new Router({
     {path: "/", redirect: "/home"},  // 重定向
     {path:"/home", component:Home},  // 首页
     {path: "/login", component: Login},   // 登录
+    {path: "/search", component:search},// 搜索页面
+    {path: "/order", component: OrderList}, // 订单页面
     //重置密码
     {path:"/reset",component:Reset},
     //添加地址
