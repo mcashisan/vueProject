@@ -1,10 +1,15 @@
 
 <template>
   <div class="reF">
-    <div class="res">
-      <router-link :to="{}"><</router-link>
-      <p>重置密码</p>
-    </div>
+    <nav id="headers">
+      <div class="headers_msg">
+        <div class="header_left" @click="goback">
+          <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;"></i>
+        </div>
+        <div class="header_con">重置密码</div>
+        <div class="header_left"></div>
+      </div>
+    </nav>
     <div class="reI">
       <input type="text" placeholder="用户名"><br>
       <input type="text" placeholder="旧密码"><br>
@@ -42,6 +47,9 @@
             this.msgs=res.data.code
           });
         },
+        goback(){
+          this.$router.go(-1)
+        }
       },
       created(){
           this.indent()
@@ -55,15 +63,29 @@
   height: 100%;
   background-color: rgb(245,245,245);
 }
-.res{
-
-  /*font-size: 1rem;*/
-  text-align: center;
+@import "//at.alicdn.com/t/font_1084936_89o5dxhawbk.css";
+#headers {
   height: 2rem;
   padding: 0 0.5rem;
   color: white;
   line-height: 2rem;
   background: #3190e8;
+}
+
+.headers_msg {
+  display:flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.header_left {
+  width: 10%;
+}
+
+.header_con {
+  width: 60%;
+  font-size: 1rem;
+  font-weight: bold;
 }
 p{
   line-height: 2.3rem;

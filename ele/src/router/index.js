@@ -12,6 +12,10 @@ import Address from "../components/Lyf/Address"
 import AddAddress from "../components/Lyf/AddAddress"
 //账户信息
 import AccountInfo from "../components/AccountInfoLyf"
+//支付倒计时
+import PayTime from  "../components/Particularszhl/PayTime"
+//修改用户名
+import changeU from "../components/ChangeUsername"
 
 //城市搜索: city
 import City from "../components/Home/City"
@@ -30,6 +34,7 @@ import Shop from "../components/Home/Shop/Shop"
 import Mine from '../components/Particularszhl/Mine'
 //Serve 个人中心
 import server1 from "../components/Particularszhl/Serve"
+//修改用户名
 Vue.use(Router)
 
 export default new Router({
@@ -40,9 +45,9 @@ export default new Router({
     //重置密码
     {path:"/reset",component:Reset},
     //添加地址
-    {path:"/address",component:Address},
+    {path:"/saveAddress",component:Address},
     //添加地址1
-    {path:"/address1",component:AddAddress},
+    {path:"/address",component:AddAddress},
     // 城市搜索
     {path: "/city", component: City},
     //商品展示页面
@@ -62,6 +67,10 @@ export default new Router({
     {path: "/shop", component: Shop},
     //底部的(我的)跳到Mine
     {path:"/footmine",component:Mine},
-    {path:"/ServeAdd", component:server1}
+    {path:"/ServeAdd", component:server1},
+  //  支付倒计时
+    {path:"/paytime",component:PayTime},
+  //  修改用户名
+    {path:"/ChangeUsername",component:changeU}
   ]
 })
