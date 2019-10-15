@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
     <div class="PayTime">
       <nav id="headers">
         <div class="headers_msg">
