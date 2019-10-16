@@ -34,7 +34,7 @@
 </div>
 
       <div class="tan" v-if="show">
-      <img src="./img/弹框.png"/>
+      <img src="./img/tan.png"/>
         <p>请在手机APP中设置</p>
         <van-button type="primary" size="large" @click="show=false">确定</van-button>
       </div>

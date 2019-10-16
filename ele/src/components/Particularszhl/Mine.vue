@@ -39,8 +39,10 @@
 "/>&ensp;我的订单<span>></span></p>
       <p><img src="../img/2.png" style="width: 1rem;height:1rem;
 " @click="mycallshop"/>&ensp;积分商城<span>></span></p>
+
       <p><img src="../img/3.png"style="width: 1rem;height:1rem;
-"/>&ensp;饿了么会员卡<span>></span></p>
+"/>&ensp;饿了么会员卡<span  @click="dianji">></span></p>
+
     </div>
     <div id="saas">
       <p @click="ServiceCenter"><img src="../img/4.png" style="width: 1rem;height:1rem;
@@ -85,7 +87,11 @@
         },
         //积分商城
         mycallshop(){
-          this.$router.push({path:"/mycallasd"});
+          this.$router.push({path:"/vipshop"});
+        },
+      //  会员中心
+        dianji(){
+          this.$router.push({path:"/vipcard"})
         }
       }
     }
@@ -198,4 +204,5 @@
     margin-right: 0.5rem;
     /*top: 1rem;*/
   }
+
 </style>

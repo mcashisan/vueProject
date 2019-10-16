@@ -19,13 +19,17 @@
     import Footer from "../../components/Footer"
     export default {
         name: "Search",
-        components: {Footer}
+        components: {Footer},
+      methods:{
+        goback(){
+          this.$router.go(-1)
+        }
+      }
     }
 </script>
 
 <style scoped>
-  @import "//at.alicdn.com/t/font_1084936_492sa80v98i.css";
-  /*导航条*/
+  @import "//at.alicdn.com/t/font_1084936_89o5dxhawbk.css";
   #headers {
     height: 2rem;
     padding: 0 0.5rem;

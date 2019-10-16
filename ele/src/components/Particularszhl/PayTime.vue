@@ -48,7 +48,7 @@
       <div class="bottom" @click="show=true">确认支付</div>
 
       <div class="tan" v-if="show">
-        <img src="../img/弹框.png" alt="">
+        <img src="../img/tan.png" alt="">
         <p>当前环境无法支付，请打开官方APP</p>
         <van-button type="primary" size="large" @click="show=false">确定</van-button>
       </div>

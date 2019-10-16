@@ -63,7 +63,22 @@ import Pr from '../components/Particularszhl/Redandmerc/RedPage'
 import Ab from '../components/Particularszhl/Redandmerc/Thatred'
 //过期红包
 import fouasd from '../components/Particularszhl/Redandmerc/Canhistory'
-
+//搜索页面
+import Search from '../components/Lyf/Search'
+//会员中心
+import VipCard from '../components/Lyf/VipCard'
+//我的优惠
+import VipDes from '../components/Lyf/VipDes'
+//兑换会员
+import VipCon from '../components/Lyf/VipCon'
+//开发票
+import VipInv from '../components/Lyf/VipInv'
+//积分商城
+import VipShop from '../components/Lyf/VipShop'
+//确认订单
+import OrderCon from '../components/Lyf/OrderCon'
+//订单备注
+import OrderNote from '../components/Lyf/OrderNote'
 Vue.use(Router)
 
 export default new Router({
@@ -90,6 +105,8 @@ export default new Router({
     {path:"/account",component:AccountInfo},
     // 添加地址内搜索地址
     {path:"/searchAdd",component:SearchAdd},
+    //搜索页面
+    {path:"/search",component:Search},
     //填写成功
     // {path:"/shoplist", component: ShopList},
     // 商品页下拉框
@@ -148,7 +165,20 @@ export default new Router({
     //红包说明
     {path:"/redpagesd",component:Ab},
     //过期红包
-    {path:"/chistory",component:fouasd}
-
+    {path:"/chistory",component:fouasd},
+  //  会员中心
+    {path:"/vipcard",component:VipCard},
+  //  我的优惠
+    {path:"/vipdes",component:VipDes},
+  //  兑换会员
+    {path:"/vipcon",component: VipCon},
+  //  开发票
+    {path:"/vipinv",component:VipInv},
+  //  积分商城
+    {path:"/vipshop",component:VipShop},
+  //  确认订单
+    {path:"/ordercon",component:OrderCon},
+  //  订单备注
+    {path:"/ordernote",component:OrderNote}
   ]
 })
