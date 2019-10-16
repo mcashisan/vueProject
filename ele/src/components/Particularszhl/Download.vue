@@ -1,5 +1,5 @@
 <template>
-    <div id="title" style="background-color: white">
+    <div id="title" style="background-color: white;position: relative">
         <!--导航条-->
       <div id="left">
         <!--导航条-->
@@ -14,17 +14,17 @@
         </nav>
     </div>
       <div id="lowd">
-        <img src="down.png"/>
+        <img src="./down.png"/>
         <p id="p1">下载饿了么APP</p>
         <div  id="btn" @click="downloadd"  class="btn btn-success">下载</div>
       </div>
-    <div id="popover" v-show="ShowArr">
-      <div id="pop">
-        <span id="garden">!</span>
+    <div id="popover" v-if="ShowArr" name="bounce">
+      <div id="pop" style="text-align: center">
+        <img src="../img/弹框.png"style="width: 3rem;height: 3rem;margin-bottom: 0.5rem"/>
+        <!--<span id="garden">!</span>-->
         <p>IOS用户请前往AppStore下载</p>
-        <div id="btnDiv">确认</div>
+        <div id="btnDiv" @click="sureblack">确认</div>
       </div>
-
     </div>
     </div>
 </template>
@@ -34,21 +34,45 @@
         name: "Download",
       data(){
           return{
-        ShowArr:true
+        ShowArr:false,
+            asdbs:true
           }
       },
       methods:{
         JumpToThePage(){
           this.$router.push({path:"/footmine"});
         },
+        //点击弹框
         downloadd(){
-
+this.ShowArr=!this.ShowArr;
+        },
+        //点击消失
+        sureblack(){
+          this.ShowArr=!this.ShowArr;
         }
       }
     }
 </script>
 
 <style scoped>
+  .bounce-enter-active {
+    animation: bounce-in .5s;
+  }
+  .bounce-leave-active {
+    animation: bounce-in .5s reverse;
+  }
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
 #lowd{
   text-align: center;
 }
@@ -58,7 +82,7 @@
   }
 #btn{
   /*background-color: springgreen;*/
-  font-size: 1.5rem;
+  font-size: 1rem;
   width: 95%;
   text-align: center;
   display: inline-block;
@@ -66,13 +90,12 @@
 }
 #popover{
   background-color: white;
-  width: 15rem;
-  height: 14rem;
+  width: 80%;
   position: absolute;
-  left: 20%;
-  top: 70%;
+  left: 9%;
+  top: 64%;
   text-align: center;
-  display: none;
+
 }
 img{
   width: 7.5rem;
@@ -80,18 +103,20 @@ img{
   margin-top: 1rem;
 }
 #garden{
-  width: 4rem;
-  height: 4rem;
-  border: 0.3rem solid red;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0.3rem solid orangered;
   border-radius: 50%;
   display: inline-block;
-  font-size: 3rem;
+  font-size: 1.79rem;
   text-align: center;
+  color: orangered;
 }
   #btnDiv{
-    background-color: springgreen;
-    font-size: 3rem;
-    width: 75%;
+    background-color:#4cd964;
+    font-size: 1rem;
+    color: white;
+    width: 100%;
     text-align: center;
     display: inline-block;
     border-radius: 5%;

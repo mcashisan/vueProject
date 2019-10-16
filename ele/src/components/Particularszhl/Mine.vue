@@ -39,7 +39,7 @@
     </p>
   </div>
     <div id="doter">
-      <p @click="myindent"><img src="../img/1.png"style="width: 1rem;height:1rem;
+      <p><img src="../img/1.png"style="width: 1rem;height:1rem;
 "/>&ensp;我的订单<span>></span></p>
       <p><img src="../img/2.png" style="width: 1rem;height:1rem;
 " @click="mycallshop"/>&ensp;积分商城<span>></span></p>
@@ -75,10 +75,7 @@
         mymoney(){
           this.$router.push({path:"/myname"});
         },
-        //订单
-        myindent(){
-          this.$router.push({path:"/myindext"});
-        },
+
         //下载饿了么APP
         readyAnd(){
           this.$router.push({path:'/redd'});
@@ -90,7 +87,7 @@
         //积分商城
         mycallshop(){
           this.$router.push({path:"/mycallasd"});
-        }
+        },
       }
     }
 </script>

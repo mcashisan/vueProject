@@ -18,22 +18,22 @@
         <img src="../../img/tjyj.png" id="img1"/></div>
         <!--邀请列表-->
       <ul>
-        <li>
+        <li @click="weicalqqandtwo">
           <img src="../../img/wechart.png"/><br>
           <span>邀请微信好友</span>
         </li>
-        <li>
+        <li @click="weicalqqandtwo">
           <img src="../../img/QQ.png"/><br>
           <span>邀请QQ好友</span>
         </li>
-        <li>
+        <li @click="weicalqqandtwo">
   <img src="../../img/toface.png" /><br>
           <span>面对面邀请</span>
         </li>
         <div style="clear: both;"></div>
       </ul>
         <!--邀请的人数及收获-->
-      <div style="width: 100%;text-align: center;margin-top: 0.6rem">
+      <div style="width: 100%;text-align: center;margin-top: 0.6rem" >
         <div id="harvest">
           <p style="margin: 0">累计收获</p>
           <p><span id="bag">0</span>元</p>
@@ -49,10 +49,10 @@
       <img src="../../img/qianbao.png" id="deimg"/>
       <div>还不赶紧去邀请好友</div></div>
       </div>
-      <div id="tk">
+      <div id="tk" v-show="ShowArr">
         <img src="../../img/弹框.png" style="width: 2rem;margin-top:0.5rem;margin-bottom: 0.8rem"/>
         <p style="font-size: 0.66rem">请在饿了么APP打开</p>
-        <p id="sure">确认</p>
+        <p id="sure" @click="openlqqand">确认</p>
       </div>
     </div>
 </template>
@@ -60,9 +60,20 @@
 <script>
     export default {
         name: "Recommendcourteous",
+      data(){
+          return{
+              ShowArr:false
+          }
+      },
       methods:{
         tiao(){
-          this.$router.push({path:"/pagered"})
+          this.$router.push({path:"/discounte"})
+        },
+        weicalqqandtwo(){
+          this.ShowArr=!this.ShowArr;
+        },
+        openlqqand(){
+          this.ShowArr=!this.ShowArr;
         }
       },
     }

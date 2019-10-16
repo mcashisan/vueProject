@@ -17,7 +17,7 @@
     <div id="inputandy">
     <input type="text" id="in2" placeholder="验证码">
       <div id="yzm">
-        <p id="ps1">alajfd</p>
+        <p id="ps1"> <img :src="as.code" alt=""></p>
       <p id="ps2">
         <span>看不清</span><br>
         <span style=color:dodgerblue>换一张</span>
@@ -25,7 +25,7 @@
       <div class="enpty" style="clear: both;">
       </div>
     </div>
-      <button>兑换</button>
+      <div id="btndh">兑换</div>
     </div>
   </div>
 </template>
@@ -35,6 +35,7 @@
         name: "Fourredpage",
       data(){
         return{
+          aq:1,
           //接受数据
           as:[]
         }
@@ -45,12 +46,10 @@
         }
       },
       created(){
-          this.myHttp.post("/v1/captchas",(response)=>{
-            console.log(response.data);
-
-          },(err)=>{
-            console.log(err);
-          })
+          this.myHttp.post("/v1/captchas",1,(response)=>{
+            this.as=response;
+            console.log(this.as);
+          },(err)=>{console.log(err)})
       }
     }
 </script>
@@ -122,11 +121,24 @@ margin-top: 0.5rem;
   }
 #ps1{
   float: left;
-  font-size: 0.4rem;
+  font-size: 1rem;
+  text-align: center;
 }
   #ps2{
     float: right;
     margin-right: 0.1rem;
     font-size: 0.4rem;
+    margin-top: 0.2rem;
+    padding-left: 0.2rem;
+  }
+  #btndh{
+    width: 100%;
+    font-size: 0.67rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-top: 1rem;
+    color: white;
+    background-color: rgba(0,0,0,0.2);
+    text-align: center;
   }
 </style>

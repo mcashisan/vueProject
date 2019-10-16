@@ -43,7 +43,7 @@
       },
       methods:{
         redpagestab(){
-          this.$router.push({path:"/pagered"})
+          this.$router.push({path:"/discounte"})
         }
       }
     }

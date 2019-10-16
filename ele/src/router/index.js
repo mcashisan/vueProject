@@ -40,7 +40,6 @@ import foodSort from "../components/Home/ShopCar/SortData"
 import Mine from '../components/Particularszhl/Mine'
 //Serve 服务中心
 import server1 from "../components/Particularszhl/Serve"
-
 //Vip
 import Vip from '../components/Particularszhl/Vip'
 //
@@ -57,8 +56,7 @@ import Zhlmon from '../components/Particularszhl/Moneyzhl'
 import Youhui from '../components/Particularszhl/Redandmerc/Discounts'
 //积分商城
 import Myshop from '../components/Particularszhl/Mymall'
-//红包
-import Pr from '../components/Particularszhl/Redandmerc/RedPage'
+
 //红包说明
 import Ab from '../components/Particularszhl/Redandmerc/Thatred'
 //过期红包
@@ -67,6 +65,8 @@ import fouasd from '../components/Particularszhl/Redandmerc/Canhistory'
 import Dhredpage from '../components/Particularszhl/Redandmerc/Fourredpage'
 //推荐有奖
 import Rc from '../components/Particularszhl/Redandmerc/Recommendcourteous'
+//商家代金券
+import  Shopdjq from '../components/Particularszhl/Redandmerc/Redpagespeek'
 Vue.use(Router)
 
 export default new Router({
@@ -109,59 +109,38 @@ export default new Router({
     {path:"/ServeAdd", component:server1},
     //服务中心的子页
     {path:"/ServeChild",component:Vip},
-    //返回服务中心
-    {path:"/vip",component:server1},
     //Mine页 我的余额
     {path:"/myname",component:MyMoney},
     //到积分页
     {path:"/integral",component:Jf},
     //下载
     {path:"/redd",component:Inter},
-
-    {path:"/footmine",component:Mine},
-
     {path:"/ServeAdd", component:server1},
   //  支付倒计时
     {path:"/paytime",component:PayTime},
   //  修改用户名
     {path:"/ChangeUsername",component:changeU},
-
     //底部的(我的)跳到Mine
     {path:"/footmine",component:Mine},
     //兑换说明
     {path:"/linkpath",component:Zhl},
     //余额说明
     {path:"/zhlmoney",component:Zhlmon},
-
-    //兑换返回
-    {path:"/Jumpto1",component:Jf},
-    //余额返回
-    {path:"/Jumpto2",component:MyMoney},
     //优惠
     {path:"/discounte",component:Youhui},
-    //优惠返回我的
-    {path:"/blackmine",component:Mine},
-    //积分商城
-//优惠
-    {path:"/discounte",component:Youhui},
 //积分商城
-
     {path:"/mycallasd",component:Myshop},
-    //红包
-    {path:"/pagered",component:Pr},
     //红包说明redpagesd
     {path:"/redpagesd",component:Ab},
     //过期红包
-
-    {path:"/chistory",component:fouasd},
-
     {path:"/chistory",component:fouasd},
     //兑换红包
     {path:"/blueread",component:Dhredpage},
     //返回
-    {path:"/pagered",component:Pr},
+    {path:"/pagered",component:Youhui},
     //推荐有奖
     {path:"/recomd",component:Rc},
-
+     //商家代金券
+    {path:"/shopdjq",component:Shopdjq},
   ]
 })
