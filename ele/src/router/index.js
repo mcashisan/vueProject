@@ -61,7 +61,7 @@ import Myshop from '../components/Particularszhl/Mymall'
 import Ab from '../components/Particularszhl/Redandmerc/Thatred'
 //过期红包
 import fouasd from '../components/Particularszhl/Redandmerc/Canhistory'
-<<<<<<< HEAD
+
 //搜索页面
 import Search from '../components/Lyf/Search'
 //会员中心
@@ -78,14 +78,14 @@ import VipShop from '../components/Lyf/VipShop'
 import OrderCon from '../components/Lyf/OrderCon'
 //订单备注
 import OrderNote from '../components/Lyf/OrderNote'
-=======
+
 //兑换红包
 import Dhredpage from '../components/Particularszhl/Redandmerc/Fourredpage'
 //推荐有奖
 import Rc from '../components/Particularszhl/Redandmerc/Recommendcourteous'
 //商家代金券
 import  Shopdjq from '../components/Particularszhl/Redandmerc/Redpagespeek'
->>>>>>> d3e538d8e266a234ff8cbac295b09c2fa26b847d
+
 Vue.use(Router)
 
 export default new Router({
@@ -155,7 +155,6 @@ export default new Router({
     {path:"/redpagesd",component:Ab},
     //过期红包
     {path:"/chistory",component:fouasd},
-<<<<<<< HEAD
   //  会员中心
     {path:"/vipcard",component:VipCard},
   //  我的优惠
@@ -169,8 +168,7 @@ export default new Router({
   //  确认订单
     {path:"/ordercon",component:OrderCon},
   //  订单备注
-    {path:"/ordernote",component:OrderNote}
-=======
+    {path:"/ordernote",component:OrderNote},
     //兑换红包
     {path:"/blueread",component:Dhredpage},
     //返回
@@ -179,6 +177,6 @@ export default new Router({
     {path:"/recomd",component:Rc},
      //商家代金券
     {path:"/shopdjq",component:Shopdjq},
->>>>>>> d3e538d8e266a234ff8cbac295b09c2fa26b847d
+
   ]
 })

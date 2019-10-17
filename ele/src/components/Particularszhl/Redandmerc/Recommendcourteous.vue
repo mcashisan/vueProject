@@ -50,7 +50,7 @@
       <div>还不赶紧去邀请好友</div></div>
       </div>
       <div id="tk" v-show="ShowArr">
-        <img src="../../img/弹框.png" style="width: 2rem;margin-top:0.5rem;margin-bottom: 0.8rem"/>
+        <img src="../../img/tan.png" style="width: 2rem;margin-top:0.5rem;margin-bottom: 0.8rem"/>
         <p style="font-size: 0.66rem">请在饿了么APP打开</p>
         <p id="sure" @click="openlqqand">确认</p>
       </div>

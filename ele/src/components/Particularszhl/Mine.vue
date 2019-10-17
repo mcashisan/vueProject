@@ -60,45 +60,44 @@
 <script>
     import Footer from "../../components/Footer"
     export default {
-        name: "Mine",
+      name: "Mine",
       components: {
         Footer
       },
-      methods:{
-          //服务中心的路由
-        ServiceCenter(){
-          this.$router.push({path:"/ServeAdd"});
+      methods: {
+        //服务中心的路由
+        ServiceCenter() {
+          this.$router.push({path: "/ServeAdd"});
         },
         //积分商城的路由
-        shopIntegral(){
-          this.$router.push({path:"/integral"});
+        shopIntegral() {
+          this.$router.push({path: "/integral"});
         },
         //余额
-        mymoney(){
-          this.$router.push({path:"/myname"});
+        mymoney() {
+          this.$router.push({path: "/myname"});
         },
 
         //下载饿了么APP
-        readyAnd(){
-          this.$router.push({path:'/redd'});
+        readyAnd() {
+          this.$router.push({path: '/redd'});
         },
         //我的优惠
-        Mydiscounts(){
-          this.$router.push({path:"/discounte"});
+        Mydiscounts() {
+          this.$router.push({path: "/discounte"});
         },
         //积分商城
-        mycallshop(){
-<<<<<<< HEAD
-          this.$router.push({path:"/vipshop"});
+        mycallshop() {
+
+          this.$router.push({path: "/vipshop"});
         },
-      //  会员中心
-        dianji(){
-          this.$router.push({path:"/vipcard"})
+        //  会员中心
+        dianji() {
+          this.$router.push({path: "/vipcard"})
+
+
+
         }
-=======
-          this.$router.push({path:"/mycallasd"});
-        },
->>>>>>> d3e538d8e266a234ff8cbac295b09c2fa26b847d
       }
     }
 </script>

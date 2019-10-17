@@ -20,7 +20,7 @@
       </div>
     <div id="popover" v-if="ShowArr" name="bounce">
       <div id="pop" style="text-align: center">
-        <img src="../img/弹框.png"style="width: 3rem;height: 3rem;margin-bottom: 0.5rem"/>
+        <img src="../img/tan.png"style="width: 3rem;height: 3rem;margin-bottom: 0.5rem"/>
         <!--<span id="garden">!</span>-->
         <p>IOS用户请前往AppStore下载</p>
         <div id="btnDiv" @click="sureblack">确认</div>
