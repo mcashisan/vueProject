@@ -15,12 +15,9 @@
       <input type="text" placeholder="小区/写字楼/学校等" v-model="inputV" style="color: black"></router-link>
       <input type="text" placeholder="请填写详细的送餐地址"  v-model="qwe">
       <input type="text" placeholder="请填写能够联系到您的手机号" v-model="qwe1">
-      <input type="text" placeholder="备用联系电话（选填）">
-
+      <input type="text" placeholder="备用联系电话（选填）" id="ti">
     </div>
-
-    <button class="btn" @click="btn1">确认修改</button>
-
+    <button class="btn" @click="btn1">新增地址</button>
   </div>
 </template>
 
@@ -31,7 +28,10 @@
           return{
             inputV:"",
             qwe:"",
-            qwe1:""
+            qwe1:"",
+            //用户名
+            user:"",
+            usera:""
           }
       },
       methods:{
@@ -39,7 +39,15 @@
           this.$router.go(-1)
         },
 btn1(){
-          this.$router.push({path:'/saveAddress',query:{int1:this.qwe,int2:this.qwe1}})
+          this.$router.push({path:'/saveAddress',query:{int1:this.qwe,int2:this.qwe1}});
+          let ti=document.getElementById("ti").value;
+          if (!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(ti))){
+            alert("错了");
+            console.log(ti);
+          }else {
+           this.usera=as;
+            console.log(this.usera);
+          }
 }
 
     },
@@ -83,27 +91,26 @@ btn1(){
   }
 
   .btn{
-    width: 12rem;
+    width: 100%;
     color: white;
     background-color: rgb(78,222,103);
-    margin-left: 1.9rem;
-    margin-top: 1rem;
   }
   .input1{
     background-color: white;
-    margin-top: 1rem;
-    padding: 0.3rem 0.8rem;
+    /*padding-top: 1rem;*/
+    /*padding: 0.3rem 0.4rem;*/
+  padding: 0.6rem 0.4rem 0.4rem 0.4rem ;
   }
 
   .res{
     background-color: gainsboro;
   }
   input{
-    padding: 1.2rem;
+    padding: 0.35rem;
     margin: 0.2rem 0;
     width: 100%;
     height: 1.5rem;
-    border-radius: 0.3rem;
+    border-radius: 0.15rem;
     border:0.03rem solid #ddd;
 background-color: #f2f2f2;
   }

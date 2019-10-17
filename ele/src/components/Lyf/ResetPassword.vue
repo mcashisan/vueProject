@@ -11,23 +11,25 @@
       </div>
     </nav>
     <div class="reI">
-      <input type="text" placeholder="用户名"><br>
-      <input type="text" placeholder="旧密码"><br>
-      <input type="password" placeholder="新密码" ><br>
-      <input type="password" placeholder="确认密码"><br>
-
-      <input type="text" placeholder="验证码">
-      <div class="img">
-        <img :src="msgs" alt=""><br>
-      </div>
-      <div>
-        <span>看不清</span>
-        <span style="color: blue" @click="indent">换一张</span>
-      </div>
-
+      <input type="text" placeholder="用户名" class="aa"><br>
+      <input type="text" placeholder="旧密码" class="aa"><br>
+      <input type="password" placeholder="新密码" class="aa"><br>
+      <input type="password" placeholder="确认密码" class="aa"><br>
+      <div id="andlr" style="font-size: 0;">
+  <input type="text" placeholder="验证码" id="ina">
+  <div id="imga">
+    <img :src="msgs" alt="" id="img1"><br>
+    <div style="float: left;width: 50%;padding: 0;font-size: 0.6rem">
+      <span>看不清</span><br>
+      <span style="color: blue" @click="indent">换一张</span>
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+        <div style="clear: both;"></div>
+    </div>
+    </div>
       <button class="btn">确认修改</button>
     </div>
-  </div>
 </template>
 
 <script>
@@ -71,17 +73,31 @@
   line-height: 2rem;
   background: #3190e8;
 }
-
+#ina{
+  width: 50%;
+  float: left;
+  padding: 0.5rem;
+  border: 0;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  font-size: 0.8rem;
+}
 .headers_msg {
   display:flex;
   justify-content: space-between;
   text-align: center;
 }
-
+#imga{
+  width: 50%;
+  float: right;
+  background-color: white;
+  padding-bottom: 0.5rem;
+}
 .header_left {
   width: 10%;
 }
-
+#andlr{
+  width: 100%;
+}
 .header_con {
   width: 60%;
   font-size: 1rem;
@@ -100,25 +116,31 @@ a{
   color: white;
   font-size: 1rem;
 }
-input{
-  padding: 1.2rem;
-  margin: 0.1rem 0;
+.aa{
+  padding: 0.5rem;
   width: 100%;
-  height: 2rem;
+  border: 0;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  font-size: 0.8rem;
 }
 .btn{
-  width: 12rem;
+  width: 92%;
   color: white;
   background-color: rgb(78,222,103);
-  margin-left: 1.9rem;
+  margin-left: 0.5rem;
   margin-top: 1rem;
+  margin-right: 0.5rem;
 }
 .reI{
+  margin-top: 0.5rem;
   position: relative;
 }
-.img{
-  position: absolute;
-  top:12rem;
-  right: 5rem;
+#img1{
+  float:left;
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.6rem;
+  width: 50%;
+  height: 1.5rem;
 }
 </style>

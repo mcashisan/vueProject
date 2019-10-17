@@ -18,14 +18,17 @@
         <p id="p1">下载饿了么APP</p>
         <div  id="btn" @click="downloadd"  class="btn btn-success">下载</div>
       </div>
-    <div id="popover" v-if="ShowArr" name="bounce">
-      <div id="pop" style="text-align: center">
-        <img src="../img/tan.png"style="width: 3rem;height: 3rem;margin-bottom: 0.5rem"/>
-        <!--<span id="garden">!</span>-->
-        <p>IOS用户请前往AppStore下载</p>
-        <div id="btnDiv" @click="sureblack">确认</div>
-      </div>
-    </div>
+      <transition >
+        <div id="popover" v-if="ShowArr" name="bounce">
+          <div id="pop" style="text-align: center">
+            <img src="../img/tan.png"style="width: 3rem;height: 3rem;margin-bottom: 0.5rem"/>
+            <!--<span id="garden">!</span>-->
+            <p>IOS用户请前往AppStore下载</p>
+            <div id="btnDiv" @click="sureblack">确认</div>
+          </div>
+        </div>
+      </transition>
+
     </div>
 </template>
 
@@ -55,23 +58,6 @@ this.ShowArr=!this.ShowArr;
 </script>
 
 <style scoped>
-  .bounce-enter-active {
-    animation: bounce-in .5s;
-  }
-  .bounce-leave-active {
-    animation: bounce-in .5s reverse;
-  }
-  @keyframes bounce-in {
-    0% {
-      transform: scale(0);
-    }
-    50% {
-      transform: scale(1.5);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
 
 #lowd{
   text-align: center;

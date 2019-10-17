@@ -17,8 +17,8 @@
     <div id="inputandy">
     <input type="text" id="in2" placeholder="验证码">
       <div id="yzm">
-        <p id="ps1"> <img :src="as.code" alt=""></p>
-      <p id="ps2">
+        <p id="ps1"> <img :src="as" alt=""style="height: 1.5rem;"></p>
+      <p id="ps2" @click="asdba">
         <span>看不清</span><br>
         <span style=color:dodgerblue>换一张</span>
       </p></div>
@@ -37,20 +37,21 @@
         return{
           aq:1,
           //接受数据
-          as:[]
+          as:[],
+          bb:true,
+          cc:false
         }
       },
       methods:{
         tiao(){
           this.$router.push({path:"/pagered"})
+        },
+        asdba(){
+          this.myHttp.post("/v1/captchas",{},(response)=>{
+            this.as=response.data.code;
+          })
         }
       },
-      created(){
-          this.myHttp.post("/v1/captchas",1,(response)=>{
-            this.as=response;
-            console.log(this.as);
-          },(err)=>{console.log(err)})
-      }
     }
 </script>
 
@@ -103,6 +104,7 @@
 }
   #inputandy{
 margin-top: 0.5rem;
+    background-color: white;
   }
   #in2{
     width: 53%;

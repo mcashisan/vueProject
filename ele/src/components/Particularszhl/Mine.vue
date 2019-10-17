@@ -77,7 +77,6 @@
         mymoney() {
           this.$router.push({path: "/myname"});
         },
-
         //下载饿了么APP
         readyAnd() {
           this.$router.push({path: '/redd'});
@@ -87,17 +86,15 @@
           this.$router.push({path: "/discounte"});
         },
         //积分商城
-        mycallshop() {
 
+        mycallshop() {
           this.$router.push({path: "/vipshop"});
         },
         //  会员中心
         dianji() {
           this.$router.push({path: "/vipcard"})
+        },
 
-
-
-        }
       }
     }
 </script>

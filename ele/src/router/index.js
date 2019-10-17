@@ -48,6 +48,7 @@ import MyMoney from '../components/Particularszhl/Myyuan'
 import Jf from '../components/Particularszhl/Integral'
 //下载
 import Inter from '../components/Particularszhl/Download'
+
 //兑换说明
 import Zhl from '../components/Particularszhl/Linkzhl'
 //余额说明
@@ -61,7 +62,6 @@ import Myshop from '../components/Particularszhl/Mymall'
 import Ab from '../components/Particularszhl/Redandmerc/Thatred'
 //过期红包
 import fouasd from '../components/Particularszhl/Redandmerc/Canhistory'
-
 //搜索页面
 import Search from '../components/Lyf/Search'
 //会员中心
@@ -78,14 +78,16 @@ import VipShop from '../components/Lyf/VipShop'
 import OrderCon from '../components/Lyf/OrderCon'
 //订单备注
 import OrderNote from '../components/Lyf/OrderNote'
-
 //兑换红包
 import Dhredpage from '../components/Particularszhl/Redandmerc/Fourredpage'
 //推荐有奖
 import Rc from '../components/Particularszhl/Redandmerc/Recommendcourteous'
 //商家代金券
 import  Shopdjq from '../components/Particularszhl/Redandmerc/Redpagespeek'
-
+//详情
+import aa from '../components/Particulars/Pone'
+//企业认证详情
+import Ezhl from '../components/Particulars/Onetwo'
 Vue.use(Router)
 
 export default new Router({
@@ -97,6 +99,10 @@ export default new Router({
     {path: "/order", component: OrderList}, // 订单页面
     //重置密码
     {path:"/reset",component:Reset},
+//详情
+    {path:"/aaazhi",component:aa},
+    //企业认证详情
+    {path:"/enterpzhl",component:Ezhl},
     //添加地址
     {path:"/saveAddress",component:Address},
     //添加地址1
@@ -136,6 +142,7 @@ export default new Router({
     {path:"/integral",component:Jf},
     //下载
     {path:"/redd",component:Inter},
+
     {path:"/ServeAdd", component:server1},
   //  支付倒计时
     {path:"/paytime",component:PayTime},
@@ -177,6 +184,5 @@ export default new Router({
     {path:"/recomd",component:Rc},
      //商家代金券
     {path:"/shopdjq",component:Shopdjq},
-
   ]
 })

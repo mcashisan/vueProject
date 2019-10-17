@@ -57,7 +57,7 @@
       <img src="../../img/shopddd.png" id="andimg"/>
       <p id="pi">无法使用代金券</p>
       <p id="pm">非客户端或客户端版本多低</p>
-      <router-link :to="{}" id="pg">下载或升级客户端</router-link>
+      <router-link :to="{path:'/redd'}" id="pg">下载或升级客户端</router-link>
     </div></div>
   </div>
 </template>
