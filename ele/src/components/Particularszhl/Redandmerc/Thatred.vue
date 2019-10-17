@@ -5,7 +5,7 @@
     <nav id="headers">
       <div class="headers_msg">
         <div class="header_left">
-          <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;"><</i>
+          <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;" @click="redpagestab"><</i>
         </div>
         <div class="header_con">红包说明</div>
         <div class="header_left"></div>
@@ -33,17 +33,18 @@
       },
       created(){
           this.myHttp.get("/v3/profile/explain",((res)=>{
-            // console.log(res);
             this.dack=res.data.hongbaoContent;
             this.daak=this.dack.split("###");
-            // console.log(this.daak);
             for (let i=0;i<this.daak.length;i++){
               this.dbbk+=this.daak[i];
-              // console.log(this.dbbk);
               this.xing=this.dbbk.split("*");
-              // console.log(this.xing);
             }
           }))
+      },
+      methods:{
+        redpagestab(){
+          this.$router.push({path:"/discounte"})
+        }
       }
     }
 </script>

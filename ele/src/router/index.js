@@ -40,7 +40,6 @@ import foodSort from "../components/Home/ShopCar/SortData"
 import Mine from '../components/Particularszhl/Mine'
 //Serve 服务中心
 import server1 from "../components/Particularszhl/Serve"
-
 //Vip
 import Vip from '../components/Particularszhl/Vip'
 //
@@ -57,12 +56,12 @@ import Zhlmon from '../components/Particularszhl/Moneyzhl'
 import Youhui from '../components/Particularszhl/Redandmerc/Discounts'
 //积分商城
 import Myshop from '../components/Particularszhl/Mymall'
-//红包
-import Pr from '../components/Particularszhl/Redandmerc/RedPage'
+
 //红包说明
 import Ab from '../components/Particularszhl/Redandmerc/Thatred'
 //过期红包
 import fouasd from '../components/Particularszhl/Redandmerc/Canhistory'
+<<<<<<< HEAD
 //搜索页面
 import Search from '../components/Lyf/Search'
 //会员中心
@@ -79,6 +78,14 @@ import VipShop from '../components/Lyf/VipShop'
 import OrderCon from '../components/Lyf/OrderCon'
 //订单备注
 import OrderNote from '../components/Lyf/OrderNote'
+=======
+//兑换红包
+import Dhredpage from '../components/Particularszhl/Redandmerc/Fourredpage'
+//推荐有奖
+import Rc from '../components/Particularszhl/Redandmerc/Recommendcourteous'
+//商家代金券
+import  Shopdjq from '../components/Particularszhl/Redandmerc/Redpagespeek'
+>>>>>>> d3e538d8e266a234ff8cbac295b09c2fa26b847d
 Vue.use(Router)
 
 export default new Router({
@@ -118,27 +125,17 @@ export default new Router({
     // 商品页
     {path: "/shop", component: Shop},
 
+
     //从我的(Mine)跳到服务中心
     {path:"/ServeAdd", component:server1},
-    //返回我的
-    {path:"/Server",component:Mine},
     //服务中心的子页
     {path:"/ServeChild",component:Vip},
-    //返回服务中心
-    {path:"/vip",component:server1},
     //Mine页 我的余额
     {path:"/myname",component:MyMoney},
-
     //到积分页
     {path:"/integral",component:Jf},
-
-    //从Myyuan返回我的
-    {path:"/Jumpto",component:Mine},
+    //下载
     {path:"/redd",component:Inter},
-
-
-    {path:"/footmine",component:Mine},
-
     {path:"/ServeAdd", component:server1},
   //  支付倒计时
     {path:"/paytime",component:PayTime},
@@ -150,22 +147,15 @@ export default new Router({
     {path:"/linkpath",component:Zhl},
     //余额说明
     {path:"/zhlmoney",component:Zhlmon},
-    //兑换返回
-    {path:"/Jumpto1",component:Jf},
-    //余额返回
-    {path:"/Jumpto2",component:MyMoney},
     //优惠
     {path:"/discounte",component:Youhui},
-    //优惠返回我的
-    {path:"/blackmine",component:Mine},
-    //积分商城
+//积分商城
     {path:"/mycallasd",component:Myshop},
-    //红包
-    {path:"/pagered",component:Pr},
-    //红包说明
+    //红包说明redpagesd
     {path:"/redpagesd",component:Ab},
     //过期红包
     {path:"/chistory",component:fouasd},
+<<<<<<< HEAD
   //  会员中心
     {path:"/vipcard",component:VipCard},
   //  我的优惠
@@ -180,5 +170,15 @@ export default new Router({
     {path:"/ordercon",component:OrderCon},
   //  订单备注
     {path:"/ordernote",component:OrderNote}
+=======
+    //兑换红包
+    {path:"/blueread",component:Dhredpage},
+    //返回
+    {path:"/pagered",component:Youhui},
+    //推荐有奖
+    {path:"/recomd",component:Rc},
+     //商家代金券
+    {path:"/shopdjq",component:Shopdjq},
+>>>>>>> d3e538d8e266a234ff8cbac295b09c2fa26b847d
   ]
 })

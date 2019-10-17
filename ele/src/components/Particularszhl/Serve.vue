@@ -1,12 +1,16 @@
 <template>
   <div id="title">
     <div>
-      <div id="and">
-        <div id="left" @click="JumpToThePage">
-          <
+      <nav id="headers">
+        <div class="headers_msg">
+          <div class="header_left">
+            <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;" @click="JumpToThePage"><</i>
+          </div>
+          <div class="header_con">服务中心</div>
+          <div class="header_left"></div>
         </div>
-        <div id="download">服务中心</div>
-      </div>
+      </nav>
+    </div>
       <div id="andlino">
         <div id="lino">
           <div id="imgP">
@@ -31,7 +35,6 @@
       </div>
     </div>
 
-  </div>
 </template>
 
 <script>
@@ -57,7 +60,7 @@
         for (let i = 0; i < nameA.length; i += 2) {
           this.bananer.push(this.computer[nameA[i + 1]]);
           this.apple = this.computer[nameA[i]];
-          // console.log(this.apple);
+          console.log(this.apple);
         }
       }, (err) => {
         console.log(err);
@@ -67,50 +70,62 @@
       //页面跳转。跳到Mine页面
       JumpToThePage() {
         // console.log("我要跳转");
-        this.$router.push({path: "/Server"});
+        this.$router.push({path: "/footmine"});
       }
     }
   }
 </script>
 
 <style scoped>
+  /*导航条*/
+  #headers {
+    height: 2rem;
+    padding: 0 0.5rem;
+    color: white;
+    line-height: 2rem;
+    background: #3190e8;
+  }
+
+  .headers_msg {
+    display:flex;
+    justify-content: space-between;
+    text-align: center;
+  }
+
+  .header_left {
+    width: 10%;
+  }
+
+  .header_con {
+    width: 60%;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .login_header, .login_bottom {
+    padding: 0.5rem;
+  }
+
+  .login_header > div {
+    width: 55%;
+  }
+
+  .login_header > div > input {
+    width: 100%;
+    font-size: 0.75rem;
+    border: none;
+    outline: none;
+  }
   #title {
     background-color: white;
     position: relative;
   }
 
-  #lowd {
-    background-color: white;
-    text-align: center;
-  }
-
-  #and {
-    height: 3.5rem;
-    background-color: #3190e8;
-    padding-left: 1rem;
-    color: white;
-  }
-
-  #left {
-    float: left;
-    font-size: 1.7rem;
-    margin-top: 0.5rem;
-  }
-
-  #download {
-    float: left;
-    margin-left: 30%;
-    font-size: 1rem;
-    margin-top: 1rem;
-  }
-
   #imgP {
     float: left;
-    padding-bottom: 1.5rem;
-    padding-top: 1.5rem;
+    padding-bottom: 0.3rem;
+    padding-top: 0.3rem;
     border-right: 1px solid rgba(0, 0, 0, 0.06);
-    font-size: 1rem;
-    padding-right: 1rem;
     display: block;
     width: 50%;
   }
@@ -118,22 +133,20 @@
   #phoneP {
     float: left;
     width: 50%;
-    font-size: 1rem;
-    padding-bottom: 1.5rem;
-    padding-top: 1.5rem;
-    /*padding-left: 2rem;*/
+    padding-bottom: 0.3rem;
+    padding-top: 0.3rem;
   }
 #lino{
   width: 100%;
   text-align: center;
 }
   img {
-    width: 3rem;
-    height: 3rem;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 
   #question {
-    padding-top: 1rem;
+    padding-top: 0.5rem;
     border-top: 1px solid rgba(0, 0, 0, 0.06);
     font-size: 0.8rem;
   }
@@ -142,14 +155,14 @@
     list-style: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     padding-left: 1rem;
-    padding-bottom: 1rem;
+    padding-bottom: 0.5rem;
   }
 
   li {
     padding-left: 1rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    margin-top: 1rem;
-    padding-bottom: 1rem;
-    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 0.6rem;
   }
 </style>

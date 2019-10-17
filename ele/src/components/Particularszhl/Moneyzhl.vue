@@ -1,5 +1,5 @@
 <template>
-  <div id="title" style="background-color: white;height: 100%;">
+  <div id="title" style="background-color: white">
     <!--导航条-->
     <nav id="headers">
       <div class="headers_msg">
@@ -10,7 +10,14 @@
         <div class="header_left"></div>
       </div>
     </nav>
-    <p style="font-size: 0.76rem" v-for="(i,index) in oranges" :key="index">{{i}}</p>
+    <div style="font-size: 0.76rem" >
+      <div v-for="(i,index) in appl" :key="index">
+      <p >{{i[0]}}</p>
+        <p >{{i[1]}}</p>
+        <p >{{i[2]}}</p>
+        <p >{{i[3]}}</p>
+    </div>
+  </div>
   </div>
 </template>
 
@@ -21,7 +28,9 @@
         return {
           jf:[],
           oranges:[],
-          or:{}
+          or:{},
+          as:[],
+          appl:[]
         }
       },
       created(){
@@ -29,12 +38,16 @@
         this.myHttp.get("/v3/profile/explain",((res)=>{
           this.jf=res.data.balanceContent;
           this.oranges=this.jf.split("###");
-          this.or=this.oranges.split("?");
+          for(let v=1;v<this.oranges.length;v++){
+            this.as=this.oranges[v];
+           let a=this.as.split("?");
+            console.log(a);
+          }
         }))
       },
       methods:{
         JumpToThePage(){
-          this.$router.push({path:"/Jumpto2"});
+          this.$router.push({path:"/myname"});
         },
       }
     }
