@@ -44,7 +44,7 @@
         },
         //订单
         Indentshop(){
-          this.$router.push({path:"/indents"})
+          this.$router.push({path:"/order"})
         }
       }
     }

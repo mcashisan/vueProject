@@ -3,7 +3,7 @@
       <!--导航条-->
       <nav id="headers">
         <div class="headers_msg">
-          <div class="header_left">
+          <div class="header_left" @click="goTop">
             <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;"></i>
           </div>
           <div class="header_con">订单列表</div>
@@ -21,6 +21,11 @@
         name: "OrderList",
         components: {
           Order
+        },
+        methods:{
+          goTop() {
+            this.$router.go(-1);
+          }
         }
     }
 </script>

@@ -4,8 +4,8 @@
       <!--导航条-->
       <nav id="headers">
         <div class="headers_msg">
-          <div class="header_left">
-            <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;" @click="myfirstye"></i>
+          <div class="header_left" @click="goT">
+            <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;"></i>
           </div>
           <div class="header_con">我的</div>
           <div class="header_left"></div>
@@ -15,61 +15,105 @@
     <div style="position: relative;background-color: #3190e8;font-size: 0;height: 3.5rem;padding-top: 0.5rem;padding-bottom: 0.5rem">
       <img src="./tx.jpeg" id="img1"/>
       <div id="andArr">
-        <span id="enter">登录/注册</span><br>
+        <span class="enter" @click="quit_login">{{userName}}</span><br>
         <span style="font-size: 0.7rem;color: white;"><img src="../img/0.png" style="width: 1rem;height:1rem;
 "/>暂无绑定手机号</span>
       </div>
-      <div id="jt">></div>
+      <div id="jt" @click="quit_login">
+        <i class="iconfont icon-jiantou-copy" style="font-size: 1rem;font-weight: bold;"></i>
+      </div>
   </div>
   <div id="monery">
     <p @click="mymoney">
-      <span><span id="big1">{{monery}}</span>元</span>
+      <span><span id="big1">0.00</span>元</span>
       <br>
       <span>我的余额</span>
     </p>
     <p style="border-left: 1px solid rgba(0,0,0,0.06); border-right: 1px solid rgba(0,0,0,0.06);" @click="Mydiscounts">
-      <span><span id="big2">{{dis}}</span>个</span>
+      <span><span id="big2">0</span>个</span>
       <br>
       <span>我的优惠</span>
     </p>
     <p id="p3" @click="shopIntegral">
-      <span><span id="big3">{{inte}}</span>分</span>
+      <span><span id="big3">0</span>分</span>
       <br>
       <span>我的积分</span>
     </p>
   </div>
     <div id="doter">
-      <p><img src="../img/1.png"style="width: 1rem;height:1rem;
-"/>&ensp;我的订单<span>></span></p>
-      <p  @click="mycallshop"><img src="../img/2.png" style="width: 1rem;height:1rem;
-"/>&ensp;积分商城<span>></span></p>
+      <p @click="myindent">
+        <img src="../img/1.png"style="width: 1rem;height:1rem;"/>
+        &ensp;我的订单
+        <span>
+        <i class="iconfont icon-jiantou-copy" style="font-size: 1rem;font-weight: bold;"></i>
+        </span>
+      </p>
+      <p>
+        <img src="../img/2.png" style="width: 1rem;height:1rem;"@click="shopIntegral"/>
+        &ensp;积分商城
+        <span>
+          <i class="iconfont icon-jiantou-copy" style="font-size: 1rem;font-weight: bold;"></i>
+        </span>
+      </p>
+      <p>
+        <img src="../img/3.png"style="width: 1rem;height:1rem;"/>
+        &ensp;饿了么会员卡
+        <span>
+          <i class="iconfont icon-jiantou-copy" style="font-size: 1rem;font-weight: bold;"></i>
+        </span>
+      </p>
 
-      <p  @click="dianji"><img src="../img/3.png"style="width: 1rem;height:1rem;
-"/>&ensp;饿了么会员卡<span>></span></p>
+      <!--<p><img src="../img/1.png"style="width: 1rem;height:1rem;-->
+<!--"/>&ensp;我的订单<span>></span></p>-->
+      <!--<p><img src="../img/2.png" style="width: 1rem;height:1rem;-->
+<!--" @click="mycallshop"/>&ensp;积分商城<span>></span></p>-->
 
+      <!--<p><img src="../img/3.png"style="width: 1rem;height:1rem;-->
+<!--"/>&ensp;饿了么会员卡<span  @click="dianji">></span></p>-->
     </div>
     <div id="saas">
       <p @click="ServiceCenter"><img src="../img/4.png" style="width: 1rem;height:1rem;
-"/>&ensp;服务中心<span>></span></p>
+"/>&ensp;服务中心<span><i class="iconfont icon-jiantou-copy" style="font-size: 1rem;font-weight: bold;"></i></span></p>
       <p @click="readyAnd"><img src="../img/5.png" style="width: 1rem;height:1rem;
-"/>&ensp;下载饿了么APP<router-link :to="{}"><span>></span></router-link> </p>
+"/>&ensp;下载饿了么APP<router-link :to="{}"><span><i class="iconfont icon-jiantou-copy" style="font-size: 1rem;font-weight: bold;"></i></span></router-link> </p>
     </div>
-    <!--底部导航-->
-    <footer></footer>
+    <Footer></Footer>
   </div>
 </template>
 <script>
     import Footer from "../../components/Footer"
     export default {
-      name: "Mine",
-      data(){
-        return{
-          monery:0.00,
-          dis:0,
-          inte:0
-        }
-      },
+        name: "Mine",
+        data() {
+          return {
+            userName: "注册/登录",
+            newName: ""
+          }
+        },
+        components: {
+          Footer
+        },
+      // methods:{
+      //     //返回上一级
+      //   goT() {
+      //     this.$router.go(-1);
+      //   },
+      //     //服务中心的路由
+      //   ServiceCenter(){
+      //     this.$router.push({path:"/ServeAdd"});
+      // name: "Mine",
+      // components: {
+      //   Footer
+      // },
       methods: {
+            //返回上一级
+          goT() {
+            this.$router.go(-1);
+          },
+            //服务中心的路由
+          ServiceCenter() {
+            this.$router.push({path: "/ServeAdd"});
+          },
         //服务中心的路由
         ServiceCenter() {
           this.$router.push({path: "/ServeAdd"});
@@ -79,8 +123,12 @@
           this.$router.push({path: "/integral"});
         },
         //余额
-        mymoney() {
-          this.$router.push({path: "/myname"});
+        mymoney(){
+          this.$router.push({path:"/myname"});
+        },
+        //订单
+        myindent() {
+          this.$router.push({path: "/order"});
         },
         //下载饿了么APP
         readyAnd() {
@@ -90,25 +138,45 @@
         Mydiscounts() {
           this.$router.push({path: "/discounte"});
         },
-        //积分商城
+        // 获取账户信息
+        getMessage() {
+          this.myHttp.get("/v1/user", (res) => {
+            console.log(res);
+            if (res.data.username) {
+              this.userName = res.data.username;
+              this.newName = res.data.username;
+            } else {
+              this.userName = "登录/注册";
+            }
+          }, (err) => {
+            console.log(err);
+          });
+        },
+        // 从个人信息点击跳转处理account
+        quit_login() {
+          if (this.userName == this.newName) {
+            this.$router.push({path:"/account"});
+          }else {
+            this.$router.push({path:"/login"});
+          }
+        },
         mycallshop() {
-          this.$router.push({path: "/mycalls"});
-          // console.log(111);
+          this.$router.push({path: "/vipshop"});
         },
         //  会员中心
         dianji() {
           this.$router.push({path: "/vipcard"})
         },
-       //返回商品页
-        myfirstye(){
-          this.$router.push({path:"/msite"})
-        }
+      },
+      created() {
+        this.getMessage();
+
       }
     }
 </script>
 
 <style scoped>
-  @import "//at.alicdn.com/t/font_1084936_t66e1ke3gh.css";
+  @import "//at.alicdn.com/t/font_1084936_f3awotv784h.css";
   /*导航条*/
   #headers {
     height: 2rem;
@@ -184,7 +252,10 @@
   }
   #enter{
     font-size: 1rem;
+  }
 
+  .enter{
+    font-size: 1rem;
   }
 #jt{
   font-size:1rem;
