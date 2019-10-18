@@ -34,7 +34,7 @@
             <van-sidebar v-model="activeKey" class="activeKey">
               <van-sidebar-item @click="shows(v)" v-for="(v, index) in listData" :key="index" :title="v.name" style="color: #000;border-top:0.01rem solid #e4e4e4;"/>
             </van-sidebar>
-            <div class="flo" style="width: 75%;height: 100%;" >
+            <div class="flo" style="width: 75%;height: 25rem;overflow: auto;">
               <div class="flo_title">
                 <p>
                   <span>{{shopShow.name}}</span>
@@ -46,7 +46,7 @@
                 <div class="messageList">
                   <img :src="'//elm.cangdu.org/img/'+x.image_path" alt="" style="width: 17%;height: 2rem;">
                   <div class="allMessage">
-                    <p style="font-size: 0.7rem;font-weight: bold;">{{x.name}}</p>
+                    <p style="font-size: 0.7rem;font-weight: bold;"  @click="shop_particulars(x)">{{x.name}}</p>
                     <p style="color: #666;">{{x.description}}</p>
                     <p>{{x.tips}}</p>
                     <span v-if="x.activity" class="youOrwu" >{{x.activity?x.activity.image_text:''}}</span><br>
@@ -54,9 +54,17 @@
                       <p><span style="color: #f60;margin-right:0.2rem;">￥{{x.specfoods[0].price}}</span>起</p>
                       <!--specifications.name-->
                       <div v-for="(v, index) in x.specifications" :key="index">
-                        <button v-if="v.name" class="bot" @click="standards(v)">选{{v.name}}</button>
+                        <button v-if="v.name" class="bot" @click="standards(x,y)">选{{v.name}}</button>
                       </div>
-                      <button v-if="x.specifications == ''" class="bot bot1">+</button>
+                      <div v-if="x.specifications == ''" class="botNum">
+                        <div style="width:55%;">
+                          <div class="jianHao">
+                            <button class="botNo" @click="joinCart_1(x, y)" :class="(x.num>0||x.num!=undefined)?{botNo:true}:{showA:true}">-</button>
+                            <p class="numData">{{x.num}}</p>
+                          </div>
+                        </div>
+                        <button class="bot bot1" @click="joinCart_2(x,y)">+</button>
+                      </div>
                     </div>
                     <!--<div v-for="(n, n1) in x.attributes" :key="n1">-->
                       <!--&lt;!&ndash;{{n}}&ndash;&gt;-->
@@ -135,27 +143,41 @@
             </div>
           </van-tab>
         </van-tabs>
-      <!--底部购物车显示的数据-->
-      <!--<div class="bot_shopCart">-->
-        <!--<div class="bot_shopCart_left">-->
-          <!--<div class="bot_shopCart_car">-->
-            <!--<i class="iconfont icon-gouwuche1 bot_shopCart_img"></i>-->
-          <!--</div>-->
-          <!--<div class="bot_shopCart_money">-->
-            <!--<p style="font-size: 1rem;">￥<span>0.00</span></p>-->
-            <!--<p style="margin-top: -0.5rem;">配送费￥5</p>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="bot_shopCart_right">-->
-          <!--<p>还差￥20起送</p>-->
-        <!--</div>-->
-      <!--</div>-->
+      <!--购物车数据-->
+      <ChartPrice></ChartPrice>
+      <!--弹框-->
+      <div class="alertBall" v-show="alertShow" @click="goClear"></div>
+      <div class="alertBall_con" v-show="alertShow">
+        <div style="padding: 0.5rem 0 0.5rem 0.5rem;">
+          <div class="alertBall_con_title">
+            <p>{{alertData.name}}</p>
+            <p @click="clear_">X</p>
+          </div>
+          <div class="guige">规格</div>
+          <div class="alertBall_protety">
+            <!--<div>-->
+              <span :class="(v.value)==conD?{aaa:true}:{bbb:true}" @click="moren(v.value)" style="margin-right:0.3rem;" v-for="(v, n) in alertData1" :key="n">{{v.value}}</span>
+            <!--</div>-->
+          </div>
+        </div>
+        <div class="alertBall_bottom">
+          <div class="alertBall_bottom_money">￥<span style="font-size:0.8rem;font-weight:bold;">20</span></div>
+          <div class="alertBall_bottom_bot">
+            <button style="background:#3199e8;border: none;outline: none;padding: 0.2rem;border-radius: 0.1rem;" @click="clear_">加入购物车</button>
+          </div>
+        </div>
+      </div>
     </div>
 </template>
 
 <script>
+    import Vue from "vue"
+    import ChartPrice from "../../../ChartPrice_y"
     export default {
         name: "Shop",
+        components: {
+          ChartPrice
+        },
         data() {
           return {
             conName: "全部",
@@ -183,10 +205,23 @@
             isArray2: true,
             isArray3: true,
             // 评价信息
-            evaluate_msg_list: []
+            evaluate_msg_list: [],
+            alertData: [], //弹框信息
+            alertShow: false,
+            alertData1: [], //规格属性
+            conD: "默认",
+            restaurant_id: "",
+            geohash1: "",
+            counts: [], //购物车商品数量
+            // showA: false
+            cunDatas: "",
+            new_cunDatas:[],
+            numberData: ""
           }
         },
         created() {
+          this.restaurant_id = this.$route.query.id;
+          this.geohash1 = this.$route.query.jieWei;
           let data = JSON.parse(this.$route.query.con);
           this.shopImg = data.image_path;
           this.shopTitle = data.name;
@@ -197,15 +232,14 @@
           // 数据请求
           this.shopDetails();
           // 商品展示
-          this.shows(data);
+          this.shows(this.listData);
           // 评价分数
           this.evaluate_grade();
           // 评价分类
           this.evaluate_classify();
           // 评价信息
           this.evaluate_message();
-          //背景图
-          // this.url_ = 'https://fuss10.elemecdn.com/' + this.shopImg;
+          // 获取到购物车数据numberData
         },
         methods: {
           // 返回上一级页面
@@ -224,15 +258,28 @@
               // 默认值
               this.shopShow = res.data[0];
               this.shopShow1 = res.data[0].foods;
+              // console.log(this.shopShow1);
             }, (err) => {
               console.log(err);
             });
           },
+          // 进入商品详情页
+          shop_particulars(data) {
+            this.$router.push({path:"/newDetail", query:{description:data.description,name:data.name,rating:data.rating, month_sales:data.month_sales,rating_count:data.rating_count,satisfy_rate:data.satisfy_rate,imgUrl:data.image_path,price:data.specfoods[0].price}});
+            // console.log(data.specfoods[0].price);
+          },
           shows(data){
             this.shopShow = data;
-            // console.log(data);
             this.shopShow1 = data.foods;
-            // specifications.name
+            let on = JSON.parse(localStorage.getItem("newCarts"));
+              for (let ke in this.shopShow1) {
+                // console.log(this.shopShow1[ke]);
+                for (let key in on) {
+                  if(on[key].name==this.shopShow1[ke].name){
+                    this.shopShow1[ke]=on[key]
+                  }
+                }
+            }
           },
           // 评价分数
           evaluate_grade() {
@@ -272,8 +319,71 @@
             this.conName = data;
           },
           // 点击选规格/加如购物车
-          standards(n) {
-            console.log(n);
+          standards(n,index) {
+            this.alertShow = true;
+            // console.log(n, index);
+            let _this = this;
+            n.specfoods.forEach(function (v, i) {
+              _this.alertData1 = [];
+              _this.alertData1.push({value: "默认"});
+              _this.alertData1.push(v.specs[0]);
+              // console.log(v);
+            })
+            this.alertData = n;
+          },
+          // 点击减号删除数据
+          joinCart_1(data, n) {
+            this.counts[n] = data.num;
+            data.num -= 1;
+            //更新数组
+            Vue.set(this.counts, n, this.counts[n]-1);
+            if (data.num <= 0) {
+              this.counts[n] = undefined;
+              data.num = undefined;
+            }
+            // 存储购物车数据
+            let arr111=[];
+            let newM = JSON.parse(localStorage.getItem("newCarts"));
+            for (let i in newM) {
+              if (newM[i].name == data.name) {
+                continue;
+              }
+              arr111.push(newM[i]);
+            }
+            arr111.push(data);
+            localStorage.setItem('newCarts',JSON.stringify(arr111));
+          },
+          // 点击加号, 加入购物车
+          joinCart_2(data, n) {
+            Vue.set(this.counts, n, 1); //更新自定义
+            if (data.num == undefined) {
+              data.num = 1;
+            } else {
+              data.num += 1;
+            }
+            // 存储购物车数据
+            let arr111=[];
+            let newM = JSON.parse(localStorage.getItem("newCarts"));
+            for (let i in newM) {
+              if (newM[i].name == data.name) {
+                continue;
+              }
+              arr111.push(newM[i]);
+            }
+            arr111.push(data);
+            localStorage.setItem('newCarts',JSON.stringify(arr111));
+          },
+          //弹框的按钮
+          moren(data) {
+            this.conD = data;
+          },
+          // 关闭弹窗
+          clear_() {
+            this.alertShow = false;
+          },
+          // 点击蒙版关闭弹窗
+          goClear() {
+            this.alertShow = false;
           }
         }
     }
@@ -281,6 +391,18 @@
 
 <style scoped>
   @import "//at.alicdn.com/t/font_1084936_t66e1ke3gh.css";
+
+  .showA {
+    display: none;
+  }
+
+  #shop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
   a {
     text-decoration: none;
     color: #fff;
@@ -290,12 +412,11 @@
     padding: 0.5rem 0 0 0;
     font-size: 0.4rem;
     color: #fff;
-    /*background: rgba(119,103,137,.43);*/
-    /*background: url("");*/
   }
 
   .merchant {
     padding: 0 0.5rem;
+    overflow: hidden;
   }
 
   .merchant_title {
@@ -335,8 +456,9 @@
   }
   .activeKey{
     width: 25%;
+    height: 25rem;
+    overflow: auto;
     paddding-right:0.1rem;
-    /*overflow: hidden;*/
     float: left;
   }
   .flo{
@@ -390,21 +512,52 @@
     align-items: center;
   }
 
-  .bot {
+  .botNum {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .bot, .botNo {
     margin-bottom: 0.5rem;
     border: none;
     outline: none;
     border-radius: 0.15rem;
-    color: #fff;
     padding: 0.2rem;
+  }
+
+  .jianHao {
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .bot {
+    color: #fff;
     background: #3199e8;
   }
 
-  .bot1 {
-    padding: 0.3rem;
-    border-radius: 50%;
+  .botNo {
+    color: #3190e8;
+    background: #fff;
+    border: 0.063rem solid #3190e8;
+    padding: 0;
   }
 
+  .numData {
+    margin-top: 0.3rem;
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: #666;
+  }
+
+  .bot1, .botNo {
+    width: 1rem;
+    height: 1rem;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 0.9rem;
+  }
   /*评价得分*/
   .grade {
     padding: 0.5rem;
@@ -414,26 +567,21 @@
     justify-content: space-between;
     align-items: center;
   }
-
   .grade_left {
     width: 37%;
     text-align: center;
     line-height: 1rem;
     margin-top: 0.2rem;
   }
-
   .grade_right {
     width: 60%;
   }
-
   .col1 {
     font-size: 0.7rem;
   }
-  
   .col2 {
     color: #f60;
   }
-
   /*评价分类*/
   .evaluate_classify {
     padding: 0.5rem;
@@ -441,117 +589,142 @@
     /*border-bottom: 0.01rem solid #e4e4e4;*/
     background: #fff;
   }
-
   .evaluate_states, .rest, .satisfaction {
     padding: 0.2rem;
     margin: 0.15rem;
     border-radius: 0.15rem;
     float: left;
   }
-
   .evaluate_states {
     color: #fff;
     background: #3190e8;
   }
-  
   .rest {
     color: #6d7885;
     background: #ebf5ff;
   }
-
   .satisfaction {
     color: #aaa;
     background: #f5f5f5;
   }
-
   /*评价信息----列表*/
   .evaluate_msg_list {
     width: 100%;
     padding: 0.5rem;
     background: #fff;
   }
-
   .message_time {
     width: 100%;
     border-top: 0.01rem solid #e4e4e4;
     display: flex;
     justify-content: space-between;
   }
-
   .message_time > img {
     width: 10%;
     height: 1.5rem;
     border-radius: 50%;
     margin-top: 0.5rem;
   }
-
   .allMessageList {
     width: 93%;
     margin-left: 0.7rem;
     padding: 0.5rem 0;
     color: #666;
   }
-
   .allMessageList_name {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  
-  /*底部购物车数据*/
-  .bot_shopCart {
+
+  /*弹窗*/
+  .alertBall {
     position: fixed;
-    left: 0;
+    top: 0;
     right: 0;
     bottom: 0;
+    left: 0;
     z-index: 999;
-    height: 2.5rem;
-    color: #fff;
-    display: flex;
-    justify-content: start;
-    align-items: center;
+    background: #000;
+    opacity: 0.5;
   }
 
-  /*底部开始*/
-  .bot_shopCart_left {
-    width: 67.5%;
-    height: 100%;
-    /*#333*/
-    background: #333;
-    display: flex;
-    justify-content: start;
-  }
-
-  .bot_shopCart_car {
-    width: 3rem;
-    height: 3rem;
-    background: #3d3d3f;
-    border: 0.05rem solid #4ff;
-    border-radius: 50%;
-    position: absolute;
-    top: -1.3rem;
-    left: 0.7rem;
-    text-align: center;
-    line-height: 3rem;
-  }
-
-  .bot_shopCart_img {
-    font-size: 1.5rem;
-  }
-
-  .bot_shopCart_money {
+  .alertBall_con {
+    position: fixed;
+    top: 9rem;
+    left: 2rem;
+    z-index: 999;
     width: 12rem;
-    text-align: center;
+    height: 9rem;
+    border-radius: 0.3rem;
+    background: #fff;
+    overflow: hidden;
   }
 
-  .bot_shopCart_right {
-    width: 50%;
-    height: 100%;
-    /*margin-left: 10.5rem;*/
-    background: #535356;
-    font-size: 0.8rem;
-    font-weight: bold;
+  .alertBall_con_title {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+  }
+
+  .alertBall_con_title > p:nth-child(1) {
+    width: 90%;
     text-align: center;
-    line-height: 2.5rem;
+    font-size: 0.8rem;
+    color: #000;
+  }
+
+  .alertBall_con_title > p:nth-child(2) {
+    width: 10%;
+    font-size: 0.9rem;
+  }
+
+  .guige {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .alertBall_protety {
+    width: 100%;
+    margin-top: 0.7rem;
+  }
+
+  .bbb, .aaa {
+    padding: 0.4rem;
+    border-radius: 0.2rem;
+  }
+
+  .bbb {
+    border: 0.03rem solid grey;
+  }
+
+  .aaa {
+    color: #3199e8;
+    border: 0.03rem solid #3199e8;
+  }
+
+  .alertBall_bottom {
+    width: 100%;
+    padding: 0.6rem 0.5rem;
+    background: #f9f9f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.1rem;
+  }
+
+  .alertBall_bottom_money {
+    color: #ff6000;
+  }
+
+  .alertBall_bottom_bot {
+    color: #fff;
+  }
+
+  .alertBall_bottom_bot > bottom {
+    background: #3199e8;
+    border-radius: 0.3rem;
+    border: none;
+    outline: none;
   }
 </style>
