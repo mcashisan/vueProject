@@ -4,7 +4,7 @@
       <nav id="headers">
         <div class="headers_msg">
           <div class="header_left">
-            <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;" @click="JumpToThePage"><</i>
+            <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;" @click="JumpToThePage"></i>
           </div>
           <div class="header_con">服务中心</div>
           <div class="header_left"></div>
@@ -60,7 +60,6 @@
         for (let i = 0; i < nameA.length; i += 2) {
           this.bananer.push(this.computer[nameA[i + 1]]);
           this.apple = this.computer[nameA[i]];
-          console.log(this.apple);
         }
       }, (err) => {
         console.log(err);
@@ -77,6 +76,7 @@
 </script>
 
 <style scoped>
+  @import "//at.alicdn.com/t/font_1084936_492sa80v98i.css";
   /*导航条*/
   #headers {
     height: 2rem;

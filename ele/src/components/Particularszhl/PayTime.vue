@@ -76,8 +76,6 @@
 
 <style scoped>
   @import "//at.alicdn.com/t/font_1084936_89o5dxhawbk.css";
-  @import "//at.alicdn.com/t/font_1454015_erlu3v0c1fu.css";
-  @import "//at.alicdn.com/t/font_1454015_6xb8lgr6owj.css";
   #headers {
     height: 2rem;
     padding: 0 0.5rem;

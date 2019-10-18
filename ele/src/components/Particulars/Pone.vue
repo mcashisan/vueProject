@@ -5,7 +5,7 @@
         <nav id="headers">
           <div class="headers_msg">
             <div class="header_left">
-              <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;"><</i>
+              <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;" @click="blackshop"></i>
             </div>
             <div class="header_con">商家详情</div>
             <div class="header_left"></div>
@@ -54,16 +54,51 @@
 <script>
     export default {
         name: "Pone",
+      props:{
+          rex:[]//声明传递过来的数据类型
+      },
+      data(){
+        return{
+          asf:[]//定义一个变量接收值
+        }
+      },
       methods:{
         //  企业认证详情
         Enterprisecertification(){
           this.$router.push({path:"/enterpzhl"})
+        },
+        bbbbb(){
+          this.asf=this.rex;
+        },
+        blackshop(){
+          // this.$router.push({path:"/shop",query:conName});
+         // this.conName=this.$router.query.conName;
         }
+      },
+      watch:{
+        rex(){
+          this.newListData();//实时监听从父级传来的数据
+        }
+      },
+      created(){
+          // this.myHttp.get("/shopping/restaurant/1",(res)=>{
+        //   console.log(res);
+        //   let aa=res.data;
+        //   let a=aa.supports;
+        //   console.log(a);
+        //   let b=aa.activities;
+        //   console.log(b);
+        // })
+        // let a=JSON.parse(this.$route.query.newListData);
+        // console.log(a);
+        // let data = JSON.parse(this.$route.query.newListData);
+        // console.log(data);
       }
     }
 </script>
 
 <style scoped>
+  @import "//at.alicdn.com/t/font_1084936_492sa80v98i.css";
   /*导航条*/
   #headers {
     height: 2rem;

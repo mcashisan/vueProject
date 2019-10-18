@@ -5,7 +5,7 @@
       <nav id="headers">
         <div class="headers_msg">
           <div class="header_left">
-            <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;"><</i>
+            <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;" @click="myfirstye"></i>
           </div>
           <div class="header_con">我的</div>
           <div class="header_left"></div>
@@ -23,17 +23,17 @@
   </div>
   <div id="monery">
     <p @click="mymoney">
-      <span><span id="big1">0.00</span>元</span>
+      <span><span id="big1">{{monery}}</span>元</span>
       <br>
       <span>我的余额</span>
     </p>
     <p style="border-left: 1px solid rgba(0,0,0,0.06); border-right: 1px solid rgba(0,0,0,0.06);" @click="Mydiscounts">
-      <span><span id="big2">0</span>个</span>
+      <span><span id="big2">{{dis}}</span>个</span>
       <br>
       <span>我的优惠</span>
     </p>
     <p id="p3" @click="shopIntegral">
-      <span><span id="big3">0</span>分</span>
+      <span><span id="big3">{{inte}}</span>分</span>
       <br>
       <span>我的积分</span>
     </p>
@@ -41,11 +41,11 @@
     <div id="doter">
       <p><img src="../img/1.png"style="width: 1rem;height:1rem;
 "/>&ensp;我的订单<span>></span></p>
-      <p><img src="../img/2.png" style="width: 1rem;height:1rem;
-" @click="mycallshop"/>&ensp;积分商城<span>></span></p>
+      <p  @click="mycallshop"><img src="../img/2.png" style="width: 1rem;height:1rem;
+"/>&ensp;积分商城<span>></span></p>
 
-      <p><img src="../img/3.png"style="width: 1rem;height:1rem;
-"/>&ensp;饿了么会员卡<span  @click="dianji">></span></p>
+      <p  @click="dianji"><img src="../img/3.png"style="width: 1rem;height:1rem;
+"/>&ensp;饿了么会员卡<span>></span></p>
 
     </div>
     <div id="saas">
@@ -54,15 +54,20 @@
       <p @click="readyAnd"><img src="../img/5.png" style="width: 1rem;height:1rem;
 "/>&ensp;下载饿了么APP<router-link :to="{}"><span>></span></router-link> </p>
     </div>
-    <Footer></Footer>
+    <!--底部导航-->
+    <footer></footer>
   </div>
 </template>
 <script>
     import Footer from "../../components/Footer"
     export default {
       name: "Mine",
-      components: {
-        Footer
+      data(){
+        return{
+          monery:0.00,
+          dis:0,
+          inte:0
+        }
       },
       methods: {
         //服务中心的路由
@@ -86,21 +91,24 @@
           this.$router.push({path: "/discounte"});
         },
         //积分商城
-
         mycallshop() {
-          this.$router.push({path: "/vipshop"});
+          this.$router.push({path: "/mycalls"});
+          // console.log(111);
         },
         //  会员中心
         dianji() {
           this.$router.push({path: "/vipcard"})
         },
-
+       //返回商品页
+        myfirstye(){
+          this.$router.push({path:"/msite"})
+        }
       }
     }
 </script>
 
 <style scoped>
-
+  @import "//at.alicdn.com/t/font_1084936_t66e1ke3gh.css";
   /*导航条*/
   #headers {
     height: 2rem;

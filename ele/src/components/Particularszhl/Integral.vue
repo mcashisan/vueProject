@@ -1,12 +1,18 @@
 <template>
   <div id="title">
+    <!--导航条-->
     <div>
-    <div id="and">
-      <div id="left" @click="JumpToThePage">
-        <
-      </div>
-      <div id="download">我的积分</div>
+      <nav id="headers">
+        <div class="headers_msg">
+          <div class="header_left">
+            <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;" @click="JumpToThePage"></i>
+          </div>
+          <div class="header_con">我的积分</div>
+          <div class="header_left"></div>
+        </div>
+      </nav>
     </div>
+    <div>
     <div id="andframe">
     <div id="frame">
       <div>
@@ -18,7 +24,7 @@
         <div style="clear: both;"></div>
       </div>
 
-      <button id="expain">积分兑换</button>
+      <button id="expain" @click="jumpopenup">积分兑换</button>
     </div>
   </div>
   <div id="fons">最近30天积分记录</div>
@@ -29,12 +35,14 @@
       <p style="padding-bottom: 1rem;color: rgba(0,0,0,0.65);">快去下单赚取大量积分吧</p>
   </div>
   </div>
-
+<transition name="slide">
+  <div  v-if="ShowOne">
     <div id="dianji">
       <p id="p1">!</p>
       <p id="p2">快去下单赚取大量积分吧</p>
-      <p id="p3">确认</p>
-    </div>
+      <p id="p3" @click="jumpdown">确认</p>
+    </div></div>
+</transition>
   </div>
 </template>
 
@@ -45,7 +53,9 @@
         return {
           money:0,
           zj:false,
-          jf:[]
+          jf:[],
+          ShowOne:false,
+          downup:false
         }
       },
       methods:{
@@ -53,11 +63,72 @@
         JumpToThePage(){
           this.$router.push({path:"/footmine"});
         },
+        jumpopenup(){
+          this.ShowOne=!this.ShowOne;
+        },
+        jumpdown(){
+          this.ShowOne=!this.ShowOne;
+        }
       }
     }
 </script>
 
 <style scoped>
+  @import "//at.alicdn.com/t/font_1084936_492sa80v98i.css";
+  /*导航条*/
+  #headers {
+    height: 2rem;
+    padding: 0 0.5rem;
+    color: white;
+    line-height: 2rem;
+    background: #3190e8;
+  }
+
+  .headers_msg {
+    display:flex;
+    justify-content: space-between;
+    text-align: center;
+  }
+
+  .header_left {
+    width: 10%;
+  }
+
+  .header_con {
+    width: 60%;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .login_header, .login_bottom {
+    padding: 0.5rem;
+  }
+
+  .login_header > div {
+    width: 55%;
+  }
+
+  .login_header > div > input {
+    width: 100%;
+    font-size: 0.75rem;
+    border: none;
+    outline: none;
+  }
+  #title{
+    background-color: white;
+    position: relative;
+  }
+  .slide-fade-enter-active {
+    transition: all .3s ease;
+  }
+  .slide-fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .slide-fade-enter, .slide-fade-leave-to
+    /* .slide-fade-leave-active for below version 2.1.8 */ {
+    transform: translateX(10px);
+    opacity: 0;
+  }
   html,body{
     background-color: rgba(0,0,0,0.04);
   }
@@ -134,7 +205,7 @@
     left: 12%;
     text-align: center;
     border-radius: 0.5rem;
-    display: none;
+    /*display: none;*/
     font-size: 0;
   }
   #p1{
@@ -158,7 +229,7 @@
     color: white;
     /*padding: 0.3rem 0;*/
     padding-top: 0.3rem;
-    margin-bottom: 0.3rem;
+    margin-bottom:0;
   }
  #sp1{
      background-color: deepskyblue;

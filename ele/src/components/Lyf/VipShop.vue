@@ -1,9 +1,11 @@
 <template>
+  <div id="title">
     <div class="vipshop">
       <p>请重新进入</p>
       <p>请返回后重新进入积分上横</p>
       <img src="../img/emoji_2.png" alt="">
     </div>
+  </div>
 </template>
 
 <script>

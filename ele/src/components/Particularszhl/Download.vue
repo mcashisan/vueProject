@@ -6,7 +6,7 @@
         <nav id="headers">
           <div class="headers_msg">
             <div class="header_left">
-              <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;" @click="JumpToThePage"><</i>
+              <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;" @click="JumpToThePage"></i>
             </div>
             <div class="header_con">订单列表</div>
             <div class="header_left"></div>
@@ -18,8 +18,8 @@
         <p id="p1">下载饿了么APP</p>
         <div  id="btn" @click="downloadd"  class="btn btn-success">下载</div>
       </div>
-      <transition >
-        <div id="popover" v-if="ShowArr" name="bounce">
+      <transition name="bounce">
+        <div id="popover" v-if="ShowArr">
           <div id="pop" style="text-align: center">
             <img src="../img/tan.png"style="width: 3rem;height: 3rem;margin-bottom: 0.5rem"/>
             <!--<span id="garden">!</span>-->
@@ -38,7 +38,6 @@
       data(){
           return{
         ShowArr:false,
-            asdbs:true
           }
       },
       methods:{
@@ -58,6 +57,24 @@ this.ShowArr=!this.ShowArr;
 </script>
 
 <style scoped>
+  @import "//at.alicdn.com/t/font_1084936_492sa80v98i.css";
+  .bounce-enter-active {
+    animation: bounce-in .5s;
+  }
+  .bounce-leave-active {
+    animation: bounce-in .5s reverse;
+  }
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 
 #lowd{
   text-align: center;

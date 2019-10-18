@@ -171,7 +171,7 @@ export default new Router({
   //  开发票
     {path:"/vipinv",component:VipInv},
   //  积分商城
-    {path:"/vipshop",component:VipShop},
+    {path:"/mycalls",component:VipShop},
   //  确认订单
     {path:"/ordercon",component:OrderCon},
   //  订单备注

@@ -4,19 +4,16 @@
     <nav id="headers">
       <div class="headers_msg">
         <div class="header_left">
-          <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;"@click="JumpToThePage"><</i>
+          <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;"@click="JumpToThePage"></i>
         </div>
         <div class="header_con">余额问题</div>
         <div class="header_left"></div>
       </div>
     </nav>
     <div style="font-size: 0.76rem" >
-      <div v-for="(i,index) in appl" :key="index">
-      <p >{{i[0]}}</p>
-        <p >{{i[1]}}</p>
-        <p >{{i[2]}}</p>
-        <p >{{i[3]}}</p>
-    </div>
+      <p v-for="(i,index) in appl" :key="index">
+      {{i}}
+    </p>
   </div>
   </div>
 </template>
@@ -39,9 +36,8 @@
           this.jf=res.data.balanceContent;
           this.oranges=this.jf.split("###");
           for(let v=1;v<this.oranges.length;v++){
-            this.as=this.oranges[v];
-           let a=this.as.split("?");
-            console.log(a);
+          this.as+=this.oranges[v]
+           this.appl=this.as.split("？");
           }
         }))
       },
@@ -54,6 +50,7 @@
 </script>
 
 <style scoped>
+  @import "//at.alicdn.com/t/font_1084936_492sa80v98i.css";
   /*导航条*/
   #headers {
     height: 2rem;

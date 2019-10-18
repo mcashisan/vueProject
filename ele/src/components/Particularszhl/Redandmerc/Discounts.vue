@@ -5,7 +5,7 @@
   <nav id="headers">
     <div class="headers_msg">
       <div class="header_left">
-        <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;" @click="blackdiscounts"><</i>
+        <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;" @click="blackdiscounts"></i>
       </div>
       <div class="header_con">我的优惠</div>
       <div class="header_left"></div>
@@ -121,6 +121,7 @@
 </script>
 
 <style scoped>
+  @import "//at.alicdn.com/t/font_1084936_492sa80v98i.css";
   /*导航条*/
   #headers {
     height: 2rem;

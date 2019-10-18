@@ -5,7 +5,7 @@
         <!--,filter: 'blur('+0.5 +'rem)':背景模糊-->
         <!--商家:merchant 信息-->
         <div class="merchant">
-          <div class="merchant_title">
+          <div class="merchant_title" @click="xqandshop(newListData)">
             <img :src="'//elm.cangdu.org/img/'+shopImg" alt="" class="merchant_img">
             <div class="merchant_message">
               <p style="font-size: 0.7rem;font-weight: bold;">{{shopTitle}}</p>
@@ -245,6 +245,10 @@
           // 返回上一级页面
           goTo() {
             return this.$router.go(-1)
+          },
+          //详情
+          xqandshop(e){
+            this.$router.push({path:"/aaazhi"});
           },
           // 返回商铺列表
           shopFanHui() {

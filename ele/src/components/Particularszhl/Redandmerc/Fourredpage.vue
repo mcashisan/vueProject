@@ -5,7 +5,7 @@
     <nav id="headers">
       <div class="headers_msg">
         <div class="header_left">
-          <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;" @click="tiao"><</i>
+          <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;" @click="tiao"></i>
         </div>
         <div class="header_con">兑换红包</div>
         <div class="header_left"></div>
@@ -57,6 +57,7 @@
 
 <style scoped>
   /*导航条*/
+  @import "//at.alicdn.com/t/font_1084936_492sa80v98i.css";
   #headers {
     height: 2rem;
     padding: 0 0.5rem;

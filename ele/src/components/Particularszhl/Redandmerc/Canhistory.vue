@@ -5,7 +5,7 @@
     <nav id="headers">
       <div class="headers_msg">
         <div class="header_left">
-          <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;" @click="blackrepage"><</i>
+          <i class="iconfont icon-arrowRight-copy" style="font-size: 1rem;font-weight: bold;" @click="blackrepage"></i>
         </div>
         <div class="header_con">历史红包</div>
         <div class="header_left"></div>
@@ -52,10 +52,10 @@
             console.log(this.mayte);
             this.maa=this.mayte.limit_map;
             console.log(this.maa);
-            // for (let i=0;i<this.mayte.length;i++){
-            //   this.maa+=this.mayte[i];
-            //   console.log(this.maa);
-            // }
+            for (let i=0;i<this.mayte.length;i++){
+              this.maa+=this.mayte[i];
+              console.log(this.maa);
+            }
           })
       },
       methods:{
@@ -67,6 +67,7 @@
 </script>
 
 <style scoped>
+  @import "//at.alicdn.com/t/font_1084936_492sa80v98i.css";
   /*导航条*/
   #headers {
     height: 2rem;
