@@ -133,6 +133,7 @@
       this.geohash1 = localStorage.getItem("geoHash");
       let n = JSON.parse(localStorage.getItem("newCarts"));
       this.allData1 = n;
+      console.log(this.allData1);
       let _this = this;
       n.forEach(function (v, n) {
         _this.newNum += v.num;

@@ -66,7 +66,8 @@
             arr1: [],
             arr2: [],
             aaa: "",
-            xiaoren:""
+            xiaoren:"",
+            getTile: ""
           }
         },
         methods: {
@@ -101,11 +102,14 @@
           this.xiaoren = this.$route.query.username;
           this.getMessageAll();
           this.aaa = this.$route.query.aaa;
+          localStorage.setItem("cityTile",this.$route.query.address);
+          console.log(JSON.parse(localStorage.getItem("0")));
+          this.getTile = JSON.parse(localStorage.getItem("0")).address;
         },
         computed: {
-          getTile() {
-            return this.$route.query.geoHash;
-          }
+          // getTile() {
+          //   return this.$route.query.JSON.parse(localStorage.getItem("0")).address;
+          // }
         }
     }
 </script>
@@ -133,19 +137,18 @@
   }
 
   .header_left {
-    width: 20%;
+    /*width: 20%;*/
     text-align: left;
   }
 
   .header_con {
-    width: 60%;
     font-size: 1rem;
     font-weight: bold;
     margin-left: -0.6rem;
   }
 
   .search_Title {
-    width: 8rem;
+    width: 10rem;
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;

@@ -106,7 +106,6 @@
             <div class="evaluate_classify">
               <div v-for="(v, index) in evaluate_c" :key="index">
                 <p :class="(v.name)==conName?{evaluate_states:true}:((v.name)=='不满意'?{satisfaction:isArray2}:{rest:isArray3})" @click="fun(v.name)">
-                  <!--colorState(index)-->
                   <span>{{v.name}}</span>
                   <span>({{v.count}})</span>
                 </p>
@@ -256,7 +255,7 @@
           },
           shopDetails() {
             this.myHttp.get("/shopping/v2/menu?restaurant_id="+this.ID, (res) => {
-              // console.log(res.data);
+              console.log(res.data);
               this.newListData = res.data;
               this.listData = res.data;
               // 默认值
@@ -273,6 +272,7 @@
             // console.log(data.specfoods[0].price);
           },
           shows(data){
+            console.log(data);
             this.shopShow = data;
             this.shopShow1 = data.foods;
             let on = JSON.parse(localStorage.getItem("newCarts"));
@@ -283,6 +283,8 @@
                     this.shopShow1[ke]=on[key]
                   }
                 }
+                 // localStorage.setItem('newCarts',JSON.stringify());
+                // console.log(localStorage.getItem("newCarts"))
             }
           },
           // 评价分数
@@ -325,15 +327,32 @@
           // 点击选规格/加如购物车
           standards(n,index) {
             this.alertShow = true;
-            // console.log(n, index);
+            console.log(n, index);
             let _this = this;
             n.specfoods.forEach(function (v, i) {
               _this.alertData1 = [];
               _this.alertData1.push({value: "默认"});
               _this.alertData1.push(v.specs[0]);
-              // console.log(v);
             })
             this.alertData = n;
+            console.log(this.alertData);
+            Vue.set(this.counts, index, 1); //更新自定义
+            if (n.num == undefined) {
+              n.num = 1;
+            } else {
+              n.num += 1;
+            }
+            // 存储购物车数据
+            let arr111=[];
+            let newM = JSON.parse(localStorage.getItem("newCarts"));
+            for (let i in newM) {
+              if (newM[i].name == n.name) {
+                continue;
+              }
+              arr111.push(newM[i]);
+            }
+            arr111.push(n);
+            localStorage.setItem('newCarts',JSON.stringify(arr111));
           },
           // 点击减号删除数据
           joinCart_1(data, n) {
@@ -389,7 +408,7 @@
           goClear() {
             this.alertShow = false;
           }
-        }
+        },
     }
 </script>
 
