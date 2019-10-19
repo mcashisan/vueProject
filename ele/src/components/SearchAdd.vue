@@ -15,12 +15,12 @@
       </div>
       <ul>
         <li v-for="(v,k) in addRes":key="k">
-          <div class="qqq">
-            <router-link :to="{path:'/address',query:{akl:v.name}}">
+          <div class="qqq" @click="dianji1(v)">
+            <!--<router-link :to="{path:'/address',query:{akl:v.name}}">-->
           <p>{{v.name}}</p>
         <p>{{v.address}}</p>
             <hr>
-            </router-link>
+            <!--</router-link>-->
           </div>
         </li>
       </ul>
@@ -40,11 +40,14 @@
           return{
             inputV:"",
             addRes:[],
-            show:true
+            show:true,
+            akl1:""
           }
       },
       methods:{
           ask(){
+
+
             this.myHttp.get("/v1/pois?city_id=1&keyword="+this.inputV+"&type=search",(res=>{
               console.log(res.data)
               this.addRes=res.data;
@@ -52,6 +55,12 @@
             }))
             this.show=false
           },
+        dianji1(b){
+            console.log(b)
+          localStorage.setItem("dizhi",b.address );
+          localStorage.setItem("mingzi",b.name );
+          this.$router.go(-1)
+        },
      goBack(){
        this.$router.go(-1)
      }

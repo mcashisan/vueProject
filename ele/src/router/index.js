@@ -88,6 +88,10 @@ import  Shopdjq from '../components/Particularszhl/Redandmerc/Redpagespeek'
 import aa from '../components/Particulars/Pone'
 //企业认证详情
 import Ezhl from '../components/Particulars/Onetwo'
+//存储订单地址
+import SaveOrder from "../components/Lyf/SaveOrder"
+//在订单中增加地址
+import SaveAdd from "../components/Lyf/SaveAdd"
 Vue.use(Router)
 
 export default new Router({
@@ -184,5 +188,9 @@ export default new Router({
     {path:"/recomd",component:Rc},
      //商家代金券
     {path:"/shopdjq",component:Shopdjq},
+    //  存储订单地址
+    {path:"/saveorder",component:SaveOrder},
+    //  在订单中添加地址
+    {path:"/saveadd",component:SaveAdd}
   ]
 })

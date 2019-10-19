@@ -10,7 +10,7 @@
         </div>
       </nav>
       <div class="head">
-        <p>成功兑换后将关联到当前账号：{{}}</p>
+        <p>成功兑换后将关联到当前账号：<span class="username">{{name1}}</span></p>
       </div>
       <div class="mid1">
         <van-cell-group>
@@ -40,8 +40,8 @@
           value:"",
           valuea:"",
           disable:true,
-          show: false
-
+          show: false,
+name1:""
         }
       },
       methods: {
@@ -53,15 +53,15 @@
         }
 
       },
-      // created(){
-      //   this.watch()
-      // },
+      created(){
+        this.name1=localStorage.getItem("name")
+      },
       computed:{
         watch(){
           //判断文字长度
           if (this.value.length ==10 &&this.valuea.length==6) {
             this.disable=false
-            console.log(1);
+            // console.log(1);
           }
 
         }
@@ -121,7 +121,9 @@
   }
   .tan>img{
     width: 5rem;
-
   }
-
+  .username{
+    color: black;
+    font-weight: bold;
+  }
 </style>

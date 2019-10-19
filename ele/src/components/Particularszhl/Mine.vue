@@ -50,7 +50,7 @@
         <i class="iconfont icon-jiantou-copy" style="font-size: 1rem;font-weight: bold;"></i>
         </span>
       </p>
-      <p>
+      <p @click="mycallshop">
         <img src="../img/2.png" style="width: 1rem;height:1rem;" @click="shopIntegral"/>
         &ensp;积分商城
         <span>
@@ -60,7 +60,7 @@
       <p>
         <img src="../img/3.png" style="width: 1rem;height:1rem;"/>
         &ensp;饿了么会员卡
-        <span>
+        <span @click="dianji">
           <i class="iconfont icon-jiantou-copy" style="font-size: 1rem;font-weight: bold;"></i>
         </span>
       </p>
@@ -147,8 +147,9 @@
           this.$router.push({path: "/login"});
         }
       },
+      //积分商城
       mycallshop() {
-        this.$router.push({path: "/vipshop"});
+        this.$router.push({path: "/mycalls"});
       },
       //  会员中心
       dianji() {

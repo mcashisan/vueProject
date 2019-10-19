@@ -10,7 +10,7 @@
         </div>
       </nav>
       <div class="head">
-        <span>为账户xxxx购买会员</span>
+        <span>为账户<span class="username">{{name1}}</span>购买会员</span>
       </div>
       <div class="mid1">
         <van-cell title="会员特权" is-link to="vipdes"  value="会员说明"/>
@@ -58,10 +58,19 @@
 <script>
     export default {
         name: "VipCard",
+      data(){
+          return{
+            name1:""
+          }
+      },
+
       methods:{
           goback(){
           this.$router.go(-1)
-        }}
+        }},
+      created(){
+          this.name1=localStorage.getItem("name")
+      }
     }
 </script>
 
@@ -214,5 +223,9 @@ color: rgb(255,102,0);
   .duihuan{
     margin-top: .5rem;
     margin-bottom: .5rem;
+  }
+  .username{
+    color: black;
+    font-weight: bold;
   }
 </style>

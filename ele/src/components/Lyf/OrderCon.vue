@@ -12,8 +12,13 @@
       </div>
     </nav>
     <div class="head">
-      <van-cell title="请添加一个收货地址" size="large" is-link icon="location-o" class="head1"
-                @click="add1"/>
+ <div class="add12">
+   <div class="left1" @click="add1">
+   <van-icon name="location-o" />
+   <span>请添加地址</span>
+     <van-icon name="arrow" class="right2" />
+   </div>
+ </div>
       <div class="van-hairline--bottom"></div>
     </div>
     <div class="mid1">
@@ -88,7 +93,7 @@
       <div class="bottom2_left">
         待支付{{all_price + 998}}
       </div>
-      <div class="bottom2_right">
+      <div class="bottom2_right" @click="xiadan">
         确认下单
       </div>
     </div>
@@ -108,7 +113,12 @@
         headerTitle: "",
         allD: [],
         num_price: "",
-        all_price: 0
+        all_price: 0,
+        address:"",
+        name:"",
+        sex:"",
+        phone:"",
+        // title:"343"
       }
 
     },
@@ -122,6 +132,9 @@
       add1() {
         this.$router.push({path: '/saveorder'})
       },
+      xiadan(){
+        this.$router.push({path:"/paytime"})
+      }
       // 获取订单信息
     },
     created() {
@@ -139,7 +152,12 @@
           console.log(v1.price);
           _this.all_price += v1.price*num222;
         })
-      })
+      });
+      this.address= localStorage.getItem("dizhi");
+      this.name=localStorage.getItem("name");
+      this.sex=localStorage.getItem("xingbie");
+      this.phone =localStorage.getItem("shoujihao");
+      console.log(this.title);
     }
   }
 </script>
@@ -322,4 +340,19 @@
     float: right;
     text-align: center;
   }
+  .add12{
+    height: 3rem;
+    background: white;
+    padding: 1rem;
+    font-size: .8rem;
+  }
+  .right2{
+    float: right;
+    /*position: absolute;*/
+    /*bottom: .6rem;*/
+    /*margin-left: 1rem;*/
+    margin-bottom: 1rem;
+
+  }
+
 </style>
