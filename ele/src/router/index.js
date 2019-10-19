@@ -166,7 +166,7 @@ export default new Router({
     //余额说明
     {path:"/zhlmoney",component:Zhlmon},
     //优惠
-    {path:"/discounte",component:Youhui},
+    {path:"/discounte",component:Youhui,name:"discounte"},
 //积分商城
     {path:"/mycallasd",component:Myshop},
     //红包说明redpagesd

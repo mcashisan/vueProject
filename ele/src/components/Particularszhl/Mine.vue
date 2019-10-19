@@ -123,7 +123,13 @@
       },
       //我的优惠
       Mydiscounts() {
-        this.$router.push({path: "/discounte"});
+        this.$router.push({
+          name:"discounte",
+          params:{
+            asdb:this.youhui
+          }
+        }
+        );
       },
       // 获取账户信息
       getMessage() {

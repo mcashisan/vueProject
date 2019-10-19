@@ -15,6 +15,7 @@
 <div id="andDiv">
     <span  class="activeClass" v-for="(vs,ab) in itemList" :class="{'red-link':ab}===isActivea" @click="getItem(vs, ab)">{{vs}}</span>
 </div>
+    <div v-show="ShuwNue">
     <!--红包-->
     <div id="redpage" v-if="ShowData">
     <div>
@@ -59,7 +60,7 @@
       <p id="pm">非客户端或客户端版本多低</p>
       <router-link :to="{path:'/redd'}" id="pg">下载或升级客户端</router-link>
     </div></div>
-  </div>
+  </div></div>
 </template>
 
 <script>
@@ -78,7 +79,7 @@
             ShowTwo:false,
             p:"",
             hasdp:[],
-            ShuwNue:false
+            ShuwNue:true
           }
       },
       methods:{
@@ -117,7 +118,13 @@
       created(){
         this.myHttp.get("/promotion/v2/users/1/hongbaos?limit=20&offset=0",(res)=>{
           this.aa=res.data;
-        })},
+        })
+        if (this.$route.params.asdb==0){
+          this.ShuwNue=false;
+          console.log(this.$route.params.asdb);
+        }
+      },
+
     }
 </script>
 

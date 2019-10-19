@@ -9,20 +9,6 @@
         <div class="header_left"></div>
       </div>
     </nav>
-    <!--<div class="msg">-->
-        <!--<ul>-->
-          <!--<li>-->
-            <!--<span style="float:left;">快速备注</span>-->
-          <!--<span v-for="(v,inde) in arr" :key="inde" >-->
-            <!--<span  v-for="(va,a) in v" :key="a" :class="akl1[a][0] == inde?{cans:true}:{cans:false}" @click="Chooset(a,inde)" style="float: right; margin-right: 0.5rem;border: 1px solid rgba(0,0,0,0.06); padding: 0.2rem">{{va}}>-->
-             <!--<div style="clear: both;"></div>-->
-            <!--</span>-->
-          <!--</span>-->
-
-          <!--</li>-->
-          <!--&lt;!&ndash;<li v-for="(va,a) in v" :key="a" :class="akl1[a][0] == inde?{cans:true}:{cans:false}" @click="Chooset(a,inde)">{{va}}</li>&ndash;&gt;-->
-        <!--</ul>-->
-    <!--</div>-->
     <div class="header-style">快速备注</div>
     <ul class="remark_arr_list_ul">
       <li v-for="(v,inde) in arr" :key="inde">
