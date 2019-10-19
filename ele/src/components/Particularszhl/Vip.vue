@@ -27,7 +27,7 @@
       },
       methods:{
         sentersever(){
-          this.$router.push({path:"/ServeAdd"})
+          this.$router.go(-1)
         }
       },
       created(){

@@ -85,10 +85,25 @@
       </div>
     </div>
     <!--订单备注以及发票-->
-    <div class="bottom1">
-      <van-cell title="订单备注" value="口味偏好等" is-link to="ordernote"/>
-      <van-cell title="发票抬头" value="不需要开发票" is-link to="index"/>
-    </div>
+    <ul class="remark_arr_list_ul">
+      <li v-for="(v,i) in list" :key="i">
+        <span  class="first last" v-for="(v1, i1) in v" :key="i1" :class="choose[i][0] === i1 ? {haha:true} : {haha:false}" @click="chooseT(i,i1)" >{{v1}}</span>
+      </li>
+    </ul>
+      <ul style="margin-top: 0.3rem;width: 100%;background-color: white">
+        <li style="border-bottom:1px solid rgba(0,0,0,0.06); width: 100%;" @click="dingdanbiezhu">
+          <span style="float:left;">订单备注</span>
+          <span style="float:right;margin-right: 0.6rem">
+            <span>{{nammasd}}></span>
+          </span>
+          <div style="clear: both;"></div>
+        </li>
+        <li style="width: 100%;" @click="fapiaotaitou">
+          <span style="float:left;">发票抬头</span>
+          <span style="float:right;margin-right: 0.6rem">{{ad}}></span>
+          <div style="clear: both;"></div>
+        </li>
+      </ul>
     <div class="bottom2">
       <div class="bottom2_left">
         待支付{{all_price + 998}}
@@ -119,6 +134,9 @@
         sex:"",
         phone:"",
         // title:"343"
+        all:3,
+        nammasd:"",
+        ad:""
       }
 
     },
@@ -138,26 +156,36 @@
       // 获取订单信息
     },
     created() {
-      this.headerImg = this.$route.query.imgUrl;
-      this.headerTitle = this.$route.query.name;
-      this.allD = this.$route.query.dudu;
-      console.log(this.allD);
-      let _this = this;
-      let num222 = 0;
-      this.allD.forEach(function (v, i) {
-        console.log(v);
-        num222 = v.num;
-        v.specfoods.forEach(function (v1, n1) {
-          _this.num_price = v1.packing_fee;
-          console.log(v1.price);
-          _this.all_price += v1.price*num222;
-        })
-      });
-      this.address= localStorage.getItem("dizhi");
-      this.name=localStorage.getItem("name");
-      this.sex=localStorage.getItem("xingbie");
-      this.phone =localStorage.getItem("shoujihao");
-      console.log(this.title);
+      // this.headerImg = this.$route.query.imgUrl;
+      // this.headerTitle = this.$route.query.name;
+      // this.allD = this.$route.query.dudu;
+      // // console.log(this.allD);
+      // let _this = this;
+      // let num222 = 0;
+      // this.allD.forEach(function (v, i) {
+      //   console.log(v);
+      //   num222 = v.num;
+      //   v.specfoods.forEach(function (v1, n1) {
+      //     _this.num_price = v1.packing_fee;
+      //     console.log(v1.price);
+      //     _this.all_price += v1.price*num222;
+      //   })
+      // });
+      // this.Mynameiszhaohailing();
+
+      if (this.$route.params.cas!=null){
+        console.log(this.$route.params);
+        this.nammasd=JSON.parse(this.$route.params.cas)+this.$route.params.cans;
+        console.log(this.nammasd);
+      }else {
+        this.nammasd="口味偏重"
+      }
+      if (this.$route.params.cda!=null){
+        this.ad=this.$route.params.cda;
+        console.log(this.ad);
+      } else {
+        this.ad="不需要发票";
+      }
     }
   }
 </script>
@@ -354,5 +382,9 @@
     margin-bottom: 1rem;
 
   }
-
+  li{
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
 </style>

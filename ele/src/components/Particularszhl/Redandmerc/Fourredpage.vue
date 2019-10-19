@@ -44,7 +44,7 @@
       },
       methods:{
         tiao(){
-          this.$router.push({path:"/pagered"})
+          this.$router.go(-1)
         },
         asdba(){
           this.myHttp.post("/v1/captchas",{},(response)=>{

@@ -42,7 +42,7 @@
       },
       methods:{
         JumpToThePage(){
-          this.$router.push({path:"/footmine"});
+          this.$router.go(-1);
         },
         //点击弹框
         downloadd(){

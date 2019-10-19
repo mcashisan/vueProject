@@ -9,21 +9,31 @@
         <div class="header_left"></div>
       </div>
     </nav>
-    <div class="msg">
-      <p>快速备注</p>
-      <div class="many">
-          <span v-for="(x,y) in arr" :key="y" class="s">
-            <span v-for="(v,i) in x" :key="i" class="s1" @click="dians(v,i,y)" >
-              <span :class="{dian:bgc}" >{{v}}</span>
-            </span>
-          </span>
-      </div>
-    </div>
+    <!--<div class="msg">-->
+        <!--<ul>-->
+          <!--<li>-->
+            <!--<span style="float:left;">快速备注</span>-->
+          <!--<span v-for="(v,inde) in arr" :key="inde" >-->
+            <!--<span  v-for="(va,a) in v" :key="a" :class="akl1[a][0] == inde?{cans:true}:{cans:false}" @click="Chooset(a,inde)" style="float: right; margin-right: 0.5rem;border: 1px solid rgba(0,0,0,0.06); padding: 0.2rem">{{va}}>-->
+             <!--<div style="clear: both;"></div>-->
+            <!--</span>-->
+          <!--</span>-->
+
+          <!--</li>-->
+          <!--&lt;!&ndash;<li v-for="(va,a) in v" :key="a" :class="akl1[a][0] == inde?{cans:true}:{cans:false}" @click="Chooset(a,inde)">{{va}}</li>&ndash;&gt;-->
+        <!--</ul>-->
+    <!--</div>-->
+    <div class="header-style">快速备注</div>
+    <ul class="remark_arr_list_ul">
+      <li v-for="(v,inde) in arr" :key="inde">
+        <span  class="first last" v-for="(va,a) in v" :key="a" :class="akl1[inde][0] == a?{cans:true}:{cans:false}" @click="Chooset(inde,a)" >{{va}}</span>
+      </li>
+    </ul>
     <div class="last">
       <p>其他备注</p>
-      <textarea  placeholder="请输入备注内容(可不填)"></textarea>
+      <textarea  placeholder="请输入备注内容(可不填)" v-model="ak3"></textarea>
     </div>
-    <button class="btn">确定</button>
+    <button class="btn" @click="gobackpanduan">确定</button>
   </div>
 </template>
 
@@ -34,34 +44,45 @@
       return{
         arr:[],
         bgc:false,
-        akl1:"",
-        akl2:""
+        akl1:[[100],[100],[100],[100],[100],[100]],
+        akl2:[],
+        ak3:[],
       }
     },
     methods:{
       goback(){
-        this.$router.go(-1)
+        this.$router.go(-1);
+  },
+      Chooset(a,b){
+        this.akl1[a][0]=b;
+        console.log(this.akl1[a][0]);
+        this.akl1=[...this.akl1];
+        console.log(this.akl1);
       },
-      order(){
-    this.myHttp.get("/v1/carts/1/remarks",(res)=>{
-      this.arr=res.data.remarks
-    })
-      },
-      dians(v,i,y){
-        // this.bgc = !this.bgc;
-        console.log(v,i,y)
-        // if ()
-        // this.akl1 = i
-        // this.akl2 = y
-        if(this.akl1==i&&this.akl2==y){
-this.bgc=true
-        }
+      gobackpanduan(){
+        for (let i = 0; i < this.arr.length ; i++) {
+          if (this.arr[i][this.akl1[i]]==undefined){
+            continue;
+          }
+          this.akl2.push(this.arr[i][this.akl1[i]]);
+          console.log(this.akl2);
+        };
+        this.$router.push({
+          name:"ordercon",
+          params:{
+            cas: JSON.stringify(this.akl2),
+            cans:this.ak3
+          }
+        })
       }
     },
     created(){
-      this. order()
+      this.myHttp.get("/v1/carts/1/remarks",(res)=>{
+        this.arr=res.data.remarks;
+      })
     }
   }
+
 </script>
 
 <style scoped>
@@ -157,5 +178,31 @@ this.bgc=true
   .dian{
     background-color:#3190e8;
     color: white;
+  }
+ul{
+  background-color: white;
+  width: 100%;
+}
+  .cans{
+    background-color: #3190e8;
+    color:#fff;
+  }
+  .remark_arr_list_ul{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .remark_arr_list_ul li{
+    margin-right: .7rem;
+    margin-bottom: .9rem;
+  }
+  .remark_arr_list_ul li span{
+    font-size: .7rem;
+    padding: .4rem .7rem;
+    border: .025rem solid #3190e8;
+  }
+  .header-style{
+    font-size: .75rem;
+    color: #333;
+    line-height: 2rem;
   }
 </style>

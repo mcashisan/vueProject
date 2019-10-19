@@ -26,18 +26,18 @@
     </div>
     <div id="monery">
       <p @click="mymoney">
-        <span><span id="big1">0.00</span>元</span>
+        <span><span id="big1">{{myuan}}</span>元</span>
         <br>
         <span>我的余额</span>
       </p>
       <p style="border-left: 1px solid rgba(0,0,0,0.06); border-right: 1px solid rgba(0,0,0,0.06);"
          @click="Mydiscounts">
-        <span><span id="big2">0</span>个</span>
+        <span><span id="big2">{{youhui}}</span>个</span>
         <br>
         <span>我的优惠</span>
       </p>
       <p id="p3" @click="shopIntegral">
-        <span><span id="big3">0</span>分</span>
+        <span><span id="big3">{{myjf}}</span>分</span>
         <br>
         <span>我的积分</span>
       </p>
@@ -85,7 +85,12 @@
     data() {
       return {
         userName: "注册/登录",
-        newName: ""
+        newName: "",
+        myjf:0,
+        myuan:0.00,
+        youhui:0,
+        ShowNat:true,
+        ShowDown:false
       }
     },
     components: {
@@ -94,11 +99,7 @@
     methods: {
       //返回上一级
       goT() {
-        this.$router.go(-1);
-      },
-      //服务中心的路由
-      ServiceCenter() {
-        this.$router.push({path: "/ServeAdd"});
+        this.$router.push({path:"/msite"});
       },
       //服务中心的路由
       ServiceCenter() {
@@ -132,8 +133,10 @@
             this.userName = res.data.username;
             this.newName = res.data.username;
             localStorage.setItem("name", res.data.username);
+            this.youhui=3;
           } else {
             this.userName = "登录/注册";
+            this.youhui=0;
           }
         }, (err) => {
           console.log(err);
@@ -204,32 +207,6 @@
     border: none;
     outline: none;
   }
-
-  #lowd {
-    background-color: white;
-    text-align: center;
-  }
-
-  #and {
-    height: 2rem;
-    background-color: #3190e8;
-    padding-left: 1rem;
-    color: white;
-    font-size: 0;
-  }
-
-  #left {
-    float: left;
-    font-size: 1rem;
-  }
-
-  #download {
-    float: left;
-    margin-left: 36%;
-    font-size: 1rem;
-    margin-top: 0.6rem;
-  }
-
   #img1 {
     /*width: 3rem;*/
     height: 2.5rem;
@@ -244,12 +221,8 @@
     color: white;
   }
 
-  #enter {
-    font-size: 1rem;
-  }
-
   .enter {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 
   #jt {

@@ -73,6 +73,7 @@
         blackshop(){
           // this.$router.push({path:"/shop",query:conName});
          // this.conName=this.$router.query.conName;
+          this.$router.go(-1);
         }
       },
       watch:{

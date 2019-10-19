@@ -78,6 +78,7 @@
             ShowTwo:false,
             p:"",
             hasdp:[],
+            ShuwNue:false
           }
       },
       methods:{
